@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Little Joy — Made from little moments, made for someone special</title>
+  
+  <!-- Meta SEO & Social Sharing -->
+  <meta name="description" content="The Little Joy — Giftbox cá nhân hóa theo từng câu chuyện. Tự tay thiết kế hộp quà, nến thơm thủ công, khắc tên và thiệp niêm phong sáp cổ điển.">
+  <meta name="theme-color" content="#BD6B4D">
+  
+  <!-- Google Fonts Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Tailwind Configuration -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#BD6B4D',
+            'primary-hover': '#A45538',
+            secondary: '#F4DCD1',
+            surface: '#FAF7F2',
+            card: '#FFFFFF',
+            'text-main': '#2C1E1A',
+            'text-muted': '#7A6B65',
+            'accent-gold': '#D4AF37',
+          },
+          fontFamily: {
+            heading: ['"Playfair Display"', 'Georgia', 'serif'],
+            body: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+          },
+          boxShadow: {
+            'artisan': '0 10px 30px -5px rgba(44, 30, 26, 0.05), 0 4px 6px -2px rgba(44, 30, 26, 0.02)',
+            'artisan-hover': '0 20px 40px -10px rgba(189, 107, 77, 0.15)',
+          },
+          borderRadius: {
+            'artisan': '1.25rem',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Base Custom Reset & Styles -->
+  <style>
+    :root {
+      --color-primary: #BD6B4D;
+      --color-primary-hover: #A45538;
+      --color-secondary: #F4DCD1;
+      --color-surface: #FAF7F2;
+      --color-card: #FFFFFF;
+      --color-text-main: #2C1E1A;
+      --color-text-muted: #7A6B65;
+      --color-accent-gold: #D4AF37;
+    }
+
+    /* Custom Selection Styling */
+    ::selection {
+      background-color: #F4DCD1;
+      color: #2C1E1A;
+    }
+
+    /* Custom Smooth Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #FAF7F2;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #BD6B4D;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #A45538;
+    }
+  </style>
+</head>
+
+<body class="bg-surface text-text-main font-body antialiased min-h-screen flex flex-col selection:bg-secondary selection:text-text-main">
+
+  <!-- ========================================== -->
+  <!-- HEADER & NAVIGATION (Sẵn sàng cho GĐ 2)    -->
+  <!-- ========================================== -->
+  <header id="main-header" class="w-full sticky top-0 z-50 transition-all duration-300">
+    <!-- Header content sẽ được xây dựng trong Giai đoạn 2 -->
+  </header>
+
+  <!-- ========================================== -->
+  <!-- MAIN CONTENT CONTAINER (Sẵn sàng cho GĐ 2-5)-->
+  <!-- ========================================== -->
+  <main id="main-content" class="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Các Section (Hero, Storytelling, Customizer, Social Proof, FAQ) sẽ nằm ở đây -->
+  </main>
+
+  <!-- ========================================== -->
+  <!-- FOOTER & BOTTOM BAR (Sẵn sàng cho GĐ 5)    -->
+  <!-- ========================================== -->
+  <footer id="main-footer" class="w-full bg-[#F4DCD1]/30 border-t border-[#F4DCD1]">
+    <!-- Footer content sẽ được bổ sung ở Giai đoạn 5 -->
+  </footer>
+
+</body>
+</html>
