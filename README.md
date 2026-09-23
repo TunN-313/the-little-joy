@@ -34,14 +34,14 @@ Landing Page tối ưu tỷ lệ chuyển đổi (CRO) và trải nghiệm ngư�
 
 ```text
 The Little Joy/
-├── Images/                                 # Kho hình ảnh sản phẩm thực tế & Logo
+├── Images/                                 # Kho ảnh thực tế & Logo (Lưu cục bộ, được ignore không push lên GitHub)
 │   ├── LOGO.png
 │   ├── 32.png, sau 1.png
 │   └── trước 2 (*).png
 ├── index.html                              # Trang Landing Page chính (Single Page)
 ├── TECH_TREE.md                            # Cây công nghệ và kiến trúc hệ thống
 ├── landing_page_strategy_staged_prompts.md # Bộ prompt 5 giai đoạn chuẩn hóa
-├── .gitignore                              # Cấu hình bỏ qua tệp tạm
+├── .gitignore                              # Cấu hình bỏ qua tệp tạm & thư mục Images/
 └── README.md                               # Hướng dẫn dự án
 ```
 
