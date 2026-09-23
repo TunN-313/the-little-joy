@@ -81,31 +81,236 @@
     ::-webkit-scrollbar-thumb:hover {
       background: #A45538;
     }
+    /* Subtle Floating Card Animation */
+    @keyframes gentleFloat {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(-0.5deg); }
+    }
+    .animate-gentle-float {
+      animation: gentleFloat 5s ease-in-out infinite;
+    }
   </style>
 </head>
 
 <body class="bg-surface text-text-main font-body antialiased min-h-screen flex flex-col selection:bg-secondary selection:text-text-main">
 
   <!-- ========================================== -->
-  <!-- HEADER & NAVIGATION (Sẵn sàng cho GĐ 2)    -->
+  <!-- HEADER & NAVIGATION (Giai đoạn 2)          -->
   <!-- ========================================== -->
-  <header id="main-header" class="w-full sticky top-0 z-50 transition-all duration-300">
-    <!-- Header content sẽ được xây dựng trong Giai đoạn 2 -->
+  <header id="main-header" class="w-full sticky top-0 z-50 backdrop-blur-md bg-surface/90 border-b border-secondary/60 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Logo bên trái -->
+        <a href="#" class="group flex items-center gap-3 transition-transform duration-200 hover:scale-[1.01]">
+          <div class="w-10 h-10 rounded-full bg-secondary/80 flex items-center justify-center border border-primary/20 text-primary shadow-sm group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+            <!-- Icon nơ / trái tim tối giản -->
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+          </div>
+          <div class="flex flex-col">
+            <span class="font-heading text-xl sm:text-2xl font-bold tracking-tight text-text-main group-hover:text-primary transition-colors">The Little Joy</span>
+            <span class="text-[10px] tracking-widest uppercase text-text-muted font-medium -mt-1">Giftbox Cá Nhân Hóa</span>
+          </div>
+        </a>
+
+        <!-- Menu cuộn mượt ở giữa (Desktop) -->
+        <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-text-main">
+          <a href="#collections" class="hover:text-primary transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-primary hover:after:w-full after:transition-all after:duration-300">Bộ sưu tập</a>
+          <a href="#craft" class="hover:text-primary transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-primary hover:after:w-full after:transition-all after:duration-300">Quy trình chế tác</a>
+          <a href="#stories" class="hover:text-primary transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-primary hover:after:w-full after:transition-all after:duration-300">Câu chuyện người nhận</a>
+          <a href="#faq" class="hover:text-primary transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-primary hover:after:w-full after:transition-all after:duration-300">Hỏi đáp & Cam kết</a>
+        </nav>
+
+        <!-- CTA bên phải & Mobile Menu Button -->
+        <div class="flex items-center gap-3">
+          <a href="#customizer" id="CTA_Header_Order" class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-primary hover:bg-primary-hover text-white text-sm font-semibold shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-0.5">
+            Đặt làm ngay
+          </a>
+
+          <!-- Mobile Menu Button -->
+          <button id="mobile-menu-btn" type="button" class="md:hidden p-2 rounded-lg text-text-main hover:bg-secondary/40 focus:outline-none" aria-label="Toggle menu">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-secondary/60 bg-surface/98 px-4 pt-3 pb-6 space-y-3">
+      <a href="#collections" class="block px-3 py-2 rounded-lg text-base font-medium text-text-main hover:bg-secondary/50">Bộ sưu tập</a>
+      <a href="#craft" class="block px-3 py-2 rounded-lg text-base font-medium text-text-main hover:bg-secondary/50">Quy trình chế tác</a>
+      <a href="#stories" class="block px-3 py-2 rounded-lg text-base font-medium text-text-main hover:bg-secondary/50">Câu chuyện người nhận</a>
+      <a href="#faq" class="block px-3 py-2 rounded-lg text-base font-medium text-text-main hover:bg-secondary/50">Hỏi đáp & Cam kết</a>
+      <div class="pt-2">
+        <a href="#customizer" class="w-full flex items-center justify-center py-3 rounded-full bg-primary text-white text-sm font-semibold shadow">
+          Đặt làm ngay
+        </a>
+      </div>
+    </div>
   </header>
 
   <!-- ========================================== -->
-  <!-- MAIN CONTENT CONTAINER (Sẵn sàng cho GĐ 2-5)-->
+  <!-- MAIN CONTENT CONTAINER                    -->
   <!-- ========================================== -->
   <main id="main-content" class="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <!-- Các Section (Hero, Storytelling, Customizer, Social Proof, FAQ) sẽ nằm ở đây -->
+
+    <!-- ========================================== -->
+    <!-- HERO SECTION (Giai đoạn 2)                 -->
+    <!-- ========================================== -->
+    <section id="hero" class="pt-10 pb-16 md:pt-16 md:pb-24 lg:pt-20 lg:pb-28">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        
+        <!-- Cột trái: Copywriting & High-CRO CTA (7/12 desktop) -->
+        <div class="lg:col-span-7 flex flex-col items-start space-y-6 md:space-y-7">
+          
+          <!-- Badge nhỏ trên tiêu đề -->
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-secondary/70 border border-primary/20 text-xs sm:text-sm font-medium text-primary">
+            <span>✨ Hộp quà cá nhân hóa theo từng câu chuyện</span>
+          </div>
+
+          <!-- Tiêu đề chính H1 -->
+          <h1 class="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-bold text-text-main leading-[1.2] tracking-tight">
+            Gói ghém yêu thương từ những khoảnh khắc nhỏ nhất
+          </h1>
+
+          <!-- Subtitle cảm xúc -->
+          <p class="text-base sm:text-lg text-text-muted leading-relaxed max-w-2xl">
+            <span class="italic font-heading font-medium text-text-main">“Made from little moments, made for someone special.”</span> 
+            Từng tấm thiệp viết tay, chiếc nơ lụa và món quà bên trong đều mang dấu ấn riêng của bạn — gửi gắm trọn vẹn sự chân thành đến người thương.
+          </p>
+
+          <!-- Nhóm CTA Buttons -->
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto pt-2">
+            <a href="#customizer" id="CTA_Hero_CreateBox" class="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-primary hover:bg-primary-hover text-white font-semibold text-base shadow-artisan hover:shadow-artisan-hover transition-all duration-300 hover:scale-[1.02] text-center">
+              <span>Tự tay thiết kế hộp quà</span>
+              <svg class="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+              </svg>
+            </a>
+            
+            <a href="#collections" class="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full bg-card hover:bg-secondary/40 border border-[#BD6B4D]/30 text-text-main font-medium text-base transition-colors duration-200 text-center">
+              <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/>
+              </svg>
+              <span>Xem video unboxing thực tế</span>
+            </a>
+          </div>
+
+          <!-- Trust Elements (Social Proof nhỏ dưới nút) -->
+          <div class="pt-4 flex flex-col sm:flex-row sm:items-center gap-3 border-t border-secondary/60 w-full">
+            <div class="flex items-center -space-x-2">
+              <img class="inline-block h-9 w-9 rounded-full ring-2 ring-surface object-cover shadow-sm" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&h=120&q=80" alt="Khách hàng">
+              <img class="inline-block h-9 w-9 rounded-full ring-2 ring-surface object-cover shadow-sm" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=120&h=120&q=80" alt="Khách hàng">
+              <img class="inline-block h-9 w-9 rounded-full ring-2 ring-surface object-cover shadow-sm" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&h=120&q=80" alt="Khách hàng">
+            </div>
+            <div class="flex flex-col">
+              <div class="flex items-center gap-1 text-accent-gold text-sm">
+                <span>★★★★★</span>
+                <span class="text-xs font-bold text-text-main ml-1">4.9/5</span>
+              </div>
+              <p class="text-xs sm:text-sm text-text-muted">
+                Hơn <strong class="text-text-main font-semibold">2,500+ nụ cười</strong> đã được trao đi trong năm nay
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Cột phải: Visual Mockup & Floating Personalization Card (5/12 desktop) -->
+        <div class="lg:col-span-5 relative flex justify-center items-center">
+          
+          <!-- Hào quang nền ấm mềm mại -->
+          <div class="absolute -inset-4 bg-gradient-to-tr from-secondary/50 via-primary/10 to-transparent rounded-full filter blur-3xl opacity-70 -z-10"></div>
+
+          <!-- Khung ảnh chính nghệ thuật (Artisan Giftbox Container) -->
+          <div class="relative w-full max-w-md bg-card rounded-artisan p-4 sm:p-5 shadow-artisan border border-secondary/80 transform hover:scale-[1.01] transition-transform duration-500">
+            
+            <div class="relative overflow-hidden rounded-xl aspect-[4/5] bg-secondary/20">
+              <img 
+                src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=900&q=85" 
+                alt="The Little Joy Artisan Gift Box" 
+                class="w-full h-full object-cover object-center"
+                loading="eager"
+              >
+              
+              <!-- Subtle gradient overlay on image -->
+              <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+
+              <!-- Badge con dấu sáp niêm phong góc trên -->
+              <div class="absolute top-4 right-4 flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/90 backdrop-blur-sm text-white text-xs font-semibold shadow-md">
+                <span class="w-2 h-2 rounded-full bg-accent-gold"></span>
+                <span>Niêm phong sáp thủ công</span>
+              </div>
+
+              <!-- Nội dung nhỏ trong góc dưới ảnh -->
+              <div class="absolute bottom-4 left-4 right-4 text-white text-xs leading-relaxed drop-shadow">
+                <p class="font-medium text-white/90">Bên trong gồm: Nến thơm khắc tên • Sổ tay hoa ép • Ảnh Polaroid gỗ • Hoa khô vintage</p>
+              </div>
+            </div>
+
+            <!-- Floating Card trôi nhẹ (Tăng tính cá nhân hóa) -->
+            <div class="absolute -bottom-6 -left-4 sm:-left-8 bg-card/95 backdrop-blur-md p-4 rounded-2xl shadow-artisan border border-primary/20 max-w-[260px] animate-gentle-float">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-primary text-xl flex-shrink-0">
+                  💌
+                </div>
+                <div>
+                  <div class="text-[11px] text-text-muted font-medium">Thiệp viết tay riêng cho:</div>
+                  <div class="text-sm font-bold text-text-main font-heading">"Em yêu — Kỷ niệm 3 năm"</div>
+                  <div class="flex items-center gap-1 mt-0.5 text-[10px] text-primary font-semibold">
+                    <span class="inline-block w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span>
+                    <span>Nét chữ tay chân thành</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mini Badge góc phải dưới -->
+            <div class="absolute -top-3 -left-3 bg-accent-gold text-text-main text-[11px] font-bold px-3 py-1 rounded-full shadow-md border border-white">
+              Độc bản 100%
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Các Section tiếp theo (Collections, Craft, Customizer, Stories, FAQ) sẽ tiếp nối ở đây -->
+
   </main>
 
   <!-- ========================================== -->
-  <!-- FOOTER & BOTTOM BAR (Sẵn sàng cho GĐ 5)    -->
+  <!-- FOOTER & BOTTOM BAR (Giai đoạn 5)          -->
   <!-- ========================================== -->
   <footer id="main-footer" class="w-full bg-[#F4DCD1]/30 border-t border-[#F4DCD1]">
     <!-- Footer content sẽ được bổ sung ở Giai đoạn 5 -->
   </footer>
+
+  <!-- Script điều khiển Mobile Menu Drawer -->
+  <script>
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (mobileBtn && mobileMenu) {
+      mobileBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+
+      // Đóng drawer khi click vào một link
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+        });
+      });
+    }
+  </script>
+
 
 </body>
 </html>
