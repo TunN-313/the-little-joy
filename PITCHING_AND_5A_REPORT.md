@@ -1,7 +1,7 @@
 # BÁO CÁO CHIẾN LƯỢC & TỔNG HỢP PITCHING DỰ ÁN
 ## LANDING PAGE "THE LITTLE JOY" — HANDMADE GIFTBOX & CARDS
 
-> **Slogan thương hiệu:** *"Always make time for those who matter — Made from little moments, made for someone special"*  
+> **Slogan thương hiệu:** *"Made from little moments. Made for someone special"*  
 > **Đơn vị phát triển:** The Little Joy Creative Front-end & Growth Team  
 > **Mục tiêu báo cáo:** Tài liệu thuyết trình (Pitching Deck Companion) dành cho báo cáo cấp quản lý, ban giám đốc, đối tác và nhà đầu tư; định vị sản phẩm theo mô hình tiếp thị hiện đại.
 
@@ -105,7 +105,7 @@ Landing page **The Little Joy** giữ vai trò **cầu nối trọng tâm ở c�
 #### 2. A2 — APPEAL (Thu hút & Gợi cảm xúc): *Đỉnh cao tại Hero & Bộ sưu tập*
 * **Tâm lý khách hàng:** *"Món quà này có gì độc đáo và có chạm đến cảm xúc của mình/người yêu không?"*
 * **Thành phần trên Web đảm nhiệm:**
-  * Slogan: *"Always make time for those who matter — Made from little moments, made for someone special"*.
+  * Slogan: *"Made from little moments. Made for someone special"*.
   * Phong cách thẩm mỹ Artisan Paper, Washi Tape, viền Polaroids cổ điển.
   * Trưng bày các món quà dễ thương chạm đúng sở thích phái nữ: mèo bông ôm nĩa, gương lược pastel, thiệp lồng ảnh kỷ niệm.
   * **Chỉ số thành công:** Tỉ lệ thoát trang (Bounce rate) thấp, khách tiếp tục cuộn chuột xuống dưới 60% trang.
