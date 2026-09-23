@@ -19,42 +19,42 @@
 ## 1. QUY TRÌNH 6 BƯỚC CHUẨN BỊ ĐƠN HÀNG (ORDER PREPARATION WORKFLOW)
 
 ```
-┌──────────────────┐     ┌──────────────────┐     ┌──────────────────┐
-│ BƯỚC 1: XUẤT ĐƠN │ ──► │  BƯỚC 2: SOẠN    │ ──► │  BƯỚC 3: GHÉP    │
-│ In Phiếu Nhặt    │     │ Nhặt phụ kiện    │     │ Lồng ảnh, thiệp  │
-│ Mã đơn Zalo      │     │ Lược, mèo, gương │     │ Đúng tên khách   │
-└──────────────────┘     └──────────────────┘     └──────────────────┘
-                                                            │
-                                                            ▼
-┌──────────────────┐     ┌──────────────────┐     ┌──────────────────┐
-│  BƯỚC 6: BÀN GIAO│ ◄── │  BƯỚC 5: ĐÓNG    │ ◄── │  BƯỚC 4: KITTING │
-│ Quét mã bưu tá   │     │ Bọc nilon nổ     │     │ Xếp layout hộp   │
-│ Gửi tracking Zalo│     │ Đóng thùng ngoài │     │ Chụp ảnh check-in│
-└──────────────────┘     └──────────────────┘     └──────────────────┘
+┌─────────────────────────┐     ┌──────────────────┐     ┌──────────────────┐
+│ BƯỚC 1: XUẤT ĐƠN TIKTOK │ ──► │  BƯỚC 2: SOẠN    │ ──► │  BƯỚC 3: GHÉP    │
+│ In Phiếu Nhặt Hàng      │     │ Nhặt phụ kiện    │     │ Lồng ảnh, thiệp  │
+│ Order ID TikTok Shop    │     │ Lược, mèo, gương │     │ Đúng Order ID    │
+└─────────────────────────┘     └──────────────────┘     └──────────────────┘
+                                                                   │
+                                                                   ▼
+┌─────────────────────────┐     ┌──────────────────┐     ┌──────────────────┐
+│ BƯỚC 6: BÀN GIAO BƯU TÁ │ ◄── │  BƯỚC 5: ĐÓNG    │ ◄── │  BƯỚC 4: KITTING │
+│ In tem TikTok Shop A6   │     │ Bọc nilon nổ     │     │ Xếp layout hộp   │
+│ Vận chuyển TikTok Shop  │     │ Đóng thùng ngoài │     │ Chụp gửi TikTok  │
+└─────────────────────────┘     └──────────────────┘     └──────────────────┘
 ```
 
-### Bước 1: Xuất đơn & In phiếu nhặt hàng (Pick List)
-* Tiếp nhận thông tin chốt đơn từ Zalo đã được khách hàng duyệt bản demo thiệp.
-* In hoặc ghi **Phiếu Soạn Đơn (Packing Slip)** gồm:
-  * Mã đơn hàng: Ví dụ `TLJ-2026-0923-01`.
-  * Phân loại: Combo Box To (Heart Card) hoặc Combo Box Nhỏ (Bear Card).
-  * Chi tiết tùy biến: Mẫu nền thiệp (Burgundy/Baby Blue/Pink/Black), Màu lược (Tím/Hồng/Vàng/Xanh), Tên người nhận & Lời chúc.
-  * Địa chỉ & SĐT nhận hàng, hình thức vận chuyển (Hỏa tốc Ahamove/Grab hay Chuyển phát nhanh bưu cục).
+### Bước 1: Xuất đơn & In phiếu nhặt hàng (Pick List từ TikTok Shop)
+* Tiếp nhận đơn hàng mới trên hệ thống **TikTok Shop Seller Center**:
+  * Kiểm tra trạng thái đơn: "Chờ vận chuyển" (Awaiting Shipment).
+  * Đối chiếu thông tin phân loại khách đặt: Phân loại Combo Box To (Heart Card) hay Combo Box Nhỏ (Bear Card), Màu lược pastel đã chọn.
+* In **Phiếu Nhặt Hàng (Pick List / Packing Slip)** đồng bộ với **Mã đơn hàng TikTok Shop (Order ID)**.
 
 ### Bước 2: Soạn phụ kiện (Picking & Pre-checking)
-* Đặt khay chứa đơn hàng (Tote/Tray) gắn phiếu nhặt hàng.
+* Đặt khay chứa đơn hàng (Tote/Tray) gắn phiếu nhặt hàng có in Mã đơn TikTok Shop.
 * Soạn đủ các linh kiện từ kệ kho theo đúng danh mục:
   * Hộp Kraft nắp gài (Size L cho Box To, Size M cho Box Nhỏ).
   * Móc khóa mèo bông trắng xù: 2 con cho Box To (1 ôm cá + 1 ôm nĩa) hoặc 1 con cho Box Nhỏ (ôm cá).
-  * Lược đệm khí pastel: Lấy đúng màu khách đã chọn trên web (kiểm tra răng lược không bị gãy/móp).
+  * Lược đệm khí pastel: Lấy đúng màu khách đã chọn trên TikTok Shop (kiểm tra răng lược không bị gãy/móp).
   * Gương tròn gập retro (chỉ có ở Box To): Kiểm tra mặt kính không nứt vỡ.
   * Kẹp tóc nơ/bướm: 1 cặp (2 chiếc).
 
 ### Bước 3: Ghép thiệp in & Ảnh kỷ niệm cá nhân hóa
+* Tiếp nhận file ảnh của khách hàng gửi qua **Tin nhắn TikTok Shop (TikTok Chat)** kèm mã đơn tương ứng:
+  * Kiểm tra đủ số lượng: 8 ảnh (Box To) hoặc 3 ảnh (Box Nhỏ).
 * Nhận bộ thiệp và ảnh in đã qua cán màng nhiệt từ bộ phận kỹ thuật:
   * Đối với Box To: 1 Thiệp Heart Card lồng sẵn 3 ảnh + 5 ảnh Polaroid rời.
   * Đối với Box Nhỏ: 1 Thiệp Bear Card lồng sẵn 1 ảnh + 2 ảnh Polaroid rời.
-* **Nguyên tắc đối chiếu (Cross-check):** Đọc tên người nhận và thông điệp trên thiệp đối chiếu với phiếu soạn đơn để tránh nhầm lẫn giữa các đơn hàng.
+* **Nguyên tắc đối chiếu (Cross-check):** Đọc tên người nhận và thông điệp trên thiệp đối chiếu với Mã đơn hàng TikTok Shop để tuyệt đối không nhầm lẫn giữa các đơn hàng.
 
 ### Bước 4: Sắp đặt bố cục hộp quà & Chụp ảnh Check-in (Kitting)
 * Rải rơm giấy lượn sóng màu kem ngà đã được đánh tơi phồng vào đáy hộp.
@@ -64,17 +64,18 @@
   * Mèo bông nằm ngay ngắn, mặt hướng lên ở đáy hộp.
   * Ảnh Polaroid rời và kẹp tóc cài nhẹ vào nếp rơm trang trí.
 * Thắt nơ ruy băng bản 2.5cm màu Terracotta ở giữa nắp hộp, dán tem vỡ logo *"The Little Joy"*.
-* **Bắt buộc:** Dùng điện thoại chụp 1 bức ảnh rõ nét hộp quà mở nắp và gửi vào khung chat Zalo cho khách hàng kèm lời nhắn:
-  > *"Hộp quà của bạn đã được chuẩn bị xong tinh tươm. Shop gửi bạn xem trước thành phẩm trước khi bọc chống sốc xuất xưởng nhé ạ!"*
+* **Bắt buộc:** Dùng điện thoại chụp 1 bức ảnh rõ nét hộp quà mở nắp và gửi vào khung **Chat TikTok Shop** cho khách hàng kèm lời nhắn:
+  > *"The Little Joy đã chuẩn bị xong hộp quà theo mã đơn TikTok Shop của bạn. Shop gửi bạn xem trước thành phẩm trước khi bọc chống sốc xuất xưởng nhé ạ!"*
 
 ### Bước 5: Bọc nilon nổ chống sốc & Đóng thùng ngoài
 * Thực hiện bọc xốp nilon nổ tối thiểu **3 lớp** theo quy chuẩn kỹ thuật tại [Mục 3](#3-quy-chuẩn-bọc-chống-sốc-bằng-nilon-nổ-bubble-wrap-specification).
 * Đặt vào thùng carton bảo vệ ngoài, dán băng dính niêm phong chữ H.
 
-### Bước 6: Bàn giao bưu tá & Cập nhật vận đơn
-* Dán tem vận đơn bưu điện/chuyển phát và tem cảnh báo hàng dễ vỡ.
-* Quét mã bàn giao cho shipper.
-* Nhắn tin mã vận đơn (Tracking number) + Link tra cứu lộ trình bưu phẩm cho khách trên Zalo.
+### Bước 6: Bàn giao bưu tá & Cập nhật vận đơn TikTok Shop
+* In trực tiếp **Phiếu Giao Hàng TikTok Shop (Shipping Label nhiệt khổ A6)** từ TikTok Shop Seller Center.
+* Dán tem vận đơn TikTok Shop và tem cảnh báo hàng dễ vỡ lên mặt trên thùng carton.
+* Bàn giao kiện hàng cho đơn vị vận chuyển được chỉ định bởi TikTok Shop (J&T Express, SPX Express, Ninja Van...).
+* Bưu tá quét mã xác nhận nhận hàng, hệ thống TikTok Shop tự động cập nhật trạng thái "Đang vận chuyển" và gửi mã tracking cho khách hàng theo dõi trực tiếp trong ứng dụng TikTok.
 
 ---
 
@@ -215,7 +216,7 @@ Dán bảng này ngay tại bàn đóng gói để nhân viên thực hiện tha
 | Bước | Hành động cụ thể | Trạng thái kiểm tra |
 |---|---|---|
 | **1** | Kiểm tra đúng Combo Box To (8 ảnh, 2 mèo, gương, lược, kẹp) / Box Nhỏ (3 ảnh, 1 mèo, lược, kẹp). | [ ] ĐÃ CHECK |
-| **2** | Chụp 1 ảnh thành phẩm bên trong hộp gửi Zalo cho khách ngắm trước. | [ ] ĐÃ GỬI ZALO |
+| **2** | Chụp 1 ảnh thành phẩm bên trong hộp gửi Chat TikTok Shop cho khách ngắm trước. | [ ] ĐÃ GỬI TIKTOK |
 | **3** | Thắt nơ ruy băng cân đối + Dán tem tròn logo niêm phong nắp hộp. | [ ] ĐÃ NIÊM PHONG |
 | **4** | Bọc nilon nổ $\ge 3$ vòng, mặt hạt lồi quay vào trong, gấp mí phong bì dán kín 2 đầu. | [ ] ĐẠT $\ge$ 3 VÒNG |
 | **5** | Đặt vào thùng carton ngoài, lắc thử đạt chuẩn Zero-Play (không có tiếng lọc cọc). | [ ] ZERO-PLAY PASS |

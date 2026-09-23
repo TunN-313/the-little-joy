@@ -32,7 +32,7 @@
 * Giảm thiểu tỉ lệ sai sót, in sai ảnh, giao nhầm mẫu lược hoặc móp méo hộp xuống dưới **0.5%**.
 
 ### 1.2. Ba nguyên tắc bất di bất dịch (The 3 Golden Rules)
-1. **Duyệt trước - In sau:** Tuyệt đối không in hoặc gia công khi khách hàng chưa bấm xác nhận "OK" trên ảnh demo gửi qua Zalo.
+1. **Duyệt trước - In sau:** Tuyệt đối không in hoặc gia công khi khách hàng chưa bấm xác nhận "OK" trên ảnh demo gửi qua Chat TikTok Shop.
 2. **Bảo mật ảnh cá nhân:** 100% file ảnh của khách hàng chỉ được lưu trữ tạm thời phục vụ in ấn; xóa vĩnh viễn định kỳ sau 7 ngày kể từ khi đơn hàng giao thành công. Không đăng ảnh khách lên mạng xã hội khi chưa có sự đồng ý bằng văn bản.
 3. **Mỗi hộp quà là một tác phẩm:** Mọi chi tiết từ sợi rơm lót, góc kẹp nơ, vị trí mèo bông đến nếp gấp thiệp đều phải đúng layout chuẩn theo tài liệu hướng dẫn.
 
@@ -83,28 +83,28 @@
 ## 4. QUY TRÌNH VẬN HÀNH 5 BƯỚC CHI TIẾT (5-STEP STANDARD WORKFLOW)
 
 ```
-┌──────────────────┐     ┌──────────────────┐     ┌──────────────────┐     ┌──────────────────┐     ┌──────────────────┐
-│  BƯỚC 1: CSKH    │ ──► │  BƯỚC 2: DESIGN  │ ──► │ BƯỚC 3: SẢN XUẤT │ ──► │ BƯỚC 4: KITTING  │ ──► │  BƯỚC 5: QC & SHIP│
-│ Tiếp nhận đơn    │     │ Dàn trang & Demo │     │ In ấn, cắt bế    │     │ Sắp xếp hộp quà  │     │ Kiểm định & Đóng │
-│ Kiểm định ảnh HD │     │ Duyệt qua Zalo   │     │ Ép màng bảo vệ   │     │ Đính nơ niêm phong│    │ 3 lớp bóng khí   │
-└──────────────────┘     └──────────────────┘     └──────────────────┘     └──────────────────┘     └──────────────────┘
+┌─────────────────────────┐     ┌──────────────────┐     ┌──────────────────┐     ┌──────────────────┐     ┌──────────────────┐
+│ BƯỚC 1: CSKH TIKTOK     │ ──► │  BƯỚC 2: DESIGN  │ ──► │ BƯỚC 3: SẢN XUẤT │ ──► │ BƯỚC 4: KITTING  │ ──► │  BƯỚC 5: QC & SHIP│
+│ Nhận đơn Seller Center  │     │ Dàn trang & Demo │     │ In ấn, cắt bế    │     │ Sắp xếp hộp quà  │     │ Kiểm định & Đóng │
+│ Kiểm định ảnh qua Chat  │     │ Duyệt TikTok Chat│     │ Ép màng bảo vệ   │     │ Đính nơ niêm phong│    │ In tem TikTok A6 │
+└─────────────────────────┘     └──────────────────┘     └──────────────────┘     └──────────────────┘     └──────────────────┘
 ```
 
 ### Bước 1: Tiếp nhận đơn & Kiểm định tư liệu ảnh
-* **Nhân sự chịu trách nhiệm:** Chuyên viên CSKH Zalo.
-* **Thời gian chuẩn:** Tối đa 15 phút từ khi khách gửi cú pháp từ Landing page.
+* **Nhân sự chịu trách nhiệm:** Chuyên viên CSKH TikTok Shop.
+* **Thời gian chuẩn:** Tối đa 15 phút từ khi phát sinh đơn trên TikTok Shop Seller Center.
 * **Thao tác cụ thể:**
-  1. Đối chiếu mã đơn hàng sinh ra từ web: Loại Box (To/Nhỏ), Mẫu nền thiệp, Màu lược, Lời nhắn gửi.
-  2. Tiếp nhận ảnh của khách gửi qua Zalo:
-     * **Yêu cầu bắt buộc:** Hướng dẫn khách gửi ở chế độ **"Gửi HD"** (không nén dung lượng).
+  1. Kiểm tra đơn hàng mới trên **TikTok Shop Seller Center**: Mã đơn (Order ID), Phân loại Box (To/Nhỏ), Mẫu nền thiệp, Màu lược, Lời nhắn gửi.
+  2. Tiếp nhận ảnh của khách gửi qua **Tin nhắn TikTok Shop (TikTok Chat)** kèm Order ID:
+     * **Yêu cầu bắt buộc:** Nhắc khách gửi ảnh gốc chất lượng cao (không chụp màn hình).
      * **Kiểm tra số lượng ảnh:**
        * Đối với Box To: Đủ 8 ảnh (gồm 1 ảnh dọc, 1 ảnh ngang, 1 ảnh trung tâm cắt tim + 5 ảnh cho khung Polaroid rời).
        * Đối với Box Nhỏ: Đủ 3 ảnh (gồm 1 ảnh chính lồng thiệp + 2 ảnh Polaroid rời).
-  3. Nếu ảnh quá mờ, vỡ hạt, hoặc mặt người bị che khuất ở góc cắt trái tim: Báo ngay cho khách đổi ảnh trong vòng 10 phút.
+  3. Nếu ảnh quá mờ, vỡ hạt, hoặc mặt người bị che khuất ở góc cắt trái tim: Nhắn ngay cho khách qua TikTok Chat để đổi ảnh trong vòng 10 phút.
 
 ---
 
-### Bước 2: Dàn trang thiết kế & Duyệt bản Demo Zalo
+### Bước 2: Dàn trang thiết kế & Duyệt bản Demo qua TikTok Chat
 * **Nhân sự chịu trách nhiệm:** Kỹ thuật viên Pre-press Design.
 * **Thời gian chuẩn:** Tối đa 30 - 45 phút sau khi nhận đủ ảnh đạt chuẩn.
 * **Thao tác cụ thể:**
@@ -115,8 +115,8 @@
      * Khung trái tim (Heart Frame) trung tâm thiệp.
      * Khung phụ bên cạnh.
      * Gõ lời chúc/thông điệp của khách vào vùng text (kiểm tra chính tả, căn lề cân đối).
-  4. Xuất file Mockup Demo (JPEG chất lượng cao) và gửi lại cho CSKH gửi khách qua Zalo với nội dung chuẩn:
-     > *"Dạ The Little Joy gửi bạn bản Demo thiệp lồng ảnh của hộp quà. Bạn kiểm tra lại hình ảnh, vị trí và lời chúc giúp shop nhé ạ. Khi bạn bấm xác nhận OK, bên mình sẽ tiến hành in ép màng ngay ạ!"*
+  4. Xuất file Mockup Demo (JPEG chất lượng cao) và gửi lại cho CSKH gửi khách qua **TikTok Chat** với nội dung chuẩn:
+     > *"Dạ The Little Joy gửi bạn bản Demo thiệp lồng ảnh của hộp quà theo mã đơn TikTok Shop. Bạn kiểm tra lại hình ảnh, vị trí và lời chúc giúp shop nhé ạ. Khi bạn bấm xác nhận OK, bên mình sẽ tiến hành in ép màng ngay ạ!"*
   5. **Quy tắc chặn (Gate):** Chỉ chuyển sang Bước 3 khi nhận được tin nhắn xác nhận của khách hàng.
 
 ---
@@ -143,7 +143,7 @@
   2. **Đánh tơi rơm giấy:** Lấy một lượng rơm vừa đủ (khoảng 35g cho Box Nhỏ, 55g cho Box To), xới phồng tơi xốp và rải đều đáy hộp tạo độ nhún đàn hồi êm ái.
   3. **Bố cục sắp xếp chuẩn (Standard Visual Merchandising):**
      * **Phía trên (Top):** Đặt phong bì thiệp Heart Card / Bear Card nghiêng góc nhẹ 5 độ sang trái, để lộ góc thiệp xinh xắn.
-     * **Chính giữa bên trái:** Đặt Lược đệm khí pastel (đúng màu khách đã chọn).
+     * **Chính giữa bên trái:** Đặt Lược đệm khí pastel (đúng màu khách đã chọn trên TikTok Shop).
      * **Chính giữa bên phải:** Đặt Gương gập vintage (đối với Box To) hoặc sắp kẹp tóc.
      * **Phía trước bên dưới (Bottom):**
        * Đối với Box To: Đặt **2 bé mèo bông xù đôi** nằm song song sát nhau ở đáy hộp (bé ôm cá bên trái, bé ôm thìa bên phải).
@@ -159,13 +159,13 @@
 * **Thời gian chuẩn:** 15 phút.
 * **Thao tác cụ thể:**
   1. Thực hiện kiểm tra 8 tiêu chí theo [BẢNG QC CHECKLIST](#5-bảng-kiểm-soát-chất-lượng-qc-checklist-trước-khi-niêm-phong).
-  2. **Chụp ảnh thành phẩm:** Chụp 1 bức ảnh rõ nét hộp quà đã hoàn thiện gửi qua Zalo cho khách hàng kèm lời nhắn:
-     > *"Hộp quà của bạn đã được đóng gói xinh xắn và chuẩn bị giao cho bên vận chuyển. Shop gửi bạn ngắm trước thành phẩm nhé ạ!"*
+  2. **Chụp ảnh thành phẩm:** Chụp 1 bức ảnh rõ nét hộp quà đã hoàn thiện gửi qua **TikTok Chat** cho khách hàng kèm lời nhắn:
+     > *"Hộp quà của bạn đã được đóng gói xinh xắn và chuẩn bị giao cho bên vận chuyển TikTok Shop. Shop gửi bạn ngắm trước thành phẩm nhé ạ!"*
   3. **Quy cách bọc lót chống sốc (3 Lớp an toàn):**
      * **Lớp 1:** Bọc màng bóng khí bọt lớn (Bubble wrap) quanh hộp quà tối thiểu **3 vòng**, dán kín 2 đầu hộp.
      * **Lớp 2:** Đặt hộp đã bọc bóng khí vào **Thùng carton 3 lớp phụ bên ngoài** (Outer Shipping Box) vừa khít, chèn thêm túi bóng khí nếu còn khoảng trống.
-     * **Lớp 3:** Dán băng dính niêm phong chữ H quanh miệng thùng, dán nhãn vận chuyển (A5) và dán nhãn đỏ cảnh báo: **"HÀNG DỄ VỠ - XIN NHẸ TAY"**.
-  4. Bàn giao cho bưu tá và cập nhật mã vận đơn lên hệ thống Zalo cho khách hàng.
+     * **Lớp 3:** Dán băng dính niêm phong chữ H quanh miệng thùng, dán nhãn vận chuyển TikTok Shop (A6 in nhiệt) và dán nhãn đỏ cảnh báo: **"HÀNG DỄ VỠ - XIN NHẸ TAY"**.
+  4. Bàn giao cho bưu tá đơn vị vận chuyển TikTok Shop (J&T, SPX, Ninja Van), quét mã và hệ thống TikTok Shop tự động đồng bộ hành trình bưu phẩm.
 
 ---
 
@@ -199,7 +199,7 @@ Mỗi đơn hàng bắt buộc phải có chữ ký xác nhận của nhân sự
 
 ## 7. CAM KẾT THỜI GIAN (SLA) & TRÁCH NHIỆM PHÒNG BAN
 
-* **Thời gian hoàn thiện đơn tiêu chuẩn:** **3 - 5 giờ làm việc** kể từ lúc khách duyệt demo qua Zalo.
+* **Thời gian hoàn thiện đơn tiêu chuẩn:** **3 - 5 giờ làm việc** kể từ lúc khách duyệt demo qua Chat TikTok Shop (đảm bảo bàn giao cho đơn vị vận chuyển TikTok Shop trong vòng 24 - 48h theo đúng chuẩn SLA của sàn).
 * **Thời gian giao hàng:**
   * Nội thành: Nhận trong ngày hoặc sau 24h.
   * Liên tỉnh: 2 - 3 ngày làm việc (đóng gói 3 lớp bảo vệ chuyên dụng).
