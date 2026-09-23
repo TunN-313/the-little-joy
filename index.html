@@ -806,12 +806,7 @@
 
     </section>
 
-    <!-- Modal Xác Nhận Cấu Hình Đơn Hàng (Order Confirmation Modal) -->
-    <div id="order-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
-      <div class="bg-card w-full max-w-lg rounded-3xl p-6 sm:p-8 shadow-2xl border border-secondary transform scale-95 transition-all duration-300" id="order-modal-content">
-        <div class="flex items-center justify-between pb-3 border-b border-secondary/60">
-          <div class="flex items-center gap-2">
-           <!-- ========================================== -->
+    <!-- ========================================== -->
     <!-- SECTION 5: SOCIAL PROOF (Giai đoạn 5)      -->
     <!-- ========================================== -->
     <section id="stories" class="py-16 md:py-24 border-t border-secondary/60">
@@ -1128,6 +1123,42 @@
   </footer>
 
   <!-- ========================================== -->
+  <!-- MODAL XÁC NHẬN CẤU HÌNH ĐƠN HÀNG           -->
+  <!-- ========================================== -->
+  <div id="order-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-card w-full max-w-lg rounded-3xl p-6 sm:p-8 shadow-2xl border border-secondary transform scale-95 transition-all duration-300" id="order-modal-content">
+      <div class="flex items-center justify-between pb-3 border-b border-secondary/60">
+        <div class="flex items-center gap-2">
+          <span class="text-xl">🌸</span>
+          <h3 class="font-heading text-lg sm:text-xl font-bold text-text-main">Hộp Quà Của Bạn Đã Sẵn Sàng!</h3>
+        </div>
+        <button id="modal-close-btn" class="p-2 text-text-muted hover:text-text-main text-xl font-bold leading-none">&times;</button>
+      </div>
+
+      <div class="my-5 space-y-3 text-sm">
+        <div class="p-4 rounded-2xl bg-surface border border-secondary/70 space-y-2">
+          <div><strong class="text-text-main">Màu hộp:</strong> <span id="modal-box-color" class="text-primary font-medium">Hộp Gỗ Mộc</span></div>
+          <div><strong class="text-text-main">Tặng phẩm (3 món):</strong> <span id="modal-box-items" class="text-text-main">Chưa chọn</span></div>
+          <div><strong class="text-text-main">Dành tặng:</strong> <span id="modal-box-recipient" class="text-primary font-bold">Em yêu</span></div>
+          <div><strong class="text-text-main">Lời nhắn thiệp:</strong> <span id="modal-box-message" class="italic text-text-muted">“...”</span></div>
+        </div>
+        <p class="text-xs text-text-muted text-center">
+          Bạn có thể gửi cấu hình trực tiếp qua Zalo hoặc copy thông điệp để nhân viên The Little Joy hoàn thiện hộp quà cho bạn.
+        </p>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-3 pt-2">
+        <a id="modal-zalo-link" href="#" target="_blank" class="flex-1 py-3 px-5 rounded-full bg-primary hover:bg-primary-hover text-white text-center font-bold text-sm shadow flex items-center justify-center gap-2">
+          <span>Mở Zalo Gửi Ngay</span> &rarr;
+        </a>
+        <button id="modal-copy-btn" class="py-3 px-5 rounded-full border border-primary/40 text-text-main hover:bg-secondary/40 font-semibold text-sm transition-colors">
+          Sao chép thông tin
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
   <!-- MOBILE STICKY BOTTOM BAR (Giai đoạn 5)     -->
   <!-- ========================================== -->
   <div id="mobile-sticky-bar" class="fixed bottom-0 left-0 right-0 z-40 bg-surface/95 backdrop-blur-md border-t border-secondary/80 p-3 sm:hidden shadow-lg transform translate-y-full transition-transform duration-300 flex items-center gap-3">
@@ -1242,7 +1273,7 @@
     // ==========================================
     // 4. INTERACTIVE GIFTBOX CUSTOMIZER ENGINE
     // ==========================================
-    document.addEventListener('DOMContentLoaded', () => {
+    function initCustomizer() {
       // State Management
       const customizerState = {
         boxColor: 'wood',
@@ -1322,9 +1353,11 @@
           customizerState.boxName = name;
 
           // Update Preview Box UI
-          const config = boxStyleConfig[colorKey] || boxStyleConfig.wood;
-          previewBoxContainer.className = `rounded-2xl p-5 sm:p-6 transition-all duration-500 border-2 ${config.borderClass} ${config.bgClass} relative shadow-inner`;
-          previewBoxBadge.textContent = config.badgeText;
+          if (previewBoxContainer && previewBoxBadge) {
+            const config = boxStyleConfig[colorKey] || boxStyleConfig.wood;
+            previewBoxContainer.className = `rounded-2xl p-5 sm:p-6 transition-all duration-500 border-2 ${config.borderClass} ${config.bgClass} relative shadow-inner`;
+            previewBoxBadge.textContent = config.badgeText;
+          }
         });
       });
 
@@ -1341,13 +1374,17 @@
             // Unselect item
             customizerState.items.splice(existingIndex, 1);
             unmarkCardUI(card);
-            itemLimitMsg.textContent = 'Hãy bấm chọn 3 món bạn cảm thấy phù hợp nhất với người nhận nhé.';
-            itemLimitMsg.className = 'text-xs text-text-muted mb-4 transition-all';
+            if (itemLimitMsg) {
+              itemLimitMsg.textContent = 'Hãy bấm chọn 3 món bạn cảm thấy phù hợp nhất với người nhận nhé.';
+              itemLimitMsg.className = 'text-xs text-text-muted mb-4 transition-all';
+            }
           } else {
             // Select item (Max 3 check)
             if (customizerState.items.length >= 3) {
-              itemLimitMsg.textContent = '⚠️ Bạn đã chọn đủ 3 món quà. Bỏ chọn một món nếu muốn thay đổi nhé!';
-              itemLimitMsg.className = 'text-xs font-semibold text-primary mb-4 transition-all animate-pulse';
+              if (itemLimitMsg) {
+                itemLimitMsg.textContent = '⚠️ Bạn đã chọn đủ 3 món quà. Bỏ chọn một món nếu muốn thay đổi nhé!';
+                itemLimitMsg.className = 'text-xs font-semibold text-primary mb-4 transition-all animate-pulse';
+              }
               return;
             }
             customizerState.items.push({ id, name, icon });
@@ -1380,103 +1417,123 @@
 
       function updateCounterAndSlots() {
         const count = customizerState.items.length;
-        selectedCounter.textContent = count;
+        if (selectedCounter) selectedCounter.textContent = count;
 
-        if (count === 0) {
-          previewSlotStatus.textContent = '(Chưa chọn món nào)';
-        } else if (count === 3) {
-          previewSlotStatus.textContent = '(Đã đủ 3 món quà ✨)';
-        } else {
-          previewSlotStatus.textContent = `(Đã chọn ${count}/3 món)`;
+        if (previewSlotStatus) {
+          if (count === 0) {
+            previewSlotStatus.textContent = '(Chưa chọn món nào)';
+          } else if (count === 3) {
+            previewSlotStatus.textContent = '(Đã đủ 3 món quà ✨)';
+          } else {
+            previewSlotStatus.textContent = `(Đã chọn ${count}/3 món)`;
+          }
         }
 
-        // Render 3 Slots
-        previewItemsSlots.innerHTML = '';
-        for (let i = 0; i < 3; i++) {
-          if (customizerState.items[i]) {
-            const item = customizerState.items[i];
-            const slot = document.createElement('div');
-            slot.className = 'slot-item p-2.5 rounded-xl border border-primary/30 bg-card shadow-sm text-xs text-text-main flex items-center justify-between transition-all duration-300 transform scale-100';
-            slot.innerHTML = `
-              <div class="flex items-center gap-2.5">
-                <span class="w-6 h-6 rounded-lg bg-secondary/80 flex items-center justify-center text-sm">${item.icon}</span>
-                <span class="font-medium">${item.name}</span>
-              </div>
-              <span class="text-[10px] text-primary font-bold">Đã vào hộp</span>
-            `;
-            previewItemsSlots.appendChild(slot);
-          } else {
-            const emptySlot = document.createElement('div');
-            emptySlot.className = 'slot-item p-2.5 rounded-xl border border-dashed border-secondary text-xs text-text-muted flex items-center gap-2.5 bg-card/40';
-            emptySlot.innerHTML = `
-              <span class="w-6 h-6 rounded-lg bg-secondary/40 flex items-center justify-center text-xs text-text-muted">${i + 1}</span>
-              <span>Chưa chọn món thứ ${i + 1}...</span>
-            `;
-            previewItemsSlots.appendChild(emptySlot);
+        if (previewItemsSlots) {
+          previewItemsSlots.innerHTML = '';
+          for (let i = 0; i < 3; i++) {
+            if (customizerState.items[i]) {
+              const item = customizerState.items[i];
+              const slot = document.createElement('div');
+              slot.className = 'slot-item p-2.5 rounded-xl border border-primary/30 bg-card shadow-sm text-xs text-text-main flex items-center justify-between transition-all duration-300 transform scale-100';
+              slot.innerHTML = `
+                <div class="flex items-center gap-2.5">
+                  <span class="w-6 h-6 rounded-lg bg-secondary/80 flex items-center justify-center text-sm">${item.icon}</span>
+                  <span class="font-medium">${item.name}</span>
+                </div>
+                <span class="text-[10px] text-primary font-bold">Đã vào hộp</span>
+              `;
+              previewItemsSlots.appendChild(slot);
+            } else {
+              const emptySlot = document.createElement('div');
+              emptySlot.className = 'slot-item p-2.5 rounded-xl border border-dashed border-secondary text-xs text-text-muted flex items-center gap-2.5 bg-card/40';
+              emptySlot.innerHTML = `
+                <span class="w-6 h-6 rounded-lg bg-secondary/40 flex items-center justify-center text-xs text-text-muted">${i + 1}</span>
+                <span>Chưa chọn món thứ ${i + 1}...</span>
+              `;
+              previewItemsSlots.appendChild(emptySlot);
+            }
           }
         }
       }
 
       // 3. Inputs Change Listener
-      recipientInput.addEventListener('input', (e) => {
-        const val = e.target.value.trim();
-        customizerState.recipientName = val || 'Người thương';
-        previewRecipientDisplay.textContent = `"${customizerState.recipientName}"`;
-      });
+      if (recipientInput) {
+        recipientInput.addEventListener('input', (e) => {
+          const val = e.target.value.trim();
+          customizerState.recipientName = val || 'Người thương';
+          if (previewRecipientDisplay) {
+            previewRecipientDisplay.textContent = `"${customizerState.recipientName}"`;
+          }
+        });
+      }
 
-      messageInput.addEventListener('input', (e) => {
-        const val = e.target.value.trim();
-        customizerState.message = val || '“Made from little moments, made for someone special”';
-        previewMessageDisplay.textContent = `“${customizerState.message}”`;
-      });
+      if (messageInput) {
+        messageInput.addEventListener('input', (e) => {
+          const val = e.target.value.trim();
+          customizerState.message = val || '“Made from little moments, made for someone special”';
+          if (previewMessageDisplay) {
+            previewMessageDisplay.textContent = `“${customizerState.message}”`;
+          }
+        });
+      }
 
       // 4. Submit & Zalo Order Generation
-      submitBtn.addEventListener('click', () => {
-        const itemsListStr = customizerState.items.length > 0 
-          ? customizerState.items.map(it => `${it.icon} ${it.name}`).join(', ') 
-          : '(Chưa chọn món)';
+      if (submitBtn) {
+        submitBtn.addEventListener('click', () => {
+          const itemsListStr = customizerState.items.length > 0 
+            ? customizerState.items.map(it => `${it.icon} ${it.name}`).join(', ') 
+            : '(Chưa chọn món)';
 
-        modalBoxColor.textContent = customizerState.boxName;
-        modalBoxItems.textContent = itemsListStr;
-        modalBoxRecipient.textContent = customizerState.recipientName;
-        modalBoxMessage.textContent = `“${customizerState.message}”`;
+          if (modalBoxColor) modalBoxColor.textContent = customizerState.boxName;
+          if (modalBoxItems) modalBoxItems.textContent = itemsListStr;
+          if (modalBoxRecipient) modalBoxRecipient.textContent = customizerState.recipientName;
+          if (modalBoxMessage) modalBoxMessage.textContent = `“${customizerState.message}”`;
 
-        // Generate Zalo Message Payload
-        const zaloText = `Chào The Little Joy, mình muốn đặt hộp quà cá nhân hóa:\n` +
-          `• Màu hộp: ${customizerState.boxName}\n` +
-          `• 3 Tặng phẩm: ${itemsListStr}\n` +
-          `• Dành tặng: ${customizerState.recipientName}\n` +
-          `• Lời nhắn thiệp: "${customizerState.message}"\n` +
-          `Nhờ The Little Joy tư vấn và chụp ảnh duyệt thành phẩm trước khi gửi giúp mình nhé!`;
+          // Generate Zalo Message Payload
+          const zaloText = `Chào The Little Joy, mình muốn đặt hộp quà cá nhân hóa:\n` +
+            `• Màu hộp: ${customizerState.boxName}\n` +
+            `• 3 Tặng phẩm: ${itemsListStr}\n` +
+            `• Dành tặng: ${customizerState.recipientName}\n` +
+            `• Lời nhắn thiệp: "${customizerState.message}"\n` +
+            `Nhờ The Little Joy tư vấn và chụp ảnh duyệt thành phẩm trước khi gửi giúp mình nhé!`;
 
-        const encodedZalo = encodeURIComponent(zaloText);
-        modalZaloLink.href = `https://zalo.me/${customizerState.phoneZalo}?text=${encodedZalo}`;
+          const encodedZalo = encodeURIComponent(zaloText);
+          if (modalZaloLink) {
+            modalZaloLink.href = `https://zalo.me/${customizerState.phoneZalo}?text=${encodedZalo}`;
+          }
 
-        // Show Modal
-        orderModal.classList.remove('hidden');
-        orderModal.classList.add('flex');
-        setTimeout(() => {
-          modalContent.classList.remove('scale-95');
-          modalContent.classList.add('scale-100');
-        }, 10);
-
-        // Copy button action
-        modalCopyBtn.onclick = () => {
-          navigator.clipboard.writeText(zaloText).then(() => {
-            modalCopyBtn.textContent = '✓ Đã sao chép!';
-            modalCopyBtn.classList.add('bg-emerald-50', 'text-emerald-700', 'border-emerald-300');
+          // Show Modal
+          if (orderModal && modalContent) {
+            orderModal.classList.remove('hidden');
+            orderModal.classList.add('flex');
             setTimeout(() => {
-              modalCopyBtn.textContent = 'Sao chép thông tin';
-              modalCopyBtn.classList.remove('bg-emerald-50', 'text-emerald-700', 'border-emerald-300');
-            }, 2500);
-          }).catch(() => {
-            alert('Không thể tự động copy, bạn vui lòng chọn văn bản và sao chép thủ công nhé.');
-          });
-        };
-      });
+              modalContent.classList.remove('scale-95');
+              modalContent.classList.add('scale-100');
+            }, 10);
+          }
+
+          // Copy button action
+          if (modalCopyBtn) {
+            modalCopyBtn.onclick = () => {
+              navigator.clipboard.writeText(zaloText).then(() => {
+                modalCopyBtn.textContent = '✓ Đã sao chép!';
+                modalCopyBtn.classList.add('bg-emerald-50', 'text-emerald-700', 'border-emerald-300');
+                setTimeout(() => {
+                  modalCopyBtn.textContent = 'Sao chép thông tin';
+                  modalCopyBtn.classList.remove('bg-emerald-50', 'text-emerald-700', 'border-emerald-300');
+                }, 2500);
+              }).catch(() => {
+                alert('Không thể tự động copy, bạn vui lòng chọn văn bản và sao chép thủ công nhé.');
+              });
+            };
+          }
+        });
+      }
 
       // Close Modal handlers
       function closeModal() {
+        if (!orderModal || !modalContent) return;
         modalContent.classList.remove('scale-100');
         modalContent.classList.add('scale-95');
         setTimeout(() => {
@@ -1485,10 +1542,12 @@
         }, 150);
       }
 
-      modalCloseBtn.addEventListener('click', closeModal);
-      orderModal.addEventListener('click', (e) => {
-        if (e.target === orderModal) closeModal();
-      });
+      if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeModal);
+      if (orderModal) {
+        orderModal.addEventListener('click', (e) => {
+          if (e.target === orderModal) closeModal();
+        });
+      }
 
       // Initialize default selection with 3 popular items for demo wow effect
       const defaultItemsToSelect = ['candle', 'tea', 'notebook'];
@@ -1502,7 +1561,14 @@
         }
       });
       updateCounterAndSlots();
-    });
+    }
+
+    // Initialize safely
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initCustomizer);
+    } else {
+      initCustomizer();
+    }
   </script>
 
 </body>
