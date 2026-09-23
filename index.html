@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Little Joy — Made from little moments, made for someone special</title>
+  <title>The Little Joy — Giftbox Thủ Công Cho Người Đặc Biệt</title>
   
   <!-- Meta SEO & Social Sharing -->
-  <meta name="description" content="The Little Joy — Giftbox cá nhân hóa theo từng câu chuyện. Tự tay thiết kế hộp quà, nến thơm thủ công, khắc tên và thiệp niêm phong sáp cổ điển.">
+  <meta name="description" content="The Little Joy — Box quà tặng cá nhân hóa cho bạn gái & đôi lứa. Thiệp custom Heart Card/Bear Card in ảnh kỷ niệm, móc khoá mèo bông đôi, gương lược pastel ngọt ngào.">
   <meta name="theme-color" content="#BD6B4D">
   
   <!-- Google Fonts Preconnect -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -31,17 +31,22 @@
             'text-main': '#2C1E1A',
             'text-muted': '#7A6B65',
             'accent-gold': '#D4AF37',
+            'pastel-pink': '#FCE1E4',
+            'pastel-blue': '#E2ECE9',
+            'pastel-yellow': '#FFF1BD',
           },
           fontFamily: {
             heading: ['"Playfair Display"', 'Georgia', 'serif'],
             body: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+            handwriting: ['"Caveat"', 'cursive'],
           },
           boxShadow: {
             'artisan': '0 10px 30px -5px rgba(44, 30, 26, 0.05), 0 4px 6px -2px rgba(44, 30, 26, 0.02)',
-            'artisan-hover': '0 20px 40px -10px rgba(189, 107, 77, 0.15)',
+            'artisan-hover': '0 20px 40px -10px rgba(189, 107, 77, 0.18)',
+            'polaroid': '0 8px 25px rgba(44, 30, 26, 0.12)',
           },
           borderRadius: {
-            'artisan': '1.25rem',
+            'artisan': '1.5rem',
           }
         }
       }
@@ -61,13 +66,11 @@
       --color-accent-gold: #D4AF37;
     }
 
-    /* Custom Selection Styling */
     ::selection {
       background-color: #F4DCD1;
       color: #2C1E1A;
     }
 
-    /* Custom Smooth Scrollbar */
     ::-webkit-scrollbar {
       width: 8px;
     }
@@ -81,13 +84,31 @@
     ::-webkit-scrollbar-thumb:hover {
       background: #A45538;
     }
-    /* Subtle Floating Card Animation */
+
+    /* Subtle Gentle Floating Animation */
     @keyframes gentleFloat {
       0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-8px) rotate(-0.5deg); }
+      50% { transform: translateY(-7px) rotate(-1deg); }
     }
     .animate-gentle-float {
       animation: gentleFloat 5s ease-in-out infinite;
+    }
+
+    /* Washi Tape Graphic Effect */
+    .washi-tape {
+      position: absolute;
+      width: 90px;
+      height: 26px;
+      background: rgba(244, 220, 209, 0.75);
+      border-left: 2px dashed rgba(189, 107, 77, 0.4);
+      border-right: 2px dashed rgba(189, 107, 77, 0.4);
+      transform: rotate(-3deg);
+      top: -12px;
+      left: 50%;
+      margin-left: -45px;
+      backdrop-blur: 2px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      z-index: 20;
     }
   </style>
 </head>
@@ -95,7 +116,15 @@
 <body class="bg-surface text-text-main font-body antialiased min-h-screen flex flex-col selection:bg-secondary selection:text-text-main">
 
   <!-- ========================================== -->
-  <!-- HEADER & NAVIGATION (Giai đoạn 2)          -->
+  <!-- TOP ANNOUNCEMENT BAR                       -->
+  <!-- ========================================== -->
+  <div class="bg-secondary/70 text-text-main text-xs sm:text-sm py-2 px-4 text-center border-b border-primary/20 flex items-center justify-center gap-2 font-medium">
+    <span>🧸</span>
+    <span><strong>The Little Joy (EST. 2026):</strong> Tặng kèm in ảnh Polaroid & hỗ trợ gửi bản demo thiệp duyệt qua Zalo trước khi giao!</span>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- HEADER & NAVIGATION                        -->
   <!-- ========================================== -->
   <header id="main-header" class="w-full sticky top-0 z-50 backdrop-blur-md bg-surface/90 border-b border-secondary/60 transition-all duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -103,34 +132,34 @@
         
         <!-- Logo bên trái -->
         <a href="#" class="group flex items-center gap-3 transition-transform duration-200 hover:scale-[1.01]">
-          <div class="w-10 h-10 rounded-full bg-secondary/80 flex items-center justify-center border border-primary/20 text-primary shadow-sm group-hover:bg-primary group-hover:text-white transition-colors duration-300">
-            <!-- Icon nơ / trái tim tối giản -->
-            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
-              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-            </svg>
+          <div class="w-11 h-11 rounded-full bg-secondary/80 flex items-center justify-center border border-primary/30 text-primary shadow-sm overflow-hidden group-hover:border-primary transition-colors">
+            <img src="Images/LOGO.png" alt="The Little Joy Logo" class="w-full h-full object-cover">
           </div>
           <div class="flex flex-col">
             <span class="font-heading text-xl sm:text-2xl font-bold tracking-tight text-text-main group-hover:text-primary transition-colors">The Little Joy</span>
-            <span class="text-[10px] tracking-widest uppercase text-text-muted font-medium -mt-1">Giftbox Cá Nhân Hóa</span>
+            <span class="text-[10px] tracking-widest uppercase text-text-muted font-medium -mt-1">Handmade Giftbox & Cards</span>
           </div>
         </a>
 
         <!-- Menu cuộn mượt ở giữa (Desktop) -->
-        <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-text-main">
-          <a href="#collections" class="hover:text-primary transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-primary hover:after:w-full after:transition-all after:duration-300">Bộ sưu tập</a>
-          <a href="#craft" class="hover:text-primary transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-primary hover:after:w-full after:transition-all after:duration-300">Quy trình chế tác</a>
-          <a href="#stories" class="hover:text-primary transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-primary hover:after:w-full after:transition-all after:duration-300">Câu chuyện người nhận</a>
-          <a href="#faq" class="hover:text-primary transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-primary hover:after:w-full after:transition-all after:duration-300">Hỏi đáp & Cam kết</a>
+        <nav class="hidden lg:flex items-center space-x-7 text-sm font-medium text-text-main">
+          <a href="#combos" class="hover:text-primary transition-colors py-1">2 Combo Box Quà</a>
+          <a href="#comparison" class="hover:text-primary transition-colors py-1">Box To & Box Nhỏ</a>
+          <a href="#process" class="hover:text-primary transition-colors py-1">Quy trình làm thiệp A-Z</a>
+          <a href="#customizer" class="hover:text-primary transition-colors py-1">Tự phối hộp quà</a>
+          <a href="#stories" class="hover:text-primary transition-colors py-1">Đánh giá</a>
+          <a href="#faq" class="hover:text-primary transition-colors py-1">Hỏi đáp</a>
         </nav>
 
         <!-- CTA bên phải & Mobile Menu Button -->
         <div class="flex items-center gap-3">
-          <a href="#customizer" id="CTA_Header_Order" class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-primary hover:bg-primary-hover text-white text-sm font-semibold shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-0.5">
-            Đặt làm ngay
+          <a href="#customizer" id="CTA_Header_Order" class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-primary hover:bg-primary-hover text-white text-sm font-semibold shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-0.5 gap-2">
+            <span>🎁</span>
+            <span>Đặt hộp quà ngay</span>
           </a>
 
           <!-- Mobile Menu Button -->
-          <button id="mobile-menu-btn" type="button" class="md:hidden p-2 rounded-lg text-text-main hover:bg-secondary/40 focus:outline-none" aria-label="Toggle menu">
+          <button id="mobile-menu-btn" type="button" class="lg:hidden p-2 rounded-lg text-text-main hover:bg-secondary/40 focus:outline-none" aria-label="Toggle menu">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
             </svg>
@@ -140,14 +169,17 @@
     </div>
 
     <!-- Mobile Navigation Drawer -->
-    <div id="mobile-menu" class="hidden md:hidden border-t border-secondary/60 bg-surface/98 px-4 pt-3 pb-6 space-y-3">
-      <a href="#collections" class="block px-3 py-2 rounded-lg text-base font-medium text-text-main hover:bg-secondary/50">Bộ sưu tập</a>
-      <a href="#craft" class="block px-3 py-2 rounded-lg text-base font-medium text-text-main hover:bg-secondary/50">Quy trình chế tác</a>
-      <a href="#stories" class="block px-3 py-2 rounded-lg text-base font-medium text-text-main hover:bg-secondary/50">Câu chuyện người nhận</a>
+    <div id="mobile-menu" class="hidden lg:hidden border-t border-secondary/60 bg-surface/98 px-4 pt-3 pb-6 space-y-3">
+      <a href="#combos" class="block px-3 py-2 rounded-lg text-base font-medium text-text-main hover:bg-secondary/50">2 Combo Box Quà</a>
+      <a href="#comparison" class="block px-3 py-2 rounded-lg text-base font-medium text-text-main hover:bg-secondary/50">So Sánh Box To & Box Nhỏ</a>
+      <a href="#process" class="block px-3 py-2 rounded-lg text-base font-medium text-text-main hover:bg-secondary/50">Quy trình làm thiệp A-Z</a>
+      <a href="#customizer" class="block px-3 py-2 rounded-lg text-base font-medium text-text-main hover:bg-secondary/50">Tự phối hộp quà (30s)</a>
+      <a href="#stories" class="block px-3 py-2 rounded-lg text-base font-medium text-text-main hover:bg-secondary/50">Khoảnh khắc người nhận</a>
       <a href="#faq" class="block px-3 py-2 rounded-lg text-base font-medium text-text-main hover:bg-secondary/50">Hỏi đáp & Cam kết</a>
       <div class="pt-2">
-        <a href="#customizer" class="w-full flex items-center justify-center py-3 rounded-full bg-primary text-white text-sm font-semibold shadow">
-          Đặt làm ngay
+        <a href="#customizer" class="w-full flex items-center justify-center py-3 rounded-full bg-primary text-white text-sm font-semibold shadow gap-2">
+          <span>🎁</span>
+          <span>Đặt hộp quà ngay</span>
         </a>
       </div>
     </div>
@@ -159,119 +191,116 @@
   <main id="main-content" class="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
     <!-- ========================================== -->
-    <!-- HERO SECTION (Giai đoạn 2)                 -->
+    <!-- SECTION 1: HERO SECTION                    -->
     <!-- ========================================== -->
     <section id="hero" class="pt-10 pb-16 md:pt-16 md:pb-24 lg:pt-20 lg:pb-28">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
         
-        <!-- Cột trái: Copywriting & High-CRO CTA (7/12 desktop) -->
+        <!-- Cột trái: Copywriting & High-CRO CTA (7/12) -->
         <div class="lg:col-span-7 flex flex-col items-start space-y-6 md:space-y-7">
           
-          <!-- Badge nhỏ trên tiêu đề -->
-          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-secondary/70 border border-primary/20 text-xs sm:text-sm font-medium text-primary">
-            <span>✨ Hộp quà cá nhân hóa theo từng câu chuyện</span>
+          <!-- Badge trên tiêu đề -->
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-secondary/80 border border-primary/20 text-xs sm:text-sm font-medium text-primary shadow-sm">
+            <span>🧸✨ Hộp Quà Scrapbook & Thiệp Custom Độc Bản</span>
           </div>
 
           <!-- Tiêu đề chính H1 -->
           <h1 class="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-bold text-text-main leading-[1.2] tracking-tight">
-            Gói ghém yêu thương từ những khoảnh khắc nhỏ nhất
+            Gói Ghém Yêu Thương Từ Những Khoảnh Khắc Nhỏ Nhất
           </h1>
 
-          <!-- Subtitle cảm xúc -->
-          <p class="text-base sm:text-lg text-text-muted leading-relaxed max-w-2xl">
-            <span class="italic font-heading font-medium text-text-main">“Made from little moments, made for someone special.”</span> 
-            Từng tấm thiệp viết tay, chiếc nơ lụa và món quà bên trong đều mang dấu ấn riêng của bạn — gửi gắm trọn vẹn sự chân thành đến người thương.
-          </p>
+          <!-- Subtitle cảm xúc & Slogan chuẩn -->
+          <div class="space-y-2 max-w-2xl">
+            <p class="font-handwriting text-2xl text-primary font-bold">
+              “always make time for those who matter — made from little moments, made for someone special”
+            </p>
+            <p class="text-base sm:text-lg text-text-muted leading-relaxed">
+              Trọn bộ hộp quà vintage gồm <strong>thiệp custom ảnh độc quyền</strong> (Heart Card 8 ảnh hoặc Bear Card 3 ảnh), <strong>móc khoá mèo bông cặp đôi</strong>, lược gỡ rối & gương gập pastel ngọt ngào.
+            </p>
+          </div>
 
           <!-- Nhóm CTA Buttons -->
           <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto pt-2">
             <a href="#customizer" id="CTA_Hero_CreateBox" class="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-primary hover:bg-primary-hover text-white font-semibold text-base shadow-artisan hover:shadow-artisan-hover transition-all duration-300 hover:scale-[1.02] text-center">
-              <span>Tự tay thiết kế hộp quà</span>
-              <svg class="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <span>Tự tay chọn hộp & thiệp</span>
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
               </svg>
             </a>
             
-            <a href="#collections" class="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full bg-card hover:bg-secondary/40 border border-[#BD6B4D]/30 text-text-main font-medium text-base transition-colors duration-200 text-center">
-              <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/>
-              </svg>
-              <span>Xem video unboxing thực tế</span>
+            <a href="#combos" class="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full bg-card hover:bg-secondary/40 border border-primary/30 text-text-main font-medium text-base transition-colors duration-200 text-center">
+              <span>Xem 2 mẫu Box To & Box Nhỏ</span>
+              <span class="text-xs bg-secondary px-2 py-0.5 rounded-full font-bold text-primary">Ảnh thật 100%</span>
             </a>
           </div>
 
-          <!-- Trust Elements (Social Proof nhỏ dưới nút) -->
+          <!-- Trust Elements (Social Proof) -->
           <div class="pt-4 flex flex-col sm:flex-row sm:items-center gap-3 border-t border-secondary/60 w-full">
             <div class="flex items-center -space-x-2">
+              <img class="inline-block h-9 w-9 rounded-full ring-2 ring-surface object-cover shadow-sm" src="Images/sau%201.png" alt="The Little Joy Bear">
               <img class="inline-block h-9 w-9 rounded-full ring-2 ring-surface object-cover shadow-sm" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&h=120&q=80" alt="Khách hàng">
               <img class="inline-block h-9 w-9 rounded-full ring-2 ring-surface object-cover shadow-sm" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=120&h=120&q=80" alt="Khách hàng">
-              <img class="inline-block h-9 w-9 rounded-full ring-2 ring-surface object-cover shadow-sm" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&h=120&q=80" alt="Khách hàng">
             </div>
             <div class="flex flex-col">
               <div class="flex items-center gap-1 text-accent-gold text-sm">
                 <span>★★★★★</span>
                 <span class="text-xs font-bold text-text-main ml-1">4.9/5</span>
+                <span class="text-xs text-text-muted">(Hơn 2,500+ nụ cười đã được trao đi)</span>
               </div>
               <p class="text-xs sm:text-sm text-text-muted">
-                Hơn <strong class="text-text-main font-semibold">2,500+ nụ cười</strong> đã được trao đi trong năm nay
+                100% khách hàng được <strong class="text-text-main font-semibold">xem bản demo thiệp duyệt trước khi in</strong>.
               </p>
             </div>
           </div>
 
         </div>
 
-        <!-- Cột phải: Visual Mockup & Floating Personalization Card (5/12 desktop) -->
+        <!-- Cột phải: Visual Mockup với Ảnh Thật Sản Phẩm Box To (5/12) -->
         <div class="lg:col-span-5 relative flex justify-center items-center">
           
-          <!-- Hào quang nền ấm mềm mại -->
+          <!-- Hào quang nền ấm -->
           <div class="absolute -inset-4 bg-gradient-to-tr from-secondary/50 via-primary/10 to-transparent rounded-full filter blur-3xl opacity-70 -z-10"></div>
 
-          <!-- Khung ảnh chính nghệ thuật (Artisan Giftbox Container) -->
-          <div class="relative w-full max-w-md bg-card rounded-artisan p-4 sm:p-5 shadow-artisan border border-secondary/80 transform hover:scale-[1.01] transition-transform duration-500">
+          <!-- Khung ảnh Polaroid Vintage chứa ảnh Box To thật -->
+          <div class="relative w-full max-w-md bg-card rounded-artisan p-4 sm:p-5 shadow-polaroid border border-secondary/80 transform hover:rotate-1 transition-transform duration-500">
             
+            <!-- Miếng băng dính washi tape trang trí đỉnh ảnh -->
+            <div class="washi-tape"></div>
+
             <div class="relative overflow-hidden rounded-xl aspect-[4/5] bg-secondary/20">
+              <!-- Ảnh thật Box To từ thư mục Images -->
               <img 
-                src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=900&q=85" 
-                alt="The Little Joy Artisan Gift Box" 
+                src="Images/tr%C6%B0%E1%BB%9Bc%202%20(2).png" 
+                alt="Box To The Little Joy — Ảnh thật sản phẩm" 
                 class="w-full h-full object-cover object-center"
                 loading="eager"
               >
               
-              <!-- Subtle gradient overlay on image -->
-              <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
-
-              <!-- Badge con dấu sáp niêm phong góc trên -->
-              <div class="absolute top-4 right-4 flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/90 backdrop-blur-sm text-white text-xs font-semibold shadow-md">
-                <span class="w-2 h-2 rounded-full bg-accent-gold"></span>
-                <span>Niêm phong sáp thủ công</span>
+              <!-- Badge góc trên ảnh -->
+              <div class="absolute top-3 right-3 flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/90 backdrop-blur-sm text-white text-xs font-semibold shadow-md">
+                <span>🐱 2 Móc khóa mèo đôi</span>
               </div>
 
-              <!-- Nội dung nhỏ trong góc dưới ảnh -->
-              <div class="absolute bottom-4 left-4 right-4 text-white text-xs leading-relaxed drop-shadow">
-                <p class="font-medium text-white/90">Bên trong gồm: Nến thơm khắc tên • Sổ tay hoa ép • Ảnh Polaroid gỗ • Hoa khô vintage</p>
+              <!-- Badge góc dưới ảnh -->
+              <div class="absolute bottom-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs px-3 py-1 rounded-lg">
+                📸 Kèm 5 ảnh Polaroid + Thiệp Heart Card
               </div>
             </div>
 
-            <!-- Floating Card trôi nhẹ (Tăng tính cá nhân hóa) -->
-            <div class="absolute -bottom-6 -left-4 sm:-left-8 bg-card/95 backdrop-blur-md p-4 rounded-2xl shadow-artisan border border-primary/20 max-w-[260px] animate-gentle-float">
+            <!-- Floating Mascot Card trôi nhẹ (Ảnh chú gấu sau 1.png) -->
+            <div class="absolute -bottom-6 -left-4 sm:-left-8 bg-card/98 backdrop-blur-md p-3.5 rounded-2xl shadow-artisan border border-primary/20 max-w-[240px] animate-gentle-float">
               <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-primary text-xl flex-shrink-0">
-                  💌
-                </div>
+                <img src="Images/sau%201.png" alt="The Little Joy Mascot" class="w-12 h-12 rounded-xl object-cover border border-secondary flex-shrink-0">
                 <div>
-                  <div class="text-[11px] text-text-muted font-medium">Thiệp viết tay riêng cho:</div>
-                  <div class="text-sm font-bold text-text-main font-heading">"Em yêu — Kỷ niệm 3 năm"</div>
-                  <div class="flex items-center gap-1 mt-0.5 text-[10px] text-primary font-semibold">
-                    <span class="inline-block w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span>
-                    <span>Nét chữ tay chân thành</span>
-                  </div>
+                  <div class="text-[11px] text-primary font-bold">Mascot Chú Gấu 🧸</div>
+                  <div class="text-xs font-bold text-text-main">"Always make time for those who matter"</div>
                 </div>
               </div>
             </div>
 
-            <!-- Mini Badge góc phải dưới -->
-            <div class="absolute -top-3 -left-3 bg-accent-gold text-text-main text-[11px] font-bold px-3 py-1 rounded-full shadow-md border border-white">
-              Độc bản 100%
+            <!-- Mini Badge góc phải trên -->
+            <div class="absolute -top-3 -right-3 bg-accent-gold text-text-main text-[11px] font-bold px-3 py-1 rounded-full shadow-md border border-white">
+              COMBO BOX TO
             </div>
 
           </div>
@@ -282,419 +311,483 @@
     </section>
 
     <!-- ========================================== -->
-    <!-- SECTION 2: CURATED COLLECTIONS             -->
+    <!-- SECTION 2: CHI TIẾT 2 DÒNG BOX THẬT        -->
     <!-- ========================================== -->
-    <section id="collections" class="py-16 md:py-20 border-t border-secondary/60">
-      <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-secondary/60 border border-primary/20 text-xs sm:text-sm font-medium text-primary mb-3">
-          <span>🎁 BỘ SƯU TẬP THEO DỊP</span>
+    <section id="combos" class="py-16 md:py-24 border-t border-secondary/60">
+      <div class="text-center max-w-3xl mx-auto mb-14 sm:mb-18">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-secondary/70 border border-primary/20 text-xs sm:text-sm font-medium text-primary mb-3">
+          <span>🎁 BỘ SƯU TẬP THỰC TẾ</span>
         </div>
         <h2 class="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-text-main tracking-tight">
-          Hộp Quà Gợi Ý Cho Từng Khoảnh Khắc
+          Hai Quy Cách Hộp Quà Độc Bản Của The Little Joy
         </h2>
         <p class="mt-3 text-sm sm:text-base text-text-muted leading-relaxed">
-          Được tinh chọn kỹ lưỡng về màu sắc và ý nghĩa, sẵn sàng để bạn thêm thiệp và khắc tên riêng.
+          Tất cả sản phẩm đều được chụp thực tế, đóng gói chỉn chu trong hộp quà mộc kèm rơm giấy thơm và nơ xinh.
         </p>
       </div>
 
-      <!-- Grid 4 bộ sưu tập -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+      <!-- 2 Cột lớn: Box To vs Box Nhỏ -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
         
-        <!-- Collection 1: Tình Yêu / Kỷ Niệm -->
-        <div class="group bg-card rounded-2xl p-4 sm:p-5 border border-secondary/80 hover:border-primary/40 shadow-artisan hover:shadow-artisan-hover transition-all duration-300 flex flex-col justify-between">
-          <div>
-            <div class="relative overflow-hidden rounded-xl aspect-square mb-4 bg-secondary/30">
-              <img src="https://images.unsplash.com/photo-1513201099705-a9746e1e201f?auto=format&fit=crop&w=600&q=80" alt="Hộp quà tình yêu" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-              <span class="absolute top-3 left-3 bg-primary text-white text-[11px] font-semibold px-2.5 py-1 rounded-full shadow">Love & Anniversary</span>
-            </div>
-            <h3 class="font-heading text-lg font-bold text-text-main group-hover:text-primary transition-colors">Kỷ Niệm Tình Yêu</h3>
-            <p class="text-xs text-text-muted mt-1 leading-relaxed">Nến thơm Amber ngọt ngào, ảnh polaroid kẹp gỗ kỷ niệm, thiệp viết tay niêm phong sáp đỏ.</p>
+        <!-- COMBO 1: BOX TO (Heart Card 8 ảnh) -->
+        <div class="bg-card rounded-3xl p-6 sm:p-8 border-2 border-primary/40 shadow-artisan hover:shadow-artisan-hover transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
+          
+          <div class="absolute top-4 right-4 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full shadow">
+            ⭐ Bán Chạy Nhất (Cặp Đôi)
           </div>
-          <div class="mt-4 pt-3 border-t border-secondary/60 flex items-center justify-between">
-            <span class="text-xs font-semibold text-primary">Từ 450.000đ</span>
-            <a href="#customizer" class="text-xs font-bold text-text-main hover:text-primary transition-colors inline-flex items-center gap-1">
-              <span>Tùy chỉnh</span> &rarr;
+
+          <div>
+            <!-- Ảnh sản phẩm Box To -->
+            <div class="relative overflow-hidden rounded-2xl aspect-[4/3] mb-6 bg-secondary/20 group">
+              <img src="Images/tr%C6%B0%E1%BB%9Bc%202%20(5).png" alt="Chi tiết Box To" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute bottom-3 left-3 bg-card/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-primary">
+                BOX TO • HEART CARD
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2 mb-2">
+              <span class="font-heading text-2xl sm:text-3xl font-bold text-text-main">Combo Box To</span>
+              <span class="text-xs bg-secondary text-primary px-2.5 py-0.5 rounded-full font-bold">Kèm Heart Card</span>
+            </div>
+
+            <p class="text-sm text-text-muted mb-6 leading-relaxed">
+              Hộp quà lớn trọn vẹn dành cho các dịp kỷ niệm đặc biệt, sinh nhật người yêu với đầy đủ cặp móc khóa đôi và thiệp trái tim 8 ảnh.
+            </p>
+
+            <!-- Danh sách chi tiết các món trong Box To -->
+            <div class="space-y-3 bg-surface p-5 rounded-2xl border border-secondary/80">
+              <h4 class="text-xs font-bold uppercase tracking-wider text-text-main mb-2">Chi tiết bên trong Box To:</h4>
+              <ul class="space-y-2.5 text-xs sm:text-sm text-text-main">
+                <li class="flex items-start gap-2.5">
+                  <span class="text-primary text-base leading-none">💌</span>
+                  <span><strong>Thiệp Heart Card dáng trái tim:</strong> Chứa tổng cộng <strong>8 ảnh</strong> (3 ảnh in lồng trong thiệp + 5 ảnh Polaroid rời bên ngoài).</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="text-primary text-base leading-none">🐱</span>
+                  <span><strong>2 Móc khoá mèo bông xù đôi:</strong> 1 bé ôm cá + 1 bé cầm nĩa dĩa biểu tượng cặp đôi.</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="text-primary text-base leading-none">🪮</span>
+                  <span><strong>1 Lược chải tóc mini pastel:</strong> Răng lược đệm khí êm ái, màu pastel ngọt ngào.</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="text-primary text-base leading-none">🪞</span>
+                  <span><strong>1 Gương trang điểm mini:</strong> Bọc bìa sọc / sao vintage xinh xắn.</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="text-primary text-base leading-none">🎀</span>
+                  <span><strong>2 Kẹp tóc nơ/bướm dễ thương</strong> kẹp gọn gàng trong hộp.</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="text-primary text-base leading-none">📦</span>
+                  <span>Hộp carton nắp gài vintage, rơm giấy lót êm ái, ruy băng niêm phong.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="mt-8 pt-6 border-t border-secondary/60 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+              <div class="text-xs text-text-muted">Giá trọn bộ Box To</div>
+              <div class="text-2xl font-extrabold text-primary font-heading">Liên hệ tư vấn riêng</div>
+            </div>
+            <a href="#customizer" class="w-full sm:w-auto px-7 py-3.5 rounded-full bg-primary hover:bg-primary-hover text-white font-semibold text-sm shadow-artisan text-center transition-all">
+              Phối thử Box To ngay &rarr;
             </a>
           </div>
+
         </div>
 
-        <!-- Collection 2: Sinh Nhật Rạng Rỡ -->
-        <div class="group bg-card rounded-2xl p-4 sm:p-5 border border-secondary/80 hover:border-primary/40 shadow-artisan hover:shadow-artisan-hover transition-all duration-300 flex flex-col justify-between">
-          <div>
-            <div class="relative overflow-hidden rounded-xl aspect-square mb-4 bg-secondary/30">
-              <img src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=600&q=80" alt="Hộp quà sinh nhật" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-              <span class="absolute top-3 left-3 bg-[#A45538] text-white text-[11px] font-semibold px-2.5 py-1 rounded-full shadow">Birthday Joy</span>
-            </div>
-            <h3 class="font-heading text-lg font-bold text-text-main group-hover:text-primary transition-colors">Sinh Nhật Rạng Rỡ</h3>
-            <p class="text-xs text-text-muted mt-1 leading-relaxed">Hương thơm ngọt dịu, sổ tay mini khắc tên laser, bánh cookies thảo mộc và hoa khô trang nhã.</p>
+        <!-- COMBO 2: BOX NHỎ (Bear Card 3 ảnh) -->
+        <div class="bg-card rounded-3xl p-6 sm:p-8 border border-secondary/90 shadow-artisan hover:shadow-artisan-hover transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
+          
+          <div class="absolute top-4 right-4 bg-secondary text-primary text-xs font-bold px-3 py-1 rounded-full border border-primary/20">
+            🧸 Nhỏ Gọn & Đáng Yêu
           </div>
-          <div class="mt-4 pt-3 border-t border-secondary/60 flex items-center justify-between">
-            <span class="text-xs font-semibold text-primary">Từ 520.000đ</span>
-            <a href="#customizer" class="text-xs font-bold text-text-main hover:text-primary transition-colors inline-flex items-center gap-1">
-              <span>Tùy chỉnh</span> &rarr;
-            </a>
-          </div>
-        </div>
 
-        <!-- Collection 3: Tri Ân Chân Thành -->
-        <div class="group bg-card rounded-2xl p-4 sm:p-5 border border-secondary/80 hover:border-primary/40 shadow-artisan hover:shadow-artisan-hover transition-all duration-300 flex flex-col justify-between">
           <div>
-            <div class="relative overflow-hidden rounded-xl aspect-square mb-4 bg-secondary/30">
-              <img src="https://images.unsplash.com/photo-1528722828814-77b9b83aafb2?auto=format&fit=crop&w=600&q=80" alt="Hộp quà tri ân" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-              <span class="absolute top-3 left-3 bg-[#2C1E1A] text-white text-[11px] font-semibold px-2.5 py-1 rounded-full shadow">Gratitude</span>
+            <!-- Ảnh sản phẩm Box Nhỏ -->
+            <div class="relative overflow-hidden rounded-2xl aspect-[4/3] mb-6 bg-secondary/20 group">
+              <img src="Images/tr%C6%B0%E1%BB%9Bc%202%20(6).png" alt="Chi tiết Box Nhỏ" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute bottom-3 left-3 bg-card/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-primary">
+                BOX NHỎ • BEAR CARD
+              </div>
             </div>
-            <h3 class="font-heading text-lg font-bold text-text-main group-hover:text-primary transition-colors">Tri Ân & Cảm Ơn</h3>
-            <p class="text-xs text-text-muted mt-1 leading-relaxed">Trà hoa cúc hữu cơ, ly gốm thủ công mộc, thìa gỗ khắc lời chúc và thiệp ép nhũ sang trọng.</p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-secondary/60 flex items-center justify-between">
-            <span class="text-xs font-semibold text-primary">Từ 590.000đ</span>
-            <a href="#customizer" class="text-xs font-bold text-text-main hover:text-primary transition-colors inline-flex items-center gap-1">
-              <span>Tùy chỉnh</span> &rarr;
-            </a>
-          </div>
-        </div>
 
-        <!-- Collection 4: Tự Thưởng & Chữa Lành -->
-        <div class="group bg-card rounded-2xl p-4 sm:p-5 border border-secondary/80 hover:border-primary/40 shadow-artisan hover:shadow-artisan-hover transition-all duration-300 flex flex-col justify-between">
-          <div>
-            <div class="relative overflow-hidden rounded-xl aspect-square mb-4 bg-secondary/30">
-              <img src="https://images.unsplash.com/photo-1602928321679-560bb453f190?auto=format&fit=crop&w=600&q=80" alt="Hộp quà tự thưởng" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-              <span class="absolute top-3 left-3 bg-accent-gold text-text-main text-[11px] font-bold px-2.5 py-1 rounded-full shadow">Self-Care</span>
+            <div class="flex items-center gap-2 mb-2">
+              <span class="font-heading text-2xl sm:text-3xl font-bold text-text-main">Combo Box Nhỏ</span>
+              <span class="text-xs bg-secondary text-primary px-2.5 py-0.5 rounded-full font-bold">Kèm Bear Card</span>
             </div>
-            <h3 class="font-heading text-lg font-bold text-text-main group-hover:text-primary transition-colors">Góc Bình Yên (Self-Love)</h3>
-            <p class="text-xs text-text-muted mt-1 leading-relaxed">Nến thơm tinh dầu gỗ thông bách, muối tắm hoa hồng, thanh gỗ xông khói Palo Santo thư giãn.</p>
+
+            <p class="text-sm text-text-muted mb-6 leading-relaxed">
+              Phiên bản nhỏ gọn xinh xắn, thích hợp tặng bạn thân, tự thưởng hoặc tạo bất ngờ ngọt ngào vào những ngày bình thường.
+            </p>
+
+            <!-- Danh sách chi tiết các món trong Box Nhỏ -->
+            <div class="space-y-3 bg-surface p-5 rounded-2xl border border-secondary/80">
+              <h4 class="text-xs font-bold uppercase tracking-wider text-text-main mb-2">Chi tiết bên trong Box Nhỏ:</h4>
+              <ul class="space-y-2.5 text-xs sm:text-sm text-text-main">
+                <li class="flex items-start gap-2.5">
+                  <span class="text-primary text-base leading-none">🧸</span>
+                  <span><strong>Thiệp Bear Card dáng chú gấu:</strong> Chứa tổng cộng <strong>3 ảnh</strong> (1 ảnh in đính trong thiệp + 2 ảnh Polaroid rời bên ngoài).</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="text-primary text-base leading-none">🐱</span>
+                  <span><strong>1 Móc khoá mèo bông trắng lông xù:</strong> Đeo balo hoặc túi xách siêu cưng.</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="text-primary text-base leading-none">🪮</span>
+                  <span><strong>1 Lược chải tóc mini pastel:</strong> Nhỏ nhắn bỏ vừa túi xách mang theo đi học/đi làm.</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="text-primary text-base leading-none">🎀</span>
+                  <span><strong>2 Kẹp tóc xinh xắn</strong> tone pastel đồng điệu.</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="text-primary text-base leading-none">📦</span>
+                  <span>Hộp kraft vuông vắn, đệm rơm giấy xốp và thắt nơ cẩn thận.</span>
+                </li>
+              </ul>
+            </div>
           </div>
-          <div class="mt-4 pt-3 border-t border-secondary/60 flex items-center justify-between">
-            <span class="text-xs font-semibold text-primary">Từ 490.000đ</span>
-            <a href="#customizer" class="text-xs font-bold text-text-main hover:text-primary transition-colors inline-flex items-center gap-1">
-              <span>Tùy chỉnh</span> &rarr;
+
+          <div class="mt-8 pt-6 border-t border-secondary/60 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+              <div class="text-xs text-text-muted">Giá trọn bộ Box Nhỏ</div>
+              <div class="text-2xl font-extrabold text-primary font-heading">Tiết kiệm & Nhỏ xinh</div>
+            </div>
+            <a href="#customizer" class="w-full sm:w-auto px-7 py-3.5 rounded-full bg-card hover:bg-secondary/40 border border-primary/40 text-text-main font-semibold text-sm text-center transition-all">
+              Phối thử Box Nhỏ ngay &rarr;
             </a>
           </div>
+
         </div>
 
       </div>
     </section>
 
     <!-- ========================================== -->
-    <!-- SECTION 3: BEHIND THE CRAFT (Giai đoạn 3)  -->
+    <!-- SECTION 3: BẢNG SO SÁNH BOX TO & BOX NHỎ   -->
     <!-- ========================================== -->
-    <section id="craft" class="py-16 md:py-24 border-t border-secondary/60">
+    <section id="comparison" class="py-14 border-t border-secondary/60">
+      <div class="bg-card rounded-3xl p-6 sm:p-10 border border-secondary/90 shadow-sm max-w-4xl mx-auto">
+        <div class="text-center mb-8">
+          <div class="w-12 h-12 rounded-full bg-secondary text-primary mx-auto flex items-center justify-center text-xl mb-2">
+            📋
+          </div>
+          <h3 class="font-heading text-xl sm:text-2xl font-bold text-text-main">
+            Lưu Ý Về Số Lượng Ảnh Của Từng Loại Thiệp
+          </h3>
+          <p class="text-xs sm:text-sm text-text-muted mt-1">
+            (Được trích trực tiếp từ bảng hướng dẫn [32.png] của The Little Joy)
+          </p>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-xs sm:text-sm">
+            <thead>
+              <tr class="border-b-2 border-secondary text-text-main">
+                <th class="py-3 px-4 font-bold">Đặc điểm</th>
+                <th class="py-3 px-4 font-bold text-primary bg-secondary/30 rounded-t-xl">COMBO BOX TO (Heart Card)</th>
+                <th class="py-3 px-4 font-bold text-text-main">COMBO BOX NHỎ (Bear Card)</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-secondary/60">
+              <tr>
+                <td class="py-3.5 px-4 font-semibold text-text-muted">Loại thiệp đi kèm</td>
+                <td class="py-3.5 px-4 font-bold text-primary bg-secondary/10">Heart Card (Dáng trái tim to)</td>
+                <td class="py-3.5 px-4 font-medium">Bear Card (Dáng chú gấu)</td>
+              </tr>
+              <tr>
+                <td class="py-3.5 px-4 font-semibold text-text-muted">Tổng số ảnh kỷ niệm</td>
+                <td class="py-3.5 px-4 font-bold text-primary bg-secondary/10">🌟 8 ảnh (3 trong thiệp + 5 ngoài)</td>
+                <td class="py-3.5 px-4 font-medium">3 ảnh (1 trong thiệp + 2 ngoài)</td>
+              </tr>
+              <tr>
+                <td class="py-3.5 px-4 font-semibold text-text-muted">Móc khoá mèo bông</td>
+                <td class="py-3.5 px-4 font-bold bg-secondary/10">2 móc khoá (Mèo ôm cá & Mèo cầm nĩa)</td>
+                <td class="py-3.5 px-4">1 móc khoá mèo bông</td>
+              </tr>
+              <tr>
+                <td class="py-3.5 px-4 font-semibold text-text-muted">Gương trang điểm mini</td>
+                <td class="py-3.5 px-4 font-bold text-emerald-700 bg-secondary/10">✓ Có gương mini họa tiết</td>
+                <td class="py-3.5 px-4 text-text-muted">— Không có gương</td>
+              </tr>
+              <tr>
+                <td class="py-3.5 px-4 font-semibold text-text-muted">Lược gỡ rối mini pastel</td>
+                <td class="py-3.5 px-4 font-bold text-emerald-700 bg-secondary/10">✓ Có (Màu hồng/tím/kem)</td>
+                <td class="py-3.5 px-4 font-bold text-emerald-700">✓ Có (Màu hồng/tím/kem)</td>
+              </tr>
+              <tr>
+                <td class="py-3.5 px-4 font-semibold text-text-muted">Kẹp tóc pastel xinh</td>
+                <td class="py-3.5 px-4 bg-secondary/10">2 kẹp tóc nơ/bướm</td>
+                <td class="py-3.5 px-4">2 kẹp tóc xinh</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SECTION 4: QUY TRÌNH LÀM THIỆP TỪ A - Z    -->
+    <!-- ========================================== -->
+    <section id="process" class="py-16 md:py-24 border-t border-secondary/60">
       
-      <!-- Section Header -->
-      <div class="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
+      <div class="text-center max-w-3xl mx-auto mb-14 sm:mb-18">
         <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-secondary/70 border border-primary/20 text-xs sm:text-sm font-medium text-primary mb-3">
-          <span>🌿 NGHỆ THUẬT CHẾ TÁC THỦ CÔNG</span>
+          <span>📜 HOW TO ORDER • HƯỚNG DẪN ĐẶT QUÀ</span>
         </div>
         <h2 class="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-[2.6rem] font-bold text-text-main tracking-tight leading-tight">
-          Hành Trình Từ Khoảnh Khắc Nhỏ Đến Món Quà Độc Bản
+          Quy Trình Trang Trí Card Từ A - Z
         </h2>
-        <p class="mt-4 text-base sm:text-lg text-text-muted leading-relaxed">
-          Không sản xuất đại trà. Tại <strong class="text-text-main font-semibold">The Little Joy</strong>, mỗi chiếc hộp là một tác phẩm chứa đựng câu chuyện độc nhất, được chăm chút qua 4 công đoạn khắt khe.
+        <p class="mt-3 text-sm sm:text-base text-text-muted leading-relaxed">
+          Được thiết kế dựa trên cẩm nang hướng dẫn chính thức của The Little Joy, giúp bạn chuẩn bị ảnh và chọn mẫu nhanh nhất.
         </p>
       </div>
 
-      <!-- 4-Step Stepper Timeline Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 relative">
+      <!-- 3 Bước chuẩn theo bộ ảnh của shop -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         
-        <!-- Step 1 -->
-        <div class="relative bg-card rounded-2xl p-6 sm:p-7 border border-secondary/90 shadow-artisan hover:shadow-artisan-hover hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between overflow-hidden">
-          <!-- Số thứ tự to mờ nghệ thuật phía sau -->
-          <span class="absolute -right-2 -bottom-4 font-heading text-8xl font-black text-secondary/30 select-none pointer-events-none">01</span>
-          
+        <!-- BƯỚC 1 -->
+        <div class="bg-card rounded-3xl p-6 sm:p-7 border border-secondary/90 shadow-artisan flex flex-col justify-between relative overflow-hidden group hover:border-primary/50 transition-all">
           <div>
-            <div class="w-12 h-12 rounded-2xl bg-secondary/80 flex items-center justify-center text-primary text-xl mb-5 shadow-sm">
-              💭
+            <div class="relative overflow-hidden rounded-2xl aspect-[4/3] mb-5 bg-secondary/20">
+              <img src="Images/tr%C6%B0%E1%BB%9Bc%202%20(11).png" alt="Bước 1 — Chọn mẫu nền" class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300">
             </div>
-            <span class="text-xs uppercase tracking-wider text-primary font-bold">Bước 01</span>
-            <h3 class="font-heading text-lg sm:text-xl font-bold text-text-main mt-1">Lắng Nghe & Khởi Tạo Ý Niệm</h3>
-            <p class="text-xs sm:text-sm text-text-muted mt-3 leading-relaxed">
-              Bạn chia sẻ câu chuyện riêng, dịp kỷ niệm và cảm xúc muốn truyền tải. Chúng mình đồng hành chọn tone màu hộp và phong cách phù hợp nhất với người nhận.
+            
+            <div class="inline-block px-2.5 py-1 rounded-full bg-secondary text-primary font-bold text-xs mb-2">
+              BƯỚC 1
+            </div>
+            <h3 class="font-heading text-xl font-bold text-text-main">Chọn Mẫu Nền (Style)</h3>
+            <p class="text-xs sm:text-sm text-text-muted mt-2.5 leading-relaxed">
+              Xem các mẫu nền The Little Joy gợi ý và chọn 1 mẫu bạn thích nhất: Xanh pastel chấm bi, Trắng kem chấm bi đỏ Burgundy, Hồng phấn ngôi sao, hoặc Đen vintage chấm bi. Mỗi mẫu đã có sẵn bố cục khung ảnh và trang trí nghệ thuật.
             </p>
           </div>
-          <div class="mt-6 pt-4 border-t border-secondary/50 text-[11px] text-primary font-medium flex items-center gap-1.5">
-            <span>✨ Tư vấn 1:1 tận tâm</span>
+
+          <div class="mt-5 pt-3 border-t border-secondary/50 text-[11px] text-primary font-semibold">
+            ✨ 4 phong cách nền ngọt ngào
           </div>
         </div>
 
-        <!-- Step 2 -->
-        <div class="relative bg-card rounded-2xl p-6 sm:p-7 border border-secondary/90 shadow-artisan hover:shadow-artisan-hover hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between overflow-hidden">
-          <!-- Số thứ tự to mờ nghệ thuật phía sau -->
-          <span class="absolute -right-2 -bottom-4 font-heading text-8xl font-black text-secondary/30 select-none pointer-events-none">02</span>
-          
+        <!-- BƯỚC 2 -->
+        <div class="bg-card rounded-3xl p-6 sm:p-7 border border-secondary/90 shadow-artisan flex flex-col justify-between relative overflow-hidden group hover:border-primary/50 transition-all">
           <div>
-            <div class="w-12 h-12 rounded-2xl bg-secondary/80 flex items-center justify-center text-primary text-xl mb-5 shadow-sm">
-              🕯️
+            <div class="relative overflow-hidden rounded-2xl aspect-[4/3] mb-5 bg-secondary/20">
+              <img src="Images/tr%C6%B0%E1%BB%9Bc%202%20(12).png" alt="Bước 2 — Gửi đúng 3 tấm ảnh" class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300">
             </div>
-            <span class="text-xs uppercase tracking-wider text-primary font-bold">Bước 02</span>
-            <h3 class="font-heading text-lg sm:text-xl font-bold text-text-main mt-1">Tuyển Chọn Tặng Phẩm Tinh Tế</h3>
-            <p class="text-xs sm:text-sm text-text-muted mt-3 leading-relaxed">
-              Mỗi món quà — từ nến sáp đậu nành thiên nhiên, hũ trà hoa mộc cúc, sổ tay bìa da đến phụ kiện lụa — đều được thẩm định kỹ lưỡng về độ an toàn và hương sắc.
+            
+            <div class="inline-block px-2.5 py-1 rounded-full bg-secondary text-primary font-bold text-xs mb-2">
+              BƯỚC 2
+            </div>
+            <h3 class="font-heading text-xl font-bold text-text-main">Gửi Đúng 3 Tấm Ảnh</h3>
+            <p class="text-xs sm:text-sm text-text-muted mt-2.5 leading-relaxed">
+              Mẫu thiệp có 3 vị trí khung ảnh cố định với các tỉ lệ khác nhau (ảnh đứng, ảnh ngang, khung trái tim). Bạn lưu ý chọn ảnh rõ nét, gửi file chất lượng cao qua Zalo (không chụp màn hình) để khi ghép vào khung không bị vỡ nét nhé.
             </p>
           </div>
-          <div class="mt-6 pt-4 border-t border-secondary/50 text-[11px] text-primary font-medium flex items-center gap-1.5">
-            <span>🌿 100% nguyên liệu tự nhiên</span>
+
+          <div class="mt-5 pt-3 border-t border-secondary/50 text-[11px] text-primary font-semibold">
+            📸 Khung ảnh tỉ lệ vàng
           </div>
         </div>
 
-        <!-- Step 3 -->
-        <div class="relative bg-card rounded-2xl p-6 sm:p-7 border border-secondary/90 shadow-artisan hover:shadow-artisan-hover hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between overflow-hidden">
-          <!-- Số thứ tự to mờ nghệ thuật phía sau -->
-          <span class="absolute -right-2 -bottom-4 font-heading text-8xl font-black text-secondary/30 select-none pointer-events-none">03</span>
-          
+        <!-- BƯỚC 3 -->
+        <div class="bg-card rounded-3xl p-6 sm:p-7 border border-secondary/90 shadow-artisan flex flex-col justify-between relative overflow-hidden group hover:border-primary/50 transition-all">
           <div>
-            <div class="w-12 h-12 rounded-2xl bg-secondary/80 flex items-center justify-center text-primary text-xl mb-5 shadow-sm">
-              ✒️
+            <div class="relative overflow-hidden rounded-2xl aspect-[4/3] mb-5 bg-secondary/20">
+              <img src="Images/tr%C6%B0%E1%BB%9Bc%202%20(13).png" alt="Bước 3 — Xác nhận & lên mẫu" class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300">
             </div>
-            <span class="text-xs uppercase tracking-wider text-primary font-bold">Bước 03</span>
-            <h3 class="font-heading text-lg sm:text-xl font-bold text-text-main mt-1">Cá Nhân Hóa Từng Chi Tiết</h3>
-            <p class="text-xs sm:text-sm text-text-muted mt-3 leading-relaxed">
-              Khắc tên laser sắc sảo lên nắp hộp hoặc hũ nến, in ảnh polaroid kỷ niệm lấy ngay, viết thiệp thủ công bằng mực nâu vintage với từng con chữ chân thành.
+            
+            <div class="inline-block px-2.5 py-1 rounded-full bg-secondary text-primary font-bold text-xs mb-2">
+              BƯỚC 3
+            </div>
+            <h3 class="font-heading text-xl font-bold text-text-main">Xác Nhận & Lên Mẫu Demo</h3>
+            <p class="text-xs sm:text-sm text-text-muted mt-2.5 leading-relaxed">
+              Sau khi nhận đủ ảnh và mẫu nền bạn đã chọn, The Little Joy sẽ ghép ảnh vào khung theo đúng bố cục và <strong>gửi bạn xem trước 1 bản demo qua Zalo</strong>. Bạn duyệt ưng ý 100% thì chúng mình mới tiến hành in và đóng gói giao hàng!
             </p>
           </div>
-          <div class="mt-6 pt-4 border-t border-secondary/50 text-[11px] text-primary font-medium flex items-center gap-1.5">
-            <span>💌 Thiệp viết tay độc bản</span>
-          </div>
-        </div>
 
-        <!-- Step 4 -->
-        <div class="relative bg-card rounded-2xl p-6 sm:p-7 border border-secondary/90 shadow-artisan hover:shadow-artisan-hover hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between overflow-hidden">
-          <!-- Số thứ tự to mờ nghệ thuật phía sau -->
-          <span class="absolute -right-2 -bottom-4 font-heading text-8xl font-black text-secondary/30 select-none pointer-events-none">04</span>
-          
-          <div>
-            <div class="w-12 h-12 rounded-2xl bg-secondary/80 flex items-center justify-center text-primary text-xl mb-5 shadow-sm">
-              🔏
-            </div>
-            <span class="text-xs uppercase tracking-wider text-primary font-bold">Bước 04</span>
-            <h3 class="font-heading text-lg sm:text-xl font-bold text-text-main mt-1">Niêm Phong Sáp & Đóng Gói 3 Lớp</h3>
-            <p class="text-xs sm:text-sm text-text-muted mt-3 leading-relaxed">
-              Thắt ruy băng lụa cao cấp, nhỏ sáp nóng và đóng dấu dập nổi logo The Little Joy. Sau đó bọc 3 lớp chống sốc dày dặn bảo vệ hộp quà nguyên vẹn khi chuyển phát.
-            </p>
-          </div>
-          <div class="mt-6 pt-4 border-t border-secondary/50 text-[11px] text-primary font-medium flex items-center gap-1.5">
-            <span>🛡️ Bảo vệ hộp quà nguyên vẹn</span>
+          <div class="mt-5 pt-3 border-t border-secondary/50 text-[11px] text-primary font-semibold">
+            🛡️ Xem bản demo trước khi in
           </div>
         </div>
 
       </div>
 
-      <!-- CTA Trung Gian Kích Thích (Intermediary CTA Box) -->
-      <div class="mt-14 sm:mt-16 bg-gradient-to-r from-secondary/40 via-secondary/70 to-secondary/40 rounded-3xl p-6 sm:p-10 border border-primary/20 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm">
-        <div class="text-center md:text-left">
-          <h3 class="font-heading text-xl sm:text-2xl font-bold text-text-main">Bạn đã sẵn sàng gửi gắm yêu thương?</h3>
-          <p class="text-sm text-text-muted mt-1">Chỉ mất 30 giây để tự tay phối nên một chiếc giftbox độc bản dành riêng cho họ.</p>
+      <!-- Banner tổng kết A-Z (Ảnh trước 2 (10).png) -->
+      <div class="mt-12 bg-gradient-to-r from-secondary/50 via-secondary/70 to-secondary/50 rounded-3xl p-6 sm:p-8 border border-primary/20 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm">
+        <div class="flex items-center gap-4">
+          <div class="w-14 h-14 rounded-2xl bg-card flex items-center justify-center text-2xl shadow-sm flex-shrink-0">
+            🧸
+          </div>
+          <div>
+            <h3 class="font-heading text-lg sm:text-xl font-bold text-text-main">Bạn đã chọn được ảnh kỷ niệm chưa?</h3>
+            <p class="text-xs sm:text-sm text-text-muted">Chỉ cần gửi 3 tấm ảnh qua Zalo, The Little Joy sẽ lên thiết kế thiệp demo hoàn toàn miễn phí!</p>
+          </div>
         </div>
-        <a href="#customizer" class="flex-shrink-0 inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-primary hover:bg-primary-hover text-white font-semibold text-sm sm:text-base shadow-artisan hover:shadow-artisan-hover transition-all duration-300 hover:scale-[1.02]">
-          <span>Bắt đầu chọn quà</span>
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-          </svg>
+        <a href="#customizer" class="flex-shrink-0 inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-primary hover:bg-primary-hover text-white font-semibold text-sm shadow transition-all">
+          <span>Tự phối hộp quà ngay</span> &rarr;
         </a>
       </div>
 
-      <!-- Cam Kết Bảo Chứng CRO (Risk Reversal Badges) -->
-      <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div class="flex items-center gap-3 p-4 rounded-2xl bg-card border border-secondary/80">
-          <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0 font-bold text-lg">
-            📸
-          </div>
-          <div>
-            <div class="text-sm font-bold text-text-main">Duyệt ảnh thực tế trước khi ship</div>
-            <div class="text-xs text-text-muted">Chúng mình luôn gửi ảnh thành phẩm hoàn chỉnh qua Zalo để bạn xem và duyệt 100% ưng ý mới gửi đi.</div>
-          </div>
-        </div>
-
-        <div class="flex items-center gap-3 p-4 rounded-2xl bg-card border border-secondary/80">
-          <div class="w-10 h-10 rounded-full bg-accent-gold/20 flex items-center justify-center text-text-main flex-shrink-0 font-bold text-lg">
-            🛡️
-          </div>
-          <div>
-            <div class="text-sm font-bold text-text-main">Bảo hành 1 đổi 1 ngay lập tức</div>
-            <div class="text-xs text-text-muted">Nếu xảy ra bất kỳ va đập móp méo nào trong quá trình vận chuyển, The Little Joy sẽ làm lại hộp mới miễn phí ngay.</div>
-          </div>
-        </div>
-      </div>
-
     </section>
 
     <!-- ========================================== -->
-    <!-- SECTION 4: INTERACTIVE CUSTOMIZER (GĐ 4)   -->
+    <!-- SECTION 5: INTERACTIVE CUSTOMIZER          -->
     <!-- ========================================== -->
     <section id="customizer" class="py-16 md:py-24 border-t border-secondary/60">
       
       <!-- Section Header -->
       <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
         <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-secondary/70 border border-primary/20 text-xs sm:text-sm font-medium text-primary mb-3">
-          <span>✨ TRẢI NGHIỆM TRỰC QUAN</span>
+          <span>✨ TỰ TAY PHỐI QUÀ</span>
         </div>
         <h2 class="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-[2.6rem] font-bold text-text-main tracking-tight">
-          Tự Phối Thử Giftbox Của Bạn Trong 30 Giây
+          Trải Nghiệm Phối Hộp Quà The Little Joy
         </h2>
         <p class="mt-3 text-sm sm:text-base text-text-muted leading-relaxed">
-          Tự tay chọn màu hộp, phối 3 tặng phẩm yêu thích và xem chiếc hộp hiển thị tên người thương theo thời gian thực.
+          Chọn quy cách Box To hoặc Box Nhỏ, tone nền thiệp, màu phụ kiện và điền lời chúc yêu thương để xem mô phỏng trực quan.
         </p>
       </div>
 
-      <!-- Widget Main Grid: Left Controls (7/12) + Right Live Preview (5/12) -->
+      <!-- Widget 2 Cột -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
         
-        <!-- ========================================== -->
-        <!-- CỘT TRÁI: BỘ ĐIỀU KHIỂN (STEP CONTROLS)    -->
-        <!-- ========================================== -->
+        <!-- CỘT TRÁI: ĐIỀU KHIỂN (7/12) -->
         <div class="lg:col-span-7 bg-card rounded-3xl p-6 sm:p-8 border border-secondary/90 shadow-artisan space-y-8">
           
-          <!-- BƯỚC 1: CHỌN MÀU HỘP -->
+          <!-- BƯỚC 1: CHỌN QUY CÁCH COMBO -->
           <div>
-            <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center justify-between mb-3">
               <span class="text-xs uppercase tracking-wider text-primary font-bold">Bước 01</span>
-              <span class="text-xs text-text-muted">Chọn 1 trong 3 màu hộp</span>
+              <span class="text-xs text-text-muted">Chọn kích cỡ hộp</span>
             </div>
-            <h3 class="text-base sm:text-lg font-bold text-text-main mb-4">Chọn Chất Liệu & Màu Hộp Quà</h3>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3" id="box-color-options">
+            <h3 class="text-base sm:text-lg font-bold text-text-main mb-3">Chọn Combo Box Quà</h3>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="box-type-options">
               
-              <!-- Option 1: Gỗ Mộc -->
-              <button type="button" data-box-color="wood" data-box-name="Hộp Gỗ Mộc Tự Nhiên" class="box-color-btn active group p-3.5 rounded-2xl border-2 border-primary bg-secondary/30 flex items-center sm:flex-col sm:items-start gap-3 text-left transition-all duration-200">
-                <span class="w-8 h-8 rounded-full bg-[#D4A373] border-2 border-white shadow-sm flex items-center justify-center text-white text-xs font-bold checkmark">✓</span>
+              <!-- Option Box To -->
+              <button type="button" data-box-type="to" class="box-type-btn active group p-4 rounded-2xl border-2 border-primary bg-secondary/30 flex items-start gap-3 text-left transition-all">
+                <span class="w-6 h-6 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center flex-shrink-0 checkmark">✓</span>
                 <div>
-                  <div class="text-sm font-bold text-text-main">Hộp Gỗ Mộc</div>
-                  <div class="text-[11px] text-text-muted">Vân gỗ ấm áp, nắp trượt</div>
+                  <div class="text-sm font-bold text-text-main">BOX TO (Heart Card 8 ảnh)</div>
+                  <div class="text-xs text-text-muted mt-0.5">2 Mèo bông đôi + Gương + Lược + 2 Kẹp</div>
+                  <span class="inline-block mt-1 text-[10px] font-bold text-primary bg-white px-2 py-0.5 rounded-full shadow-sm">Được chuộng nhất ⭐</span>
                 </div>
               </button>
 
-              <!-- Option 2: Terracotta Warm -->
-              <button type="button" data-box-color="terracotta" data-box-name="Hộp Terracotta Mộc Ấm" class="box-color-btn group p-3.5 rounded-2xl border-2 border-secondary/80 hover:border-primary/50 bg-card flex items-center sm:flex-col sm:items-start gap-3 text-left transition-all duration-200">
-                <span class="w-8 h-8 rounded-full bg-[#BD6B4D] border-2 border-white shadow-sm flex items-center justify-center text-white text-xs font-bold checkmark hidden">✓</span>
+              <!-- Option Box Nhỏ -->
+              <button type="button" data-box-type="nho" class="box-type-btn group p-4 rounded-2xl border-2 border-secondary/80 hover:border-primary/50 bg-card flex items-start gap-3 text-left transition-all">
+                <span class="w-6 h-6 rounded-full bg-secondary text-primary text-xs font-bold flex items-center justify-center flex-shrink-0 checkmark hidden">✓</span>
                 <div>
-                  <div class="text-sm font-bold text-text-main">Terracotta Warm</div>
-                  <div class="text-[11px] text-text-muted">Màu thương hiệu độc quyền</div>
-                </div>
-              </button>
-
-              <!-- Option 3: Pastel Pink -->
-              <button type="button" data-box-color="pink" data-box-name="Hộp Pastel Pink Nhẹ Nhàng" class="box-color-btn group p-3.5 rounded-2xl border-2 border-secondary/80 hover:border-primary/50 bg-card flex items-center sm:flex-col sm:items-start gap-3 text-left transition-all duration-200">
-                <span class="w-8 h-8 rounded-full bg-[#E8C5B8] border-2 border-white shadow-sm flex items-center justify-center text-white text-xs font-bold checkmark hidden">✓</span>
-                <div>
-                  <div class="text-sm font-bold text-text-main">Pastel Pink</div>
-                  <div class="text-[11px] text-text-muted">Dịu ngọt, tôn nét thanh tao</div>
+                  <div class="text-sm font-bold text-text-main">BOX NHỎ (Bear Card 3 ảnh)</div>
+                  <div class="text-xs text-text-muted mt-0.5">1 Mèo bông + Lược + 2 Kẹp tóc</div>
+                  <span class="inline-block mt-1 text-[10px] font-bold text-text-muted bg-surface px-2 py-0.5 rounded-full">Nhỏ xinh ngọt ngào 🧸</span>
                 </div>
               </button>
 
             </div>
           </div>
 
-          <!-- BƯỚC 2: CHỌN 3 MÓN QUÀ -->
+          <!-- BƯỚC 2: CHỌN MẪU NỀN THIỆP (4 STYLES) -->
           <div class="pt-4 border-t border-secondary/60">
-            <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center justify-between mb-3">
               <span class="text-xs uppercase tracking-wider text-primary font-bold">Bước 02</span>
-              <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary/60 text-xs font-bold text-text-main">
-                <span>Đã chọn:</span>
-                <span id="selected-counter" class="text-primary font-extrabold">0</span>
-                <span>/3 món</span>
-              </div>
+              <span class="text-xs text-text-muted">Chọn 1 trong 4 mẫu nền</span>
             </div>
-            <h3 class="text-base sm:text-lg font-bold text-text-main mb-2">Chọn 3 Tặng Phẩm Bên Trong Hộp</h3>
-            <p id="item-limit-msg" class="text-xs text-text-muted mb-4 transition-all">Hãy bấm chọn 3 món bạn cảm thấy phù hợp nhất với người nhận nhé.</p>
+            <h3 class="text-base sm:text-lg font-bold text-text-main mb-3">Chọn Mẫu Nền Thiệp Kỷ Niệm (Style Card)</h3>
 
-            <div class="space-y-3" id="gift-items-list">
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5" id="card-style-options">
               
-              <!-- Item 1: Nến thơm -->
-              <div data-item-id="candle" data-item-name="Nến thơm Amber & Vanilla" data-item-icon="🕯️" class="gift-item-card cursor-pointer p-3.5 sm:p-4 rounded-2xl border border-secondary/80 hover:border-primary/50 bg-card flex items-center justify-between gap-3 transition-all duration-200">
-                <div class="flex items-center gap-3">
-                  <div class="w-10 h-10 rounded-xl bg-secondary/60 flex items-center justify-center text-xl flex-shrink-0">🕯️</div>
-                  <div>
-                    <div class="text-sm font-bold text-text-main item-name">Nến thơm Amber & Vanilla</div>
-                    <div class="text-xs text-text-muted">Sáp đậu nành hữu cơ, bấc gỗ nổ tí tách ấm cúng</div>
-                  </div>
-                </div>
-                <div class="item-checkbox w-6 h-6 rounded-full border-2 border-secondary flex items-center justify-center text-white text-xs font-bold"></div>
-              </div>
+              <!-- Style 1: Kem chấm bi đỏ Burgundy -->
+              <button type="button" data-style-name="Kem Chấm Bi Đỏ Burgundy" class="card-style-btn active p-3 rounded-2xl border-2 border-primary bg-secondary/30 text-center transition-all flex flex-col items-center">
+                <span class="w-8 h-8 rounded-full bg-[#8B263E] border-2 border-white shadow-sm flex items-center justify-center text-white text-xs mb-1.5 checkmark">✓</span>
+                <span class="text-xs font-bold text-text-main">Bi Đỏ Kem</span>
+                <span class="text-[10px] text-text-muted">Burgundy</span>
+              </button>
 
-              <!-- Item 2: Trà hoa cúc -->
-              <div data-item-id="tea" data-item-name="Lọ trà hoa cúc mật ong" data-item-icon="🍯" class="gift-item-card cursor-pointer p-3.5 sm:p-4 rounded-2xl border border-secondary/80 hover:border-primary/50 bg-card flex items-center justify-between gap-3 transition-all duration-200">
-                <div class="flex items-center gap-3">
-                  <div class="w-10 h-10 rounded-xl bg-secondary/60 flex items-center justify-center text-xl flex-shrink-0">🍯</div>
-                  <div>
-                    <div class="text-sm font-bold text-text-main item-name">Lọ trà hoa cúc mật ong</div>
-                    <div class="text-xs text-text-muted">Hoa cúc sấy thăng hoa dưỡng nhan, an thần</div>
-                  </div>
-                </div>
-                <div class="item-checkbox w-6 h-6 rounded-full border-2 border-secondary flex items-center justify-center text-white text-xs font-bold"></div>
-              </div>
+              <!-- Style 2: Xanh baby chấm bi -->
+              <button type="button" data-style-name="Xanh Baby Chấm Bi Nâu" class="card-style-btn p-3 rounded-2xl border-2 border-secondary/80 hover:border-primary/50 bg-card text-center transition-all flex flex-col items-center">
+                <span class="w-8 h-8 rounded-full bg-[#A8D0E6] border-2 border-white shadow-sm flex items-center justify-center text-white text-xs mb-1.5 checkmark hidden">✓</span>
+                <span class="text-xs font-bold text-text-main">Xanh Baby</span>
+                <span class="text-[10px] text-text-muted">Chấm bi nâu</span>
+              </button>
 
-              <!-- Item 3: Khăn lụa hoa -->
-              <div data-item-id="scarf" data-item-name="Khăn lụa hoa Pastel cao cấp" data-item-icon="🧣" class="gift-item-card cursor-pointer p-3.5 sm:p-4 rounded-2xl border border-secondary/80 hover:border-primary/50 bg-card flex items-center justify-between gap-3 transition-all duration-200">
-                <div class="flex items-center gap-3">
-                  <div class="w-10 h-10 rounded-xl bg-secondary/60 flex items-center justify-center text-xl flex-shrink-0">🧣</div>
-                  <div>
-                    <div class="text-sm font-bold text-text-main item-name">Khăn lụa hoa Pastel cao cấp</div>
-                    <div class="text-xs text-text-muted">Chất lụa tơ tằm dệt họa tiết vintage thanh lịch</div>
-                  </div>
-                </div>
-                <div class="item-checkbox w-6 h-6 rounded-full border-2 border-secondary flex items-center justify-center text-white text-xs font-bold"></div>
-              </div>
+              <!-- Style 3: Hồng phấn ngôi sao -->
+              <button type="button" data-style-name="Hồng Phấn Ngôi Sao Vintage" class="card-style-btn p-3 rounded-2xl border-2 border-secondary/80 hover:border-primary/50 bg-card text-center transition-all flex flex-col items-center">
+                <span class="w-8 h-8 rounded-full bg-[#F4ACB7] border-2 border-white shadow-sm flex items-center justify-center text-white text-xs mb-1.5 checkmark hidden">✓</span>
+                <span class="text-xs font-bold text-text-main">Hồng Sao</span>
+                <span class="text-[10px] text-text-muted">Ngôi sao nhỏ</span>
+              </button>
 
-              <!-- Item 4: Sổ tay da mini -->
-              <div data-item-id="notebook" data-item-name="Sổ tay da mini khắc tên laser" data-item-icon="📖" class="gift-item-card cursor-pointer p-3.5 sm:p-4 rounded-2xl border border-secondary/80 hover:border-primary/50 bg-card flex items-center justify-between gap-3 transition-all duration-200">
-                <div class="flex items-center gap-3">
-                  <div class="w-10 h-10 rounded-xl bg-secondary/60 flex items-center justify-center text-xl flex-shrink-0">📖</div>
-                  <div>
-                    <div class="text-sm font-bold text-text-main item-name">Sổ tay da mini khắc tên laser</div>
-                    <div class="text-xs text-text-muted">Bìa da mộc thủ công, giấy kraft màu cổ điển</div>
-                  </div>
-                </div>
-                <div class="item-checkbox w-6 h-6 rounded-full border-2 border-secondary flex items-center justify-center text-white text-xs font-bold"></div>
-              </div>
-
-              <!-- Item 5: Khung ảnh gỗ Mini -->
-              <div data-item-id="polaroid" data-item-name="Khung ảnh gỗ Mini Polaroid" data-item-icon="🖼️" class="gift-item-card cursor-pointer p-3.5 sm:p-4 rounded-2xl border border-secondary/80 hover:border-primary/50 bg-card flex items-center justify-between gap-3 transition-all duration-200">
-                <div class="flex items-center gap-3">
-                  <div class="w-10 h-10 rounded-xl bg-secondary/60 flex items-center justify-center text-xl flex-shrink-0">🖼️</div>
-                  <div>
-                    <div class="text-sm font-bold text-text-main item-name">Khung ảnh gỗ Mini Polaroid</div>
-                    <div class="text-xs text-text-muted">In ảnh kỷ niệm lấy ngay kèm kẹp gỗ mộc mạc</div>
-                  </div>
-                </div>
-                <div class="item-checkbox w-6 h-6 rounded-full border-2 border-secondary flex items-center justify-center text-white text-xs font-bold"></div>
-              </div>
+              <!-- Style 4: Đen chấm bi vintage -->
+              <button type="button" data-style-name="Đen Chấm Bi Cổ Điển" class="card-style-btn p-3 rounded-2xl border-2 border-secondary/80 hover:border-primary/50 bg-card text-center transition-all flex flex-col items-center">
+                <span class="w-8 h-8 rounded-full bg-[#2C1E1A] border-2 border-white shadow-sm flex items-center justify-center text-white text-xs mb-1.5 checkmark hidden">✓</span>
+                <span class="text-xs font-bold text-text-main">Đen Vintage</span>
+                <span class="text-[10px] text-text-muted">Cổ điển</span>
+              </button>
 
             </div>
           </div>
 
-          <!-- BƯỚC 3: NHẬP TÊN NGƯỜI NHẬN & THÔNG ĐIỆP -->
+          <!-- BƯỚC 3: CHỌN TONE MÀU LƯỢC & PHỤ KIỆN -->
           <div class="pt-4 border-t border-secondary/60">
-            <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center justify-between mb-3">
               <span class="text-xs uppercase tracking-wider text-primary font-bold">Bước 03</span>
-              <span class="text-xs text-text-muted">Khắc laser & viết thiệp</span>
+              <span class="text-xs text-text-muted">Tone màu pastel</span>
             </div>
-            <h3 class="text-base sm:text-lg font-bold text-text-main mb-4">Cá Nhân Hóa Thông Điệp Yêu Thương</h3>
+            <h3 class="text-base sm:text-lg font-bold text-text-main mb-3">Tone Màu Lược & Kẹp Tóc</h3>
+
+            <div class="grid grid-cols-3 gap-3" id="comb-color-options">
+              <button type="button" data-comb-color="Hồng Pastel" class="comb-color-btn active p-3 rounded-xl border-2 border-primary bg-secondary/30 text-center text-xs font-bold text-text-main flex items-center justify-center gap-2">
+                <span class="w-4 h-4 rounded-full bg-[#FFD1DC]"></span>
+                <span>Hồng Pastel</span>
+              </button>
+              <button type="button" data-comb-color="Tím Lilac" class="comb-color-btn p-3 rounded-xl border-2 border-secondary/80 hover:border-primary/50 bg-card text-center text-xs font-bold text-text-main flex items-center justify-center gap-2">
+                <span class="w-4 h-4 rounded-full bg-[#E0BBE4]"></span>
+                <span>Tím Lilac</span>
+              </button>
+              <button type="button" data-comb-color="Trắng Kem" class="comb-color-btn p-3 rounded-xl border-2 border-secondary/80 hover:border-primary/50 bg-card text-center text-xs font-bold text-text-main flex items-center justify-center gap-2">
+                <span class="w-4 h-4 rounded-full bg-[#FFFDD0] border border-secondary"></span>
+                <span>Trắng Kem</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- BƯỚC 4: NHẬP TÊN NGƯỜI NHẬN & LỜI NHẮN -->
+          <div class="pt-4 border-t border-secondary/60">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs uppercase tracking-wider text-primary font-bold">Bước 04</span>
+              <span class="text-xs text-text-muted">Lời nhắn thiệp</span>
+            </div>
+            <h3 class="text-base sm:text-lg font-bold text-text-main mb-3">Cá Nhân Hóa Thông Điệp</h3>
 
             <div class="space-y-4">
               <div>
-                <label for="input-recipient-name" class="block text-xs font-bold text-text-main mb-1.5 uppercase tracking-wide">
+                <label for="input-recipient-name" class="block text-xs font-bold text-text-main mb-1 uppercase tracking-wide">
                   Tên hoặc danh xưng người nhận <span class="text-primary">*</span>
                 </label>
                 <input 
                   type="text" 
                   id="input-recipient-name" 
                   maxlength="25" 
-                  placeholder="Ví dụ: Em yêu, Mai Anh, Mẹ yêu..." 
-                  class="w-full px-4 py-3 rounded-xl border border-secondary bg-surface text-text-main placeholder-text-muted/60 text-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
+                  placeholder="Ví dụ: Em yêu, Lan Anh, Mẹ yêu..." 
+                  class="w-full px-4 py-3 rounded-xl border border-secondary bg-surface text-text-main text-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
                   value="Em yêu"
                 >
               </div>
 
               <div>
-                <label for="input-custom-message" class="block text-xs font-bold text-text-main mb-1.5 uppercase tracking-wide">
-                  Lời nhắn thiệp ngắn gọn (tối đa 70 ký tự)
+                <label for="input-custom-message" class="block text-xs font-bold text-text-main mb-1 uppercase tracking-wide">
+                  Lời nhắn in thiệp ngắn gọn
                 </label>
                 <input 
                   type="text" 
                   id="input-custom-message" 
                   maxlength="70" 
-                  placeholder="Ví dụ: Cảm ơn em vì đã luôn ở bên anh suốt 3 năm qua ❤️" 
-                  class="w-full px-4 py-3 rounded-xl border border-secondary bg-surface text-text-main placeholder-text-muted/60 text-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
-                  value="Cảm ơn em vì luôn là điều ngọt ngào nhất ❤️"
+                  placeholder="Ví dụ: Cảm ơn em vì đã đến và làm thế giới của anh dịu dàng hơn ❤️" 
+                  class="w-full px-4 py-3 rounded-xl border border-secondary bg-surface text-text-main text-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
+                  value="always make time for those who matter ❤️"
                 >
               </div>
             </div>
@@ -702,99 +795,72 @@
 
         </div>
 
-        <!-- ========================================== -->
-        <!-- CỘT PHẢI: LIVE VISUAL PREVIEW BOX (5/12)   -->
-        <!-- ========================================== -->
+        <!-- CỘT PHẢI: LIVE PREVIEW SẢN PHẨM THẬT (5/12) -->
         <div class="lg:col-span-5 sticky top-28">
           
-          <div class="bg-card rounded-3xl p-6 sm:p-7 border border-secondary/90 shadow-artisan-hover relative overflow-hidden">
+          <div class="bg-card rounded-3xl p-6 border border-secondary/90 shadow-artisan-hover relative overflow-hidden">
             
-            <div class="flex items-center justify-between pb-4 mb-5 border-b border-secondary/60">
+            <div class="flex items-center justify-between pb-3 mb-4 border-b border-secondary/60">
               <div class="flex items-center gap-2">
                 <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
                 <span class="text-xs uppercase tracking-wider font-bold text-text-main">Mô Phỏng Trực Quan (Live)</span>
               </div>
-              <span id="preview-box-badge" class="text-xs font-semibold px-2.5 py-1 rounded-full bg-secondary text-primary">
-                Hộp Gỗ Mộc
+              <span id="preview-badge-type" class="text-xs font-bold px-2.5 py-1 rounded-full bg-secondary text-primary">
+                BOX TO • 8 ẢNH
               </span>
             </div>
 
-            <!-- Khung Hộp Quà Mô Phỏng (Dynamic Box Container) -->
-            <div id="preview-box-container" class="rounded-2xl p-5 sm:p-6 transition-all duration-500 border-2 border-[#D4A373] bg-[#FDF8F3] relative shadow-inner">
+            <!-- Ảnh thật tương ứng với lựa chọn -->
+            <div class="relative rounded-2xl overflow-hidden aspect-[4/3] bg-secondary/30 mb-4 border border-secondary">
+              <img id="preview-image" src="Images/tr%C6%B0%E1%BB%9Bc%202%20(2).png" alt="Live Preview Box" class="w-full h-full object-cover transition-all duration-300">
               
-              <!-- Nắp Hộp & Nhãn Khắc Tên Trực Tiếp (Real-time Engraving Label) -->
-              <div class="bg-card/90 backdrop-blur-sm rounded-xl p-4 border border-secondary/80 shadow-sm text-center mb-5 relative">
-                <div class="w-8 h-8 rounded-full bg-primary/10 text-primary mx-auto flex items-center justify-center text-xs mb-1.5">
-                  🔏
-                </div>
-                <div class="text-[11px] text-text-muted tracking-wider uppercase font-medium">Hộp Quà Dành Tặng:</div>
-                <div id="preview-recipient-display" class="font-heading text-xl sm:text-2xl font-bold text-primary mt-0.5 transition-all">
-                  "Em yêu"
-                </div>
-                <p id="preview-message-display" class="text-xs italic text-text-muted mt-2 px-2 leading-relaxed">
-                  “Cảm ơn em vì luôn là điều ngọt ngào nhất ❤️”
-                </p>
-                <!-- Dấu sáp niêm phong góc nhãn -->
-                <div class="absolute -top-2.5 -right-2.5 w-6 h-6 rounded-full bg-primary text-accent-gold text-[10px] flex items-center justify-center shadow-md font-bold">
-                  ★
-                </div>
+              <!-- Badge nền thiệp -->
+              <div class="absolute bottom-3 left-3 bg-card/90 backdrop-blur-sm px-2.5 py-1 rounded-lg text-xs font-semibold text-text-main">
+                Mẫu nền: <span id="preview-style-text" class="text-primary font-bold">Bi Đỏ Kem</span>
               </div>
-
-              <!-- Ngăn Bên Trong: Danh Sách 3 Món Đã Chọn -->
-              <div>
-                <div class="text-[11px] font-bold text-text-main uppercase tracking-wider mb-2.5 flex items-center justify-between">
-                  <span>Tặng phẩm bên trong:</span>
-                  <span id="preview-slot-status" class="text-text-muted text-[10px] font-normal">(Chưa chọn món nào)</span>
-                </div>
-
-                <!-- 3 Slots chứa quà -->
-                <div class="space-y-2" id="preview-items-slots">
-                  
-                  <!-- Slot 1 -->
-                  <div class="slot-item p-2.5 rounded-xl border border-dashed border-secondary text-xs text-text-muted flex items-center gap-2.5 bg-card/50">
-                    <span class="w-6 h-6 rounded-lg bg-secondary/50 flex items-center justify-center text-xs">1</span>
-                    <span>Chưa chọn món thứ 1...</span>
-                  </div>
-
-                  <!-- Slot 2 -->
-                  <div class="slot-item p-2.5 rounded-xl border border-dashed border-secondary text-xs text-text-muted flex items-center gap-2.5 bg-card/50">
-                    <span class="w-6 h-6 rounded-lg bg-secondary/50 flex items-center justify-center text-xs">2</span>
-                    <span>Chưa chọn món thứ 2...</span>
-                  </div>
-
-                  <!-- Slot 3 -->
-                  <div class="slot-item p-2.5 rounded-xl border border-dashed border-secondary text-xs text-text-muted flex items-center gap-2.5 bg-card/50">
-                    <span class="w-6 h-6 rounded-lg bg-secondary/50 flex items-center justify-center text-xs">3</span>
-                    <span>Chưa chọn món thứ 3...</span>
-                  </div>
-
-                </div>
-              </div>
-
-              <!-- Decor ruy băng đáy hộp -->
-              <div class="mt-5 pt-3 border-t border-secondary/60 flex items-center justify-between text-[11px] text-text-muted">
-                <span>🎀 Ruy băng lụa cao cấp</span>
-                <span>✨ Đóng gói 3 lớp an toàn</span>
-              </div>
-
             </div>
 
-            <!-- Nút Hành Động Chuyển Đổi (Conversion Trigger Button) -->
-            <div class="mt-6 space-y-3">
+            <!-- Nhãn mô phỏng tên người nhận -->
+            <div class="p-4 rounded-xl bg-surface border border-secondary/80 text-center space-y-1">
+              <div class="text-[11px] text-text-muted uppercase tracking-wider font-semibold">Hộp quà dành tặng:</div>
+              <div id="preview-recipient-text" class="font-heading text-xl font-bold text-primary">
+                "Em yêu"
+              </div>
+              <div id="preview-message-text" class="text-xs italic text-text-muted pt-0.5">
+                “always make time for those who matter ❤️”
+              </div>
+            </div>
+
+            <!-- Tóm tắt cấu hình phụ kiện -->
+            <div class="mt-4 text-xs space-y-1.5 text-text-main border-t border-secondary/50 pt-3">
+              <div class="flex justify-between">
+                <span class="text-text-muted">Quy cách:</span>
+                <span id="summary-box-type" class="font-bold">BOX TO (Heart Card 8 ảnh)</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-text-muted">Màu phụ kiện:</span>
+                <span id="summary-comb-color" class="font-bold">Lược Hồng Pastel</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-text-muted">Quyền lợi:</span>
+                <span class="font-bold text-emerald-700">Duyệt bản demo Zalo trước khi in</span>
+              </div>
+            </div>
+
+            <!-- Nút gửi Zalo chốt đơn -->
+            <div class="mt-6 space-y-2">
               <button 
                 type="button" 
                 id="CTA_Widget_Submit" 
-                class="w-full py-4 px-6 rounded-full bg-primary hover:bg-primary-hover text-white font-bold text-sm sm:text-base shadow-artisan hover:shadow-artisan-hover transition-all duration-300 flex items-center justify-center gap-2 hover:scale-[1.01]"
+                class="w-full py-4 px-6 rounded-full bg-primary hover:bg-primary-hover text-white font-bold text-sm sm:text-base shadow-artisan flex items-center justify-center gap-2 hover:scale-[1.01] transition-all"
               >
-                <!-- Zalo Icon SVG -->
                 <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
                   <path d="M12 2C6.477 2 2 6.145 2 11.258c0 2.923 1.488 5.534 3.813 7.18-.168.96-.612 2.378-1.573 3.513-.153.18-.046.452.186.482 1.545.202 3.473-.243 4.887-1.144.862.247 1.77.382 2.687.382 5.523 0 10-4.145 10-9.258C22 6.145 17.523 2 12 2z"/>
                 </svg>
-                <span>Gửi cấu hình này qua Zalo / Đặt ngay</span>
+                <span>Gửi Cấu Hình Qua Zalo Để Lên Mẫu</span>
               </button>
-
-              <p class="text-center text-xs text-text-muted">
-                🎁 Miễn phí viết thiệp tay, khắc tên laser & gửi ảnh duyệt trước khi giao.
+              <p class="text-center text-[11px] text-text-muted">
+                ⚡ The Little Joy phản hồi và gửi bản demo duyệt trong 15 phút.
               </p>
             </div>
 
@@ -803,143 +869,101 @@
         </div>
 
       </div>
-
     </section>
 
     <!-- ========================================== -->
-    <!-- SECTION 5: SOCIAL PROOF (Giai đoạn 5)      -->
+    <!-- SECTION 6: KHOẢNH KHẮC NGƯỜI NHẬN          -->
     <!-- ========================================== -->
     <section id="stories" class="py-16 md:py-24 border-t border-secondary/60">
       
-      <!-- Section Header -->
       <div class="text-center max-w-3xl mx-auto mb-14 sm:mb-18">
         <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-secondary/70 border border-primary/20 text-xs sm:text-sm font-medium text-primary mb-3">
-          <span>💌 KHOẢNH KHẮC HẠNH PHÚC</span>
+          <span>💌 KHÁCH HÀNG CHIA SẺ</span>
         </div>
-        <h2 class="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-[2.6rem] font-bold text-text-main tracking-tight leading-tight">
-          Khi Yêu Thương Được Gói Ghém Đúng Cách
+        <h2 class="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-text-main tracking-tight">
+          Nụ Cười Của Người Nhận Là Hạnh Phúc Của Chúng Mình
         </h2>
         <p class="mt-3 text-sm sm:text-base text-text-muted leading-relaxed">
-          Hơn 2,500+ nụ cười và giọt nước mắt hạnh phúc đã cùng The Little Joy thắp sáng những kỷ niệm không thể nào quên.
+          Được mở một chiếc hộp chứa đầy kỷ niệm ngọt ngào luôn là cảm xúc không gì so sánh được.
         </p>
       </div>
 
-      <!-- Grid 3 cột Real Emotional Proof -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
         
-        <!-- Story 1 -->
-        <div class="bg-card rounded-3xl p-6 border border-secondary/90 shadow-artisan hover:shadow-artisan-hover transition-all duration-300 flex flex-col justify-between">
+        <!-- Review 1 -->
+        <div class="bg-card rounded-3xl p-6 border border-secondary/90 shadow-artisan flex flex-col justify-between">
           <div>
-            <div class="relative overflow-hidden rounded-2xl aspect-[4/3] mb-5 bg-secondary/30">
-              <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80" alt="Khoảnh khắc mở hộp quà người thương" class="w-full h-full object-cover">
-              <div class="absolute bottom-3 left-3 bg-card/90 backdrop-blur-sm px-3 py-1 rounded-full text-[11px] font-bold text-primary shadow">
-                Kỷ niệm 2 năm ngày yêu
-              </div>
-            </div>
-
-            <!-- Stars Rating -->
             <div class="flex items-center gap-1 text-accent-gold text-sm mb-3">
               <span>★★★★★</span>
               <span class="text-xs font-bold text-text-main ml-1">5.0</span>
             </div>
-
-            <p class="font-heading text-base sm:text-lg italic text-text-main leading-relaxed">
-              “Khoảnh khắc bạn ấy mở chiếc thiệp viết tay và ngửi thấy mùi nến thơm yêu thích, cả căn phòng như bừng sáng.”
+            <p class="font-heading text-base italic text-text-main leading-relaxed">
+              “Người yêu mình thích mê 2 em mèo bông đôi, bạn ấy gắn ngay 1 em vào chìa khóa xe và đưa mình 1 em để giữ chung. Thiệp trái tim dán ảnh xinh xỉu ạ!”
             </p>
           </div>
-
           <div class="mt-6 pt-4 border-t border-secondary/60 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-              <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=80&h=80&q=80" alt="Thu Trang" class="w-9 h-9 rounded-full object-cover ring-1 ring-primary/30">
-              <div>
-                <div class="text-xs font-bold text-text-main">Thu Trang</div>
-                <div class="text-[11px] text-text-muted">Hà Nội</div>
-              </div>
+            <div>
+              <div class="text-xs font-bold text-text-main">Hồng Nhung</div>
+              <div class="text-[11px] text-text-muted">Đặt Box To kỷ niệm 1 năm</div>
             </div>
-            <span class="text-[10px] text-emerald-600 font-semibold bg-emerald-50 px-2 py-0.5 rounded-full">✓ Đã xác thực</span>
+            <span class="text-[10px] text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full font-semibold">✓ Đã mua</span>
           </div>
         </div>
 
-        <!-- Story 2 -->
-        <div class="bg-card rounded-3xl p-6 border border-secondary/90 shadow-artisan hover:shadow-artisan-hover transition-all duration-300 flex flex-col justify-between">
+        <!-- Review 2 -->
+        <div class="bg-card rounded-3xl p-6 border border-secondary/90 shadow-artisan flex flex-col justify-between">
           <div>
-            <div class="relative overflow-hidden rounded-2xl aspect-[4/3] mb-5 bg-secondary/30">
-              <img src="https://images.unsplash.com/photo-1513201099705-a9746e1e201f?auto=format&fit=crop&w=600&q=80" alt="Ảnh chụp quà tặng sinh nhật" class="w-full h-full object-cover">
-              <div class="absolute bottom-3 left-3 bg-card/90 backdrop-blur-sm px-3 py-1 rounded-full text-[11px] font-bold text-primary shadow">
-                Quà sinh nhật bất ngờ
-              </div>
-            </div>
-
-            <!-- Stars Rating -->
             <div class="flex items-center gap-1 text-accent-gold text-sm mb-3">
               <span>★★★★★</span>
               <span class="text-xs font-bold text-text-main ml-1">5.0</span>
             </div>
-
-            <p class="font-heading text-base sm:text-lg italic text-text-main leading-relaxed">
-              “Người yêu mình xúc động đến rơi nước mắt khi thấy tấm ảnh chụp chung 4 năm trước được in sắc nét kẹp nơ xinh xắn.”
+            <p class="font-heading text-base italic text-text-main leading-relaxed">
+              “Shop hỗ trợ chỉnh demo thiệp nhiệt tình lắm, mình đổi ảnh 2 lần shop vẫn vui vẻ gửi lại bản demo xem trước. Ảnh in polaroid rất rõ nét, không bị tối hay vỡ hạt.”
             </p>
           </div>
-
           <div class="mt-6 pt-4 border-t border-secondary/60 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-              <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=80&h=80&q=80" alt="Minh Quân" class="w-9 h-9 rounded-full object-cover ring-1 ring-primary/30">
-              <div>
-                <div class="text-xs font-bold text-text-main">Minh Quân</div>
-                <div class="text-[11px] text-text-muted">TP. Hồ Chí Minh</div>
-              </div>
+            <div>
+              <div class="text-xs font-bold text-text-main">Tuấn Kiệt</div>
+              <div class="text-[11px] text-text-muted">Đặt Box To sinh nhật bạn gái</div>
             </div>
-            <span class="text-[10px] text-emerald-600 font-semibold bg-emerald-50 px-2 py-0.5 rounded-full">✓ Đã xác thực</span>
+            <span class="text-[10px] text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full font-semibold">✓ Đã mua</span>
           </div>
         </div>
 
-        <!-- Story 3 -->
-        <div class="bg-card rounded-3xl p-6 border border-secondary/90 shadow-artisan hover:shadow-artisan-hover transition-all duration-300 flex flex-col justify-between">
+        <!-- Review 3 -->
+        <div class="bg-card rounded-3xl p-6 border border-secondary/90 shadow-artisan flex flex-col justify-between">
           <div>
-            <div class="relative overflow-hidden rounded-2xl aspect-[4/3] mb-5 bg-secondary/30">
-              <img src="https://images.unsplash.com/photo-1516726817505-f5ed825624d8?auto=format&fit=crop&w=600&q=80" alt="Hộp quà gửi tặng mẹ" class="w-full h-full object-cover">
-              <div class="absolute bottom-3 left-3 bg-card/90 backdrop-blur-sm px-3 py-1 rounded-full text-[11px] font-bold text-primary shadow">
-                Quà tri ân Mẹ yêu
-              </div>
-            </div>
-
-            <!-- Stars Rating -->
             <div class="flex items-center gap-1 text-accent-gold text-sm mb-3">
               <span>★★★★★</span>
               <span class="text-xs font-bold text-text-main ml-1">5.0</span>
             </div>
-
-            <p class="font-heading text-base sm:text-lg italic text-text-main leading-relaxed">
-              “Dịch vụ của shop trên cả tuyệt vời, chụp ảnh duyệt trước từng góc hộp rồi mới ship. Hộp đến nơi nguyên vẹn không một vết xước.”
+            <p class="font-heading text-base italic text-text-main leading-relaxed">
+              “Hộp nhỏ xinh xắn mà đầy đủ đồ cưng xỉu: có lược pastel, mèo bông với thiệp gấu. Đóng gói rất cẩn thận, ship từ Hà Nội vào Sài Gòn hộp vẫn thẳng tắp.”
             </p>
           </div>
-
           <div class="mt-6 pt-4 border-t border-secondary/60 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&h=80&q=80" alt="Hải Yến" class="w-9 h-9 rounded-full object-cover ring-1 ring-primary/30">
-              <div>
-                <div class="text-xs font-bold text-text-main">Hải Yến</div>
-                <div class="text-[11px] text-text-muted">Đà Nẵng</div>
-              </div>
+            <div>
+              <div class="text-xs font-bold text-text-main">Bảo Trân</div>
+              <div class="text-[11px] text-text-muted">Đặt Box Nhỏ tặng bạn thân</div>
             </div>
-            <span class="text-[10px] text-emerald-600 font-semibold bg-emerald-50 px-2 py-0.5 rounded-full">✓ Đã xác thực</span>
+            <span class="text-[10px] text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full font-semibold">✓ Đã mua</span>
           </div>
         </div>
 
       </div>
 
-      <!-- Realistic Chat Bubble Simulation -->
+      <!-- Chat Screenshot Simulation -->
       <div class="mt-12 max-w-xl mx-auto bg-card rounded-2xl p-4 sm:p-5 border border-secondary/80 shadow-sm flex items-start gap-3.5">
-        <div class="w-10 h-10 rounded-full bg-emerald-500 text-white flex items-center justify-center text-lg flex-shrink-0">
+        <div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center text-lg flex-shrink-0">
           💬
         </div>
         <div>
           <div class="flex items-center gap-2">
-            <span class="text-xs font-bold text-text-main">Tin nhắn từ Instagram @thanh_hang98</span>
-            <span class="text-[10px] text-text-muted">• Vừa xong</span>
+            <span class="text-xs font-bold text-text-main">Phản hồi Zalo từ bạn Mai Anh</span>
+            <span class="text-[10px] text-text-muted">• Vừa nhận quà</span>
           </div>
           <p class="text-xs sm:text-sm text-text-main mt-1 leading-relaxed">
-            “Dạ chị ơi bạn em nhận được quà thích mê luôn ạ, khen nến thơm nức mũi cả phòng với nét chữ viết tay đẹp nắn nót quá trời 🥺 Cảm ơn team The Little Joy nhiều nha, 100 điểm cho sự tỉ mỉ ạ!”
+            “Dạ shop ơi người yêu em khen nức nở luôn ạ, bảo hộp quà vừa thơm vừa dễ thương. Bạn ấy ngắm mãi tấm thiệp trái tim dán ảnh 2 đứa. Cho shop 10 điểm chu đáo nha! 🥰”
           </p>
         </div>
       </div>
@@ -947,85 +971,81 @@
     </section>
 
     <!-- ========================================== -->
-    <!-- SECTION 6: FAQ ACCORDION (Giai đoạn 5)     -->
+    <!-- SECTION 7: FAQ & CAM KẾT                   -->
     <!-- ========================================== -->
     <section id="faq" class="py-16 md:py-24 border-t border-secondary/60">
       
-      <!-- Section Header -->
       <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
         <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-secondary/70 border border-primary/20 text-xs sm:text-sm font-medium text-primary mb-3">
-          <span>❓ HỎI ĐÁP & CAM KẾT</span>
+          <span>❓ GIẢI ĐÁP THẮC MẮC</span>
         </div>
         <h2 class="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-[2.6rem] font-bold text-text-main tracking-tight">
-          Giải Đáp Mọi Băn Khoăn Của Bạn
+          Những Câu Hỏi Thường Gặp
         </h2>
         <p class="mt-3 text-sm sm:text-base text-text-muted leading-relaxed">
-          Sự an tâm tuyệt đối và nụ cười rạng rỡ của người nhận là ưu tiên số 1 của chúng mình.
+          Tất cả những gì bạn cần biết trước khi đặt làm hộp quà tại The Little Joy.
         </p>
       </div>
 
-      <!-- FAQ Accordion List -->
       <div class="max-w-3xl mx-auto space-y-4" id="faq-accordion">
         
         <!-- FAQ 1 -->
-        <div class="faq-item bg-card rounded-2xl border border-secondary/90 shadow-sm overflow-hidden transition-all duration-300">
-          <button type="button" class="faq-toggle w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 focus:outline-none">
+        <div class="faq-item bg-card rounded-2xl border border-secondary/90 shadow-sm overflow-hidden">
+          <button type="button" class="faq-toggle w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4">
             <span class="font-heading text-base sm:text-lg font-bold text-text-main">
-              1. Tôi ở xa có được duyệt ảnh chụp hộp quà trước khi gửi không?
+              1. Tôi gửi ảnh cho shop bằng cách nào để ảnh không bị mờ?
             </span>
             <span class="faq-icon w-8 h-8 rounded-full bg-secondary/60 text-primary flex items-center justify-center font-bold text-base flex-shrink-0 transition-transform duration-300">
               +
             </span>
           </button>
           <div class="faq-content hidden px-5 sm:px-6 pb-6 pt-1 text-xs sm:text-sm text-text-muted leading-relaxed border-t border-secondary/40">
-            Dạ chắc chắn rồi ạ! Trước khi đóng hộp bọc chống va đập và bàn giao cho đơn vị vận chuyển, <strong class="text-text-main font-semibold">The Little Joy luôn chụp ảnh và quay video cận cảnh từng chi tiết thành phẩm</strong> (hộp quà, tặng phẩm bên trong, thiệp chúc viết tay và tem sáp niêm phong) gửi qua Zalo cho bạn duyệt trước. Chỉ khi bạn hoàn toàn ưng ý 100%, hộp quà mới được chuyển đi.
+            Bạn bấm vào nút đặt hàng để kết nối Zalo với The Little Joy, sau đó chọn chế độ <strong>"Gửi HD"</strong> khi gửi ảnh qua Zalo nhé. Shop khuyến khích gửi ảnh gốc chụp từ máy ảnh/điện thoại, hạn chế gửi ảnh chụp màn hình để tấm ảnh in ra sắc nét và đẹp nhất!
           </div>
         </div>
 
         <!-- FAQ 2 -->
-        <div class="faq-item bg-card rounded-2xl border border-secondary/90 shadow-sm overflow-hidden transition-all duration-300">
-          <button type="button" class="faq-toggle w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 focus:outline-none">
+        <div class="faq-item bg-card rounded-2xl border border-secondary/90 shadow-sm overflow-hidden">
+          <button type="button" class="faq-toggle w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4">
             <span class="font-heading text-base sm:text-lg font-bold text-text-main">
-              2. Thời gian làm và giao hàng mất bao lâu? Có ship hỏa tốc không?
+              2. Tôi có được duyệt bản demo thiệp trước khi shop in không?
             </span>
             <span class="faq-icon w-8 h-8 rounded-full bg-secondary/60 text-primary flex items-center justify-center font-bold text-base flex-shrink-0 transition-transform duration-300">
               +
             </span>
           </button>
           <div class="faq-content hidden px-5 sm:px-6 pb-6 pt-1 text-xs sm:text-sm text-text-muted leading-relaxed border-t border-secondary/40">
-            Với các đơn đặt trong ngày, chúng mình hoàn thiện và đóng gói thủ công trong vòng <strong class="text-text-main font-semibold">2 - 4 tiếng</strong>. 
-            Nội thành Hà Nội & TP. HCM hỗ trợ <strong class="text-primary font-semibold">giao hỏa tốc nhận trong 1 - 2 giờ</strong> (hỗ trợ hẹn đúng giờ để tạo bất ngờ). 
-            Các tỉnh thành khác thời gian giao nhanh từ 1 - 3 ngày qua đơn vị chuyển phát nhanh bảo đảm nguyên vẹn.
+            <strong>Dạ chắc chắn 100% được xem demo ạ!</strong> Sau khi nhận ảnh, shop sẽ lên mẫu ghép ảnh vào khung thiệp và gửi demo qua Zalo cho bạn duyệt. Nếu bạn muốn căn chỉnh lại góc ảnh hay đổi ảnh khác, shop sẽ hỗ trợ đổi đến khi bạn hoàn toàn ưng ý rồi mới bấm in thành phẩm.
           </div>
         </div>
 
         <!-- FAQ 3 -->
-        <div class="faq-item bg-card rounded-2xl border border-secondary/90 shadow-sm overflow-hidden transition-all duration-300">
-          <button type="button" class="faq-toggle w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 focus:outline-none">
+        <div class="faq-item bg-card rounded-2xl border border-secondary/90 shadow-sm overflow-hidden">
+          <button type="button" class="faq-toggle w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4">
             <span class="font-heading text-base sm:text-lg font-bold text-text-main">
-              3. Nếu quà tặng bị lỗi hoặc hộp bị móp do bên vận chuyển thì sao?
+              3. Thời gian hoàn thành và giao hàng mất bao lâu? Có ship hỏa tốc không?
             </span>
             <span class="faq-icon w-8 h-8 rounded-full bg-secondary/60 text-primary flex items-center justify-center font-bold text-base flex-shrink-0 transition-transform duration-300">
               +
             </span>
           </button>
           <div class="faq-content hidden px-5 sm:px-6 pb-6 pt-1 text-xs sm:text-sm text-text-muted leading-relaxed border-t border-secondary/40">
-            The Little Joy áp dụng chính sách <strong class="text-primary font-semibold">Bảo Hiểm Quà Tặng 100%</strong>. Toàn bộ hộp quà đều được bọc 3 lớp chống sốc dày dặn. Nếu chẳng may hộp bị va đập cấn móp hoặc sản phẩm bên trong bị hư hỏng khi giao tới tay người nhận, chúng mình sẽ <strong class="text-text-main font-semibold">làm lại và gửi hỏa tốc một hộp quà mới hoàn toàn miễn phí ngay lập tức</strong>.
+            Hộp quà được shop hoàn thiện nhanh trong vòng <strong>2 - 4 tiếng</strong> sau khi chốt demo. Nội thành hỗ trợ giao hỏa tốc nhận liền trong 1 - 2 tiếng (có hẹn giờ tặng tạo bất ngờ). Khách ở tỉnh thành khác sẽ nhận sau 1 - 3 ngày qua chuyển phát nhanh bảo đảm an toàn.
           </div>
         </div>
 
         <!-- FAQ 4 -->
-        <div class="faq-item bg-card rounded-2xl border border-secondary/90 shadow-sm overflow-hidden transition-all duration-300">
-          <button type="button" class="faq-toggle w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 focus:outline-none">
+        <div class="faq-item bg-card rounded-2xl border border-secondary/90 shadow-sm overflow-hidden">
+          <button type="button" class="faq-toggle w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4">
             <span class="font-heading text-base sm:text-lg font-bold text-text-main">
-              4. Tôi muốn thêm ảnh cá nhân và bài hát kỷ niệm (mã QR Spotify) có được không?
+              4. Nếu hộp quà bị móp méo do bên vận chuyển thì sao?
             </span>
             <span class="faq-icon w-8 h-8 rounded-full bg-secondary/60 text-primary flex items-center justify-center font-bold text-base flex-shrink-0 transition-transform duration-300">
               +
             </span>
           </button>
           <div class="faq-content hidden px-5 sm:px-6 pb-6 pt-1 text-xs sm:text-sm text-text-muted leading-relaxed border-t border-secondary/40">
-            Dạ hoàn toàn được ạ! Bạn chỉ cần gửi file ảnh kỷ niệm và tên bài hát/link Spotify qua Zalo. The Little Joy sẽ in ảnh polaroid sắc nét lấy ngay và <strong class="text-text-main font-semibold">tạo mã quét Spotify độc bản in trực tiếp lên thiệp chúc</strong>, để người nhận chỉ cần mở camera điện thoại là có thể nghe ngay bài hát kỷ niệm của hai bạn!
+            The Little Joy áp dụng <strong>chính sách bảo hiểm 1 đổi 1 ngay lập tức</strong>. Mọi đơn hàng đều được bọc 3 lớp màng bóng khí chống sốc dày dặn. Nếu có bất kỳ sự cố móp hộp hay hỏng đồ bên trong do vận chuyển, shop sẽ làm mới và gửi hỏa tốc lại ngay cho bạn miễn phí 100%!
           </div>
         </div>
 
@@ -1036,53 +1056,53 @@
   </main>
 
   <!-- ========================================== -->
-  <!-- FOOTER ẤM CÚNG (Giai đoạn 5)               -->
+  <!-- FOOTER ẤM CÚNG                             -->
   <!-- ========================================== -->
   <footer id="main-footer" class="w-full bg-[#F4DCD1]/30 border-t border-secondary/80 pt-16 pb-24 sm:pb-16 mt-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-secondary/70">
         
-        <!-- Cột 1: Thông tin thương hiệu (5/12) -->
+        <!-- Cột 1: Thương hiệu -->
         <div class="md:col-span-5 space-y-4">
           <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold text-sm shadow">
-              TLJ
+            <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold text-sm shadow overflow-hidden">
+              <img src="Images/LOGO.png" alt="Logo" class="w-full h-full object-cover">
             </div>
             <span class="font-heading text-2xl font-bold text-text-main">The Little Joy</span>
           </div>
 
-          <p class="text-sm font-heading italic text-text-main">
-            “Made from little moments, made for someone special.”
+          <p class="font-handwriting text-xl text-primary font-bold">
+            “always make time for those who matter”
           </p>
 
           <p class="text-xs sm:text-sm text-text-muted leading-relaxed max-w-sm">
-            Thương hiệu giftbox thủ công cá nhân hóa, nơi từng khoảnh khắc nhỏ của bạn được nâng niu và chuyển hóa thành món quà ý nghĩa nhất.
+            Thương hiệu giftbox cá nhân hóa theo từng câu chuyện. Nơi từng tấm thiệp dán ảnh và món quà nhỏ được chăm chút thủ công để gửi trao chân tình.
           </p>
 
           <div class="flex items-center gap-3 pt-2 text-xs font-semibold text-text-muted">
             <span class="inline-flex items-center gap-1">🌸 Đóng gói thủ công 24h</span>
-            <span class="inline-flex items-center gap-1">🛡️ Bảo hiểm 1 đổi 1</span>
+            <span class="inline-flex items-center gap-1">🛡️ Bảo hiểm móp hộp 1 đổi 1</span>
           </div>
         </div>
 
-        <!-- Cột 2: Điều hướng nhanh (3/12) -->
+        <!-- Cột 2: Điều hướng nhanh -->
         <div class="md:col-span-3 space-y-3 text-xs sm:text-sm">
-          <h4 class="font-bold text-text-main uppercase tracking-wider text-xs">Khám Phá Nhanh</h4>
+          <h4 class="font-bold text-text-main uppercase tracking-wider text-xs">Menu Trang</h4>
           <ul class="space-y-2 text-text-muted">
             <li><a href="#hero" class="hover:text-primary transition-colors">Trang chủ</a></li>
-            <li><a href="#collections" class="hover:text-primary transition-colors">Bộ sưu tập theo dịp</a></li>
-            <li><a href="#craft" class="hover:text-primary transition-colors">Hành trình 4 bước thủ công</a></li>
-            <li><a href="#customizer" class="hover:text-primary transition-colors">Tự tay phối hộp quà (30s)</a></li>
-            <li><a href="#stories" class="hover:text-primary transition-colors">Câu chuyện người nhận</a></li>
-            <li><a href="#faq" class="hover:text-primary transition-colors">Hỏi đáp & Cam kết</a></li>
+            <li><a href="#combos" class="hover:text-primary transition-colors">Combo Box To & Box Nhỏ</a></li>
+            <li><a href="#comparison" class="hover:text-primary transition-colors">So sánh chi tiết 2 Box</a></li>
+            <li><a href="#process" class="hover:text-primary transition-colors">Quy trình làm thiệp A-Z</a></li>
+            <li><a href="#customizer" class="hover:text-primary transition-colors">Tự phối hộp quà</a></li>
+            <li><a href="#faq" class="hover:text-primary transition-colors">Câu hỏi thường gặp</a></li>
           </ul>
         </div>
 
-        <!-- Cột 3: Tư vấn & Hotline (4/12) -->
+        <!-- Cột 3: Tư vấn & Hotline -->
         <div class="md:col-span-4 space-y-3 text-xs sm:text-sm">
-          <h4 class="font-bold text-text-main uppercase tracking-wider text-xs">Tư Vấn & Đặt Hộp Riêng</h4>
-          <p class="text-text-muted">Đội ngũ The Little Joy luôn sẵn sàng lắng nghe câu chuyện của bạn:</p>
+          <h4 class="font-bold text-text-main uppercase tracking-wider text-xs">Tư Vấn & Gửi Ảnh Làm Thiệp</h4>
+          <p class="text-text-muted">Đội ngũ The Little Joy luôn sẵn sàng hỗ trợ bạn:</p>
           
           <div class="space-y-2 pt-1">
             <div class="flex items-center gap-2 text-text-main font-semibold">
@@ -1090,8 +1110,8 @@
               <a href="tel:0901234567" class="text-primary hover:underline">0901.234.567</a>
             </div>
             <div class="flex items-center gap-2 text-text-main font-semibold">
-              <span>💬 Zalo OA:</span>
-              <a href="https://zalo.me/0901234567" target="_blank" class="text-primary hover:underline">Zalo The Little Joy</a>
+              <span>💬 Zalo Tư Vấn:</span>
+              <a href="https://zalo.me/0901234567" target="_blank" class="text-primary hover:underline font-bold">Zalo The Little Joy (Gửi ảnh HD)</a>
             </div>
             <div class="flex items-center gap-2 text-text-muted">
               <span>📍 Xưởng chế tác:</span>
@@ -1101,7 +1121,7 @@
 
           <div class="pt-3">
             <a href="#customizer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary hover:bg-primary-hover text-white font-semibold text-xs shadow transition-all">
-              <span>Tạo hộp quà kỷ niệm ngay</span> &rarr;
+              <span>Phối quà & Lên demo ngay</span> &rarr;
             </a>
           </div>
         </div>
@@ -1111,11 +1131,11 @@
       <!-- Copyright -->
       <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-text-muted gap-4">
         <div>
-          © 2026 The Little Joy. All rights reserved. Crafted with care & love.
+          © 2026 The Little Joy. All rights reserved. Made from little moments.
         </div>
         <div class="flex items-center gap-4">
-          <a href="#" class="hover:underline">Chính sách bảo mật</a>
-          <a href="#" class="hover:underline">Chính sách đổi trả 100%</a>
+          <a href="#" class="hover:underline">Chính sách bảo mật ảnh khách hàng</a>
+          <a href="#" class="hover:underline">Bảo hiểm vận chuyển 100%</a>
         </div>
       </div>
 
@@ -1123,7 +1143,7 @@
   </footer>
 
   <!-- ========================================== -->
-  <!-- MODAL XÁC NHẬN CẤU HÌNH ĐƠN HÀNG           -->
+  <!-- MODAL XÁC NHẬN CẤU HÌNH ĐẶT HÀNG           -->
   <!-- ========================================== -->
   <div id="order-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
     <div class="bg-card w-full max-w-lg rounded-3xl p-6 sm:p-8 shadow-2xl border border-secondary transform scale-95 transition-all duration-300" id="order-modal-content">
@@ -1137,19 +1157,20 @@
 
       <div class="my-5 space-y-3 text-sm">
         <div class="p-4 rounded-2xl bg-surface border border-secondary/70 space-y-2">
-          <div><strong class="text-text-main">Màu hộp:</strong> <span id="modal-box-color" class="text-primary font-medium">Hộp Gỗ Mộc</span></div>
-          <div><strong class="text-text-main">Tặng phẩm (3 món):</strong> <span id="modal-box-items" class="text-text-main">Chưa chọn</span></div>
+          <div><strong class="text-text-main">Quy cách:</strong> <span id="modal-box-type" class="text-primary font-bold">BOX TO (Heart Card 8 ảnh)</span></div>
+          <div><strong class="text-text-main">Mẫu nền thiệp:</strong> <span id="modal-card-style" class="text-text-main">Kem Chấm Bi Đỏ Burgundy</span></div>
+          <div><strong class="text-text-main">Màu phụ kiện:</strong> <span id="modal-comb-color" class="text-text-main">Lược Hồng Pastel</span></div>
           <div><strong class="text-text-main">Dành tặng:</strong> <span id="modal-box-recipient" class="text-primary font-bold">Em yêu</span></div>
           <div><strong class="text-text-main">Lời nhắn thiệp:</strong> <span id="modal-box-message" class="italic text-text-muted">“...”</span></div>
         </div>
         <p class="text-xs text-text-muted text-center">
-          Bạn có thể gửi cấu hình trực tiếp qua Zalo hoặc copy thông điệp để nhân viên The Little Joy hoàn thiện hộp quà cho bạn.
+          Nhấn nút bên dưới để mở Zalo gửi thông tin và ảnh kỷ niệm. The Little Joy sẽ lên bản demo thiệp cho bạn duyệt trước khi in!
         </p>
       </div>
 
       <div class="flex flex-col sm:flex-row gap-3 pt-2">
         <a id="modal-zalo-link" href="#" target="_blank" class="flex-1 py-3 px-5 rounded-full bg-primary hover:bg-primary-hover text-white text-center font-bold text-sm shadow flex items-center justify-center gap-2">
-          <span>Mở Zalo Gửi Ngay</span> &rarr;
+          <span>Mở Zalo Gửi Ảnh & Lên Demo</span> &rarr;
         </a>
         <button id="modal-copy-btn" class="py-3 px-5 rounded-full border border-primary/40 text-text-main hover:bg-secondary/40 font-semibold text-sm transition-colors">
           Sao chép thông tin
@@ -1159,9 +1180,9 @@
   </div>
 
   <!-- ========================================== -->
-  <!-- MOBILE STICKY BOTTOM BAR (Giai đoạn 5)     -->
+  <!-- MOBILE STICKY BOTTOM BAR                   -->
   <!-- ========================================== -->
-  <div id="mobile-sticky-bar" class="fixed bottom-0 left-0 right-0 z-40 bg-surface/95 backdrop-blur-md border-t border-secondary/80 p-3 sm:hidden shadow-lg transform translate-y-full transition-transform duration-300 flex items-center gap-3">
+  <div id="mobile-sticky-bar" class="fixed bottom-0 left-0 right-0 z-40 bg-surface/95 backdrop-blur-md border-t border-secondary/80 p-3 lg:hidden shadow-lg transform translate-y-full transition-transform duration-300 flex items-center gap-3">
     <!-- Nút nhắn Zalo tư vấn -->
     <a 
       href="https://zalo.me/0901234567" 
@@ -1173,24 +1194,24 @@
       💬
     </a>
 
-    <!-- Nút Primary to: Tự tạo hộp quà riêng -->
+    <!-- Nút Primary: Tự tạo hộp quà riêng -->
     <a 
       href="#customizer" 
       id="CTA_Sticky_Mobile" 
       class="flex-1 py-3 px-4 rounded-full bg-primary hover:bg-primary-hover text-white text-center font-bold text-sm shadow-artisan flex items-center justify-center gap-2"
     >
-      <span>Tự tạo hộp quà riêng</span>
+      <span>Tự phối hộp quà riêng</span>
       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
       </svg>
     </a>
   </div>
 
-  <!-- Script điều khiển Toàn Trang: Mobile Menu, Customizer, FAQ Accordion & Sticky Bar -->
+  <!-- ========================================== -->
+  <!-- JAVASCRIPT ENGINE TOÀN TRANG               -->
+  <!-- ========================================== -->
   <script>
-    // ==========================================
-    // 1. MOBILE MENU DRAWER
-    // ==========================================
+    // 1. Mobile Menu Drawer
     const mobileBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
 
@@ -1206,9 +1227,7 @@
       });
     }
 
-    // ==========================================
-    // 2. FAQ ACCORDION HANDLER
-    // ==========================================
+    // 2. FAQ Accordion
     const faqItems = document.querySelectorAll('.faq-item');
     faqItems.forEach(item => {
       const toggleBtn = item.querySelector('.faq-toggle');
@@ -1219,7 +1238,6 @@
         toggleBtn.addEventListener('click', () => {
           const isOpen = !content.classList.contains('hidden');
 
-          // Đóng tất cả các accordion khác
           faqItems.forEach(otherItem => {
             const otherContent = otherItem.querySelector('.faq-content');
             const otherIcon = otherItem.querySelector('.faq-icon');
@@ -1230,7 +1248,6 @@
             }
           });
 
-          // Mở mục hiện tại nếu đang đóng
           if (!isOpen) {
             content.classList.remove('hidden');
             if (icon) {
@@ -1242,7 +1259,6 @@
       }
     });
 
-    // Mở sẵn câu hỏi đầu tiên
     if (faqItems.length > 0) {
       const firstContent = faqItems[0].querySelector('.faq-content');
       const firstIcon = faqItems[0].querySelector('.faq-icon');
@@ -1253,9 +1269,7 @@
       }
     }
 
-    // ==========================================
-    // 3. MOBILE STICKY BOTTOM BAR VISIBILITY
-    // ==========================================
+    // 3. Mobile Sticky Bottom Bar Visibility on Scroll
     const mobileStickyBar = document.getElementById('mobile-sticky-bar');
     const heroSection = document.getElementById('hero');
 
@@ -1270,71 +1284,51 @@
       });
     }
 
-    // ==========================================
-    // 4. INTERACTIVE GIFTBOX CUSTOMIZER ENGINE
-    // ==========================================
+    // 4. Interactive Customizer Engine (Aligned with Real Products)
     function initCustomizer() {
-      // State Management
-      const customizerState = {
-        boxColor: 'wood',
-        boxName: 'Hộp Gỗ Mộc',
-        items: [], // Max 3 items: [{ id, name, icon }]
+      const state = {
+        boxType: 'to', // 'to' hoặc 'nho'
+        boxTypeName: 'BOX TO (Heart Card 8 ảnh)',
+        cardStyle: 'Kem Chấm Bi Đỏ Burgundy',
+        combColor: 'Hồng Pastel',
         recipientName: 'Em yêu',
-        message: 'Cảm ơn em vì luôn là điều ngọt ngào nhất ❤️',
+        message: 'always make time for those who matter ❤️',
         phoneZalo: '0901234567'
       };
 
       // DOM Elements
-      const colorBtns = document.querySelectorAll('.box-color-btn');
-      const itemCards = document.querySelectorAll('.gift-item-card');
-      const selectedCounter = document.getElementById('selected-counter');
-      const itemLimitMsg = document.getElementById('item-limit-msg');
+      const boxTypeBtns = document.querySelectorAll('.box-type-btn');
+      const cardStyleBtns = document.querySelectorAll('.card-style-btn');
+      const combColorBtns = document.querySelectorAll('.comb-color-btn');
       const recipientInput = document.getElementById('input-recipient-name');
       const messageInput = document.getElementById('input-custom-message');
 
-      // Preview DOM Elements
-      const previewBoxBadge = document.getElementById('preview-box-badge');
-      const previewBoxContainer = document.getElementById('preview-box-container');
-      const previewRecipientDisplay = document.getElementById('preview-recipient-display');
-      const previewMessageDisplay = document.getElementById('preview-message-display');
-      const previewItemsSlots = document.getElementById('preview-items-slots');
-      const previewSlotStatus = document.getElementById('preview-slot-status');
+      // Preview Elements
+      const previewBadgeType = document.getElementById('preview-badge-type');
+      const previewImage = document.getElementById('preview-image');
+      const previewStyleText = document.getElementById('preview-style-text');
+      const previewRecipientText = document.getElementById('preview-recipient-text');
+      const previewMessageText = document.getElementById('preview-message-text');
+      const summaryBoxType = document.getElementById('summary-box-type');
+      const summaryCombColor = document.getElementById('summary-comb-color');
 
-      // Submit & Modal Elements
+      // Modal Elements
       const submitBtn = document.getElementById('CTA_Widget_Submit');
       const orderModal = document.getElementById('order-modal');
       const modalContent = document.getElementById('order-modal-content');
       const modalCloseBtn = document.getElementById('modal-close-btn');
-      const modalBoxColor = document.getElementById('modal-box-color');
-      const modalBoxItems = document.getElementById('modal-box-items');
+      const modalBoxType = document.getElementById('modal-box-type');
+      const modalCardStyle = document.getElementById('modal-card-style');
+      const modalCombColor = document.getElementById('modal-comb-color');
       const modalBoxRecipient = document.getElementById('modal-box-recipient');
       const modalBoxMessage = document.getElementById('modal-box-message');
       const modalZaloLink = document.getElementById('modal-zalo-link');
       const modalCopyBtn = document.getElementById('modal-copy-btn');
 
-      // Helper: Box Style Schemes
-      const boxStyleConfig = {
-        wood: {
-          bgClass: 'bg-[#FDF8F3]',
-          borderClass: 'border-[#D4A373]',
-          badgeText: 'Hộp Gỗ Mộc'
-        },
-        terracotta: {
-          bgClass: 'bg-[#FAF0EB]',
-          borderClass: 'border-[#BD6B4D]',
-          badgeText: 'Terracotta Warm'
-        },
-        pink: {
-          bgClass: 'bg-[#FDF3F0]',
-          borderClass: 'border-[#E8C5B8]',
-          badgeText: 'Pastel Pink'
-        }
-      };
-
-      // 1. Box Color Selection Handler
-      colorBtns.forEach(btn => {
+      // 1. Handle Box Type Change
+      boxTypeBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-          colorBtns.forEach(b => {
+          boxTypeBtns.forEach(b => {
             b.classList.remove('active', 'border-primary', 'bg-secondary/30');
             b.classList.add('border-secondary/80', 'bg-card');
             const check = b.querySelector('.checkmark');
@@ -1343,167 +1337,97 @@
 
           btn.classList.add('active', 'border-primary', 'bg-secondary/30');
           btn.classList.remove('border-secondary/80', 'bg-card');
-          const currentCheck = btn.querySelector('.checkmark');
-          if (currentCheck) currentCheck.classList.remove('hidden');
+          const check = btn.querySelector('.checkmark');
+          if (check) check.classList.remove('hidden');
 
-          const colorKey = btn.dataset.boxColor || 'wood';
-          const name = btn.dataset.boxName || 'Hộp Gỗ Mộc';
-
-          customizerState.boxColor = colorKey;
-          customizerState.boxName = name;
-
-          // Update Preview Box UI
-          if (previewBoxContainer && previewBoxBadge) {
-            const config = boxStyleConfig[colorKey] || boxStyleConfig.wood;
-            previewBoxContainer.className = `rounded-2xl p-5 sm:p-6 transition-all duration-500 border-2 ${config.borderClass} ${config.bgClass} relative shadow-inner`;
-            previewBoxBadge.textContent = config.badgeText;
+          state.boxType = btn.dataset.boxType || 'to';
+          if (state.boxType === 'to') {
+            state.boxTypeName = 'BOX TO (Heart Card 8 ảnh)';
+            if (previewBadgeType) previewBadgeType.textContent = 'BOX TO • 8 ẢNH';
+            if (previewImage) previewImage.src = 'Images/tr%C6%B0%E1%BB%9Bc%202%20(2).png';
+            if (summaryBoxType) summaryBoxType.textContent = 'BOX TO (Heart Card 8 ảnh)';
+          } else {
+            state.boxTypeName = 'BOX NHỎ (Bear Card 3 ảnh)';
+            if (previewBadgeType) previewBadgeType.textContent = 'BOX NHỎ • 3 ẢNH';
+            if (previewImage) previewImage.src = 'Images/tr%C6%B0%E1%BB%9Bc%202%20(6).png';
+            if (summaryBoxType) summaryBoxType.textContent = 'BOX NHỎ (Bear Card 3 ảnh)';
           }
         });
       });
 
-      // 2. Gift Items Selection Handler
-      itemCards.forEach(card => {
-        card.addEventListener('click', () => {
-          const id = card.dataset.itemId;
-          const name = card.dataset.itemName;
-          const icon = card.dataset.itemIcon;
+      // 2. Handle Card Style Change
+      cardStyleBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          cardStyleBtns.forEach(b => {
+            b.classList.remove('active', 'border-primary', 'bg-secondary/30');
+            b.classList.add('border-secondary/80', 'bg-card');
+            const check = b.querySelector('.checkmark');
+            if (check) check.classList.add('hidden');
+          });
 
-          const existingIndex = customizerState.items.findIndex(it => it.id === id);
+          btn.classList.add('active', 'border-primary', 'bg-secondary/30');
+          btn.classList.remove('border-secondary/80', 'bg-card');
+          const check = btn.querySelector('.checkmark');
+          if (check) check.classList.remove('hidden');
 
-          if (existingIndex > -1) {
-            // Unselect item
-            customizerState.items.splice(existingIndex, 1);
-            unmarkCardUI(card);
-            if (itemLimitMsg) {
-              itemLimitMsg.textContent = 'Hãy bấm chọn 3 món bạn cảm thấy phù hợp nhất với người nhận nhé.';
-              itemLimitMsg.className = 'text-xs text-text-muted mb-4 transition-all';
-            }
-          } else {
-            // Select item (Max 3 check)
-            if (customizerState.items.length >= 3) {
-              if (itemLimitMsg) {
-                itemLimitMsg.textContent = '⚠️ Bạn đã chọn đủ 3 món quà. Bỏ chọn một món nếu muốn thay đổi nhé!';
-                itemLimitMsg.className = 'text-xs font-semibold text-primary mb-4 transition-all animate-pulse';
-              }
-              return;
-            }
-            customizerState.items.push({ id, name, icon });
-            markCardUI(card);
-          }
-
-          updateCounterAndSlots();
+          state.cardStyle = btn.dataset.styleName || 'Kem Chấm Bi Đỏ Burgundy';
+          if (previewStyleText) previewStyleText.textContent = state.cardStyle;
         });
       });
 
-      function markCardUI(card) {
-        card.classList.add('border-primary', 'bg-secondary/20');
-        card.classList.remove('border-secondary/80', 'bg-card');
-        const box = card.querySelector('.item-checkbox');
-        if (box) {
-          box.classList.add('bg-primary', 'border-primary');
-          box.innerHTML = '✓';
-        }
-      }
+      // 3. Handle Comb Color Change
+      combColorBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          combColorBtns.forEach(b => {
+            b.classList.remove('active', 'border-primary', 'bg-secondary/30');
+            b.classList.add('border-secondary/80', 'bg-card');
+          });
 
-      function unmarkCardUI(card) {
-        card.classList.remove('border-primary', 'bg-secondary/20');
-        card.classList.add('border-secondary/80', 'bg-card');
-        const box = card.querySelector('.item-checkbox');
-        if (box) {
-          box.classList.remove('bg-primary', 'border-primary');
-          box.innerHTML = '';
-        }
-      }
+          btn.classList.add('active', 'border-primary', 'bg-secondary/30');
+          btn.classList.remove('border-secondary/80', 'bg-card');
 
-      function updateCounterAndSlots() {
-        const count = customizerState.items.length;
-        if (selectedCounter) selectedCounter.textContent = count;
+          state.combColor = btn.dataset.combColor || 'Hồng Pastel';
+          if (summaryCombColor) summaryCombColor.textContent = `Lược ${state.combColor}`;
+        });
+      });
 
-        if (previewSlotStatus) {
-          if (count === 0) {
-            previewSlotStatus.textContent = '(Chưa chọn món nào)';
-          } else if (count === 3) {
-            previewSlotStatus.textContent = '(Đã đủ 3 món quà ✨)';
-          } else {
-            previewSlotStatus.textContent = `(Đã chọn ${count}/3 món)`;
-          }
-        }
-
-        if (previewItemsSlots) {
-          previewItemsSlots.innerHTML = '';
-          for (let i = 0; i < 3; i++) {
-            if (customizerState.items[i]) {
-              const item = customizerState.items[i];
-              const slot = document.createElement('div');
-              slot.className = 'slot-item p-2.5 rounded-xl border border-primary/30 bg-card shadow-sm text-xs text-text-main flex items-center justify-between transition-all duration-300 transform scale-100';
-              slot.innerHTML = `
-                <div class="flex items-center gap-2.5">
-                  <span class="w-6 h-6 rounded-lg bg-secondary/80 flex items-center justify-center text-sm">${item.icon}</span>
-                  <span class="font-medium">${item.name}</span>
-                </div>
-                <span class="text-[10px] text-primary font-bold">Đã vào hộp</span>
-              `;
-              previewItemsSlots.appendChild(slot);
-            } else {
-              const emptySlot = document.createElement('div');
-              emptySlot.className = 'slot-item p-2.5 rounded-xl border border-dashed border-secondary text-xs text-text-muted flex items-center gap-2.5 bg-card/40';
-              emptySlot.innerHTML = `
-                <span class="w-6 h-6 rounded-lg bg-secondary/40 flex items-center justify-center text-xs text-text-muted">${i + 1}</span>
-                <span>Chưa chọn món thứ ${i + 1}...</span>
-              `;
-              previewItemsSlots.appendChild(emptySlot);
-            }
-          }
-        }
-      }
-
-      // 3. Inputs Change Listener
+      // 4. Inputs Change Listeners
       if (recipientInput) {
         recipientInput.addEventListener('input', (e) => {
-          const val = e.target.value.trim();
-          customizerState.recipientName = val || 'Người thương';
-          if (previewRecipientDisplay) {
-            previewRecipientDisplay.textContent = `"${customizerState.recipientName}"`;
-          }
+          state.recipientName = e.target.value.trim() || 'Người thương';
+          if (previewRecipientText) previewRecipientText.textContent = `"${state.recipientName}"`;
         });
       }
 
       if (messageInput) {
         messageInput.addEventListener('input', (e) => {
-          const val = e.target.value.trim();
-          customizerState.message = val || '“Made from little moments, made for someone special”';
-          if (previewMessageDisplay) {
-            previewMessageDisplay.textContent = `“${customizerState.message}”`;
-          }
+          state.message = e.target.value.trim() || 'always make time for those who matter ❤️';
+          if (previewMessageText) previewMessageText.textContent = `“${state.message}”`;
         });
       }
 
-      // 4. Submit & Zalo Order Generation
+      // 5. Submit & Zalo Order Generation
       if (submitBtn) {
         submitBtn.addEventListener('click', () => {
-          const itemsListStr = customizerState.items.length > 0 
-            ? customizerState.items.map(it => `${it.icon} ${it.name}`).join(', ') 
-            : '(Chưa chọn món)';
+          if (modalBoxType) modalBoxType.textContent = state.boxTypeName;
+          if (modalCardStyle) modalCardStyle.textContent = state.cardStyle;
+          if (modalCombColor) modalCombColor.textContent = `Lược & Kẹp ${state.combColor}`;
+          if (modalBoxRecipient) modalBoxRecipient.textContent = state.recipientName;
+          if (modalBoxMessage) modalBoxMessage.textContent = `“${state.message}”`;
 
-          if (modalBoxColor) modalBoxColor.textContent = customizerState.boxName;
-          if (modalBoxItems) modalBoxItems.textContent = itemsListStr;
-          if (modalBoxRecipient) modalBoxRecipient.textContent = customizerState.recipientName;
-          if (modalBoxMessage) modalBoxMessage.textContent = `“${customizerState.message}”`;
-
-          // Generate Zalo Message Payload
           const zaloText = `Chào The Little Joy, mình muốn đặt hộp quà cá nhân hóa:\n` +
-            `• Màu hộp: ${customizerState.boxName}\n` +
-            `• 3 Tặng phẩm: ${itemsListStr}\n` +
-            `• Dành tặng: ${customizerState.recipientName}\n` +
-            `• Lời nhắn thiệp: "${customizerState.message}"\n` +
-            `Nhờ The Little Joy tư vấn và chụp ảnh duyệt thành phẩm trước khi gửi giúp mình nhé!`;
+            `• Quy cách: ${state.boxTypeName}\n` +
+            `• Mẫu nền thiệp: ${state.cardStyle}\n` +
+            `• Tone màu lược & kẹp: ${state.combColor}\n` +
+            `• Dành tặng: ${state.recipientName}\n` +
+            `• Lời nhắn in thiệp: "${state.message}"\n` +
+            `Mình chuẩn bị gửi ảnh qua Zalo, nhờ shop tư vấn và lên bản demo thiệp gửi mình duyệt trước nhé!`;
 
           const encodedZalo = encodeURIComponent(zaloText);
           if (modalZaloLink) {
-            modalZaloLink.href = `https://zalo.me/${customizerState.phoneZalo}?text=${encodedZalo}`;
+            modalZaloLink.href = `https://zalo.me/${state.phoneZalo}?text=${encodedZalo}`;
           }
 
-          // Show Modal
           if (orderModal && modalContent) {
             orderModal.classList.remove('hidden');
             orderModal.classList.add('flex');
@@ -1513,7 +1437,6 @@
             }, 10);
           }
 
-          // Copy button action
           if (modalCopyBtn) {
             modalCopyBtn.onclick = () => {
               navigator.clipboard.writeText(zaloText).then(() => {
@@ -1523,15 +1446,13 @@
                   modalCopyBtn.textContent = 'Sao chép thông tin';
                   modalCopyBtn.classList.remove('bg-emerald-50', 'text-emerald-700', 'border-emerald-300');
                 }, 2500);
-              }).catch(() => {
-                alert('Không thể tự động copy, bạn vui lòng chọn văn bản và sao chép thủ công nhé.');
               });
             };
           }
         });
       }
 
-      // Close Modal handlers
+      // Close Modal Handler
       function closeModal() {
         if (!orderModal || !modalContent) return;
         modalContent.classList.remove('scale-100');
@@ -1548,22 +1469,8 @@
           if (e.target === orderModal) closeModal();
         });
       }
-
-      // Initialize default selection with 3 popular items for demo wow effect
-      const defaultItemsToSelect = ['candle', 'tea', 'notebook'];
-      defaultItemsToSelect.forEach(id => {
-        const card = document.querySelector(`.gift-item-card[data-item-id="${id}"]`);
-        if (card) {
-          const name = card.dataset.itemName;
-          const icon = card.dataset.itemIcon;
-          customizerState.items.push({ id, name, icon });
-          markCardUI(card);
-        }
-      });
-      updateCounterAndSlots();
     }
 
-    // Initialize safely
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', initCustomizer);
     } else {
