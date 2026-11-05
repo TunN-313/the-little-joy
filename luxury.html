@@ -645,91 +645,91 @@
       const [activeSize, setActiveSize] = useState('box-to'); // 'box-to' | 'box-be'
       const [selectedImageModal, setSelectedImageModal] = useState(null);
 
-      // 4 Mẫu Box To 25x20 cm
+      // 4 Mẫu Box To 25x20 cm đặt tên theo màu lược
       const boxToSeries = [
         {
-          id: 'to-bicolor',
+          id: 'to-green',
           sizeName: 'Size To (25 x 20 cm)',
-          name: 'Box To — Bi Đỏ Kem Burgundy',
-          code: 'BOX TO • MẪU 01',
-          image: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(2).png',
+          name: 'Box To — Xanh Lá',
+          code: 'BOX TO • XANH LÁ',
+          image: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(5).png',
           card: 'Thiệp Heart Card trái tim (8 ảnh: 3 trong thiệp + 5 rời)',
-          accessories: '2 Mèo bông đôi (ôm cá + ôm nĩa), Lược pastel, Gương vintage, 2 Kẹp tóc',
-          highlight: 'Tone đỏ kem ấm áp, món quà kỷ niệm lãng mạn',
+          accessories: '2 Mèo bông đôi (ôm cá + ôm nĩa), Lược xanh lá cây pastel, Gương vintage, 2 Kẹp tóc',
+          highlight: 'Lược xanh lá cây pastel tươi tắn, phụ kiện phối tone-sur-tone',
         },
         {
           id: 'to-blue',
           sizeName: 'Size To (25 x 20 cm)',
-          name: 'Box To — Xanh Baby Chấm Bi Nâu',
-          code: 'BOX TO • MẪU 02',
+          name: 'Box To — Xanh Dương',
+          code: 'BOX TO • XANH DƯƠNG',
           image: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(3).png',
           card: 'Thiệp Heart Card trái tim (8 ảnh: 3 trong thiệp + 5 rời)',
-          accessories: '2 Mèo bông đôi (ôm cá + ôm nĩa), Lược pastel, Gương vintage, 2 Kẹp tóc',
-          highlight: 'Tone xanh pastel thanh mát, nhẹ nhàng',
+          accessories: '2 Mèo bông đôi (ôm cá + ôm nĩa), Lược xanh nước biển pastel, Gương vintage, 2 Kẹp tóc',
+          highlight: 'Lược xanh nước biển thanh mát, nhẹ nhàng',
         },
         {
           id: 'to-pink',
           sizeName: 'Size To (25 x 20 cm)',
-          name: 'Box To — Hồng Phấn Ngôi Sao Vintage',
-          code: 'BOX TO • MẪU 03',
+          name: 'Box To — Hồng',
+          code: 'BOX TO • HỒNG',
           image: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(4).png',
           card: 'Thiệp Heart Card trái tim (8 ảnh: 3 trong thiệp + 5 rời)',
-          accessories: '2 Mèo bông đôi (ôm cá + ôm nĩa), Lược pastel, Gương vintage, 2 Kẹp tóc',
-          highlight: 'Tone hồng pastel tiểu thư mộng mơ',
+          accessories: '2 Mèo bông đôi (ôm cá + ôm nĩa), Lược hồng pastel, Gương vintage, 2 Kẹp tóc',
+          highlight: 'Lược hồng pastel ngọt ngào, tiểu thư mộng mơ',
         },
         {
-          id: 'to-black',
+          id: 'to-purple',
           sizeName: 'Size To (25 x 20 cm)',
-          name: 'Box To — Đen Chấm Bi Cổ Điển',
-          code: 'BOX TO • MẪU 04',
-          image: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(5).png',
+          name: 'Box To — Tím',
+          code: 'BOX TO • TÍM',
+          image: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(2).png',
           card: 'Thiệp Heart Card trái tim (8 ảnh: 3 trong thiệp + 5 rời)',
-          accessories: '2 Mèo bông đôi (ôm cá + ôm nĩa), Lược pastel, Gương vintage, 2 Kẹp tóc',
-          highlight: 'Tone đen kem vintage sang trọng, tinh tế',
+          accessories: '2 Mèo bông đôi (ôm cá + ôm nĩa), Lược tím pastel, Gương vintage, 2 Kẹp tóc',
+          highlight: 'Lược tím pastel vintage, lãng mạn ấm áp',
         },
       ];
 
-      // 4 Mẫu Box Bé 20x15 cm
+      // 4 Mẫu Box Bé 20x15 cm đặt tên theo màu lược
       const boxBeSeries = [
         {
-          id: 'be-bicolor',
+          id: 'be-green',
           sizeName: 'Size Bé (20 x 15 cm)',
-          name: 'Box Bé — Bi Đỏ Kem Burgundy',
-          code: 'BOX BÉ • MẪU 01',
-          image: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(6).png',
+          name: 'Box Bé — Xanh Lá',
+          code: 'BOX BÉ • XANH LÁ',
+          image: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(9).png',
           card: 'Thiệp Bear Card chú gấu (3 ảnh: 1 trong thiệp + 2 rời)',
-          accessories: '1 Mèo bông xù trắng, Lược pastel mini, 2 Kẹp tóc pastel',
-          highlight: 'Nhỏ gọn xinh xắn tặng bạn thân hoặc tự thưởng',
+          accessories: '1 Mèo bông xù trắng, Lược mini xanh lá cây, 2 Kẹp tóc pastel',
+          highlight: 'Lược mini xanh lá cây xinh xắn tặng bạn thân hoặc tự thưởng',
         },
         {
           id: 'be-blue',
           sizeName: 'Size Bé (20 x 15 cm)',
-          name: 'Box Bé — Xanh Baby Chấm Bi Nâu',
-          code: 'BOX BÉ • MẪU 02',
+          name: 'Box Bé — Xanh Dương',
+          code: 'BOX BÉ • XANH DƯƠNG',
           image: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(7).png',
           card: 'Thiệp Bear Card chú gấu (3 ảnh: 1 trong thiệp + 2 rời)',
-          accessories: '1 Mèo bông xù trắng, Lược pastel mini, 2 Kẹp tóc pastel',
-          highlight: 'Màu sắc tươi tắn phù hợp sinh nhật',
+          accessories: '1 Mèo bông xù trắng, Lược mini xanh nước biển, 2 Kẹp tóc pastel',
+          highlight: 'Lược mini xanh nước biển tươi tắn phù hợp sinh nhật',
         },
         {
           id: 'be-pink',
           sizeName: 'Size Bé (20 x 15 cm)',
-          name: 'Box Bé — Hồng Phấn Ngôi Sao Vintage',
-          code: 'BOX BÉ • MẪU 03',
+          name: 'Box Bé — Hồng',
+          code: 'BOX BÉ • HỒNG',
           image: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(8).png',
           card: 'Thiệp Bear Card chú gấu (3 ảnh: 1 trong thiệp + 2 rời)',
-          accessories: '1 Mèo bông xù trắng, Lược pastel mini, 2 Kẹp tóc pastel',
-          highlight: 'Món quà bất ngờ nhỏ xinh làm người thương mỉm cười',
+          accessories: '1 Mèo bông xù trắng, Lược mini hồng pastel, 2 Kẹp tóc pastel',
+          highlight: 'Lược mini hồng pastel nhỏ xinh làm người thương mỉm cười',
         },
         {
-          id: 'be-black',
+          id: 'be-purple',
           sizeName: 'Size Bé (20 x 15 cm)',
-          name: 'Box Bé — Đen Chấm Bi Cổ Điển',
-          code: 'BOX BÉ • MẪU 04',
-          image: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(9).png',
+          name: 'Box Bé — Tím',
+          code: 'BOX BÉ • TÍM',
+          image: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(6).png',
           card: 'Thiệp Bear Card chú gấu (3 ảnh: 1 trong thiệp + 2 rời)',
-          accessories: '1 Mèo bông xù trắng, Lược pastel mini, 2 Kẹp tóc pastel',
-          highlight: 'Thiết kế vintage xinh xắn vừa vặn túi xách',
+          accessories: '1 Mèo bông xù trắng, Lược mini tím pastel, 2 Kẹp tóc pastel',
+          highlight: 'Lược mini tím pastel xinh xắn vừa vặn túi xách',
         },
       ];
 
@@ -1775,7 +1775,7 @@
     // =========================================================================
     const CustomizerModal = ({ isOpen, onClose, initialType = 'large', preselectedModel = null }) => {
       const [productType, setProductType] = useState(initialType); // 'large' | 'small' | 'card-bear' | 'card-heart'
-      const [boxColor, setBoxColor] = useState('bicolor'); // 'bicolor' | 'blue' | 'pink' | 'black'
+      const [boxColor, setBoxColor] = useState('green'); // 'green' | 'blue' | 'pink' | 'purple'
       const [heartColor, setHeartColor] = useState('brown'); // 'brown' | 'blue' | 'pink' | 'burgundy'
       const [recipientName, setRecipientName] = useState('Em yêu');
       const [message, setMessage] = useState('Always make time for those who matter ❤️');
@@ -1784,10 +1784,10 @@
         if (preselectedModel) {
           if (preselectedModel.id.startsWith('to-')) setProductType('large');
           if (preselectedModel.id.startsWith('be-')) setProductType('small');
-          if (preselectedModel.id.includes('bicolor')) setBoxColor('bicolor');
+          if (preselectedModel.id.includes('green') || preselectedModel.id.includes('black')) setBoxColor('green');
           if (preselectedModel.id.includes('blue')) setBoxColor('blue');
           if (preselectedModel.id.includes('pink')) setBoxColor('pink');
-          if (preselectedModel.id.includes('black')) setBoxColor('black');
+          if (preselectedModel.id.includes('purple') || preselectedModel.id.includes('bicolor')) setBoxColor('purple');
         } else {
           setProductType(initialType);
         }
@@ -1795,39 +1795,39 @@
 
       if (!isOpen) return null;
 
-      // 4 Tone màu Box (phụ kiện, lược, thiệp... tự động đồng bộ theo màu box)
+      // 4 Phân loại Box đặt tên theo màu lược (Xanh lá, Xanh dương, Hồng, Tím)
       const boxColors = [
         {
-          id: 'bicolor',
-          name: 'Đỏ Kem Burgundy',
-          desc: 'Tone đỏ kem ấm áp, lãng mạn',
-          colorDot: 'bg-[#8B2635]',
-          imageTo: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(2).png',
-          imageBe: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(6).png'
+          id: 'green',
+          colorName: 'Xanh lá',
+          desc: 'Lược xanh lá cây pastel, kẹp & phụ kiện đồng bộ',
+          colorDot: 'bg-emerald-500',
+          imageTo: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(5).png',
+          imageBe: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(9).png'
         },
         {
           id: 'blue',
-          name: 'Xanh Baby Pastel',
-          desc: 'Tone xanh baby dịu mát, ngọt ngào',
-          colorDot: 'bg-[#88A9C3]',
+          colorName: 'Xanh dương',
+          desc: 'Lược xanh nước biển pastel, kẹp & phụ kiện đồng bộ',
+          colorDot: 'bg-sky-500',
           imageTo: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(3).png',
           imageBe: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(7).png'
         },
         {
           id: 'pink',
-          name: 'Hồng Phấn Vintage',
-          desc: 'Tone hồng pastel mộng mơ, tinh tế',
-          colorDot: 'bg-[#E5A9B4]',
+          colorName: 'Hồng',
+          desc: 'Lược hồng pastel ngọt ngào, kẹp & phụ kiện đồng bộ',
+          colorDot: 'bg-pink-400',
           imageTo: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(4).png',
           imageBe: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(8).png'
         },
         {
-          id: 'black',
-          name: 'Đen Cổ Điển Chấm Bi',
-          desc: 'Tone đen kem vintage sang trọng',
-          colorDot: 'bg-[#2C1E1A]',
-          imageTo: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(5).png',
-          imageBe: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(9).png'
+          id: 'purple',
+          colorName: 'Tím',
+          desc: 'Lược tím pastel vintage, kẹp & phụ kiện đồng bộ',
+          colorDot: 'bg-purple-400',
+          imageTo: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(2).png',
+          imageBe: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(6).png'
         },
       ];
 
@@ -1884,7 +1884,8 @@
       const handleSendZalo = () => {
         let details = '';
         if (productType === 'large' || productType === 'small') {
-          details = `• Tone màu Box: ${activeBoxColor.name} (Phụ kiện, lược & thiệp phối tone-sur-tone)`;
+          const boxPrefix = productType === 'large' ? 'Box to' : 'Box bé';
+          details = `• Phân loại: ${boxPrefix} - ${activeBoxColor.colorName} (Lược & phụ kiện đồng bộ)`;
         } else if (productType === 'card-heart') {
           details = `• Màu thiệp trái tim: ${activeHeartColor.name}`;
         } else {
@@ -1995,36 +1996,39 @@
 
                 {/* 2. CHỌN MÀU CHO TỪNG LOẠI SẢN PHẨM */}
 
-                {/* NẾU LÀ BOX (BOX TO / BOX BÉ): CHỈ CHỌN 1 MÀU BOX, PHỤ KIỆN TỰ ĐỘNG THEO MÀU */}
+                {/* NẾU LÀ BOX (BOX TO / BOX BÉ): CHỈ CHỌN 1 MÀU BOX THEO MÀU LƯỢC */}
                 {(productType === 'large' || productType === 'small') && (
                   <div>
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
                       <label className="block text-xs font-bold uppercase tracking-wider text-[#2C1E1A]">
-                        2. Chọn Tone Màu Hộp Quà
+                        2. Chọn Màu Hộp (Theo Màu Lược)
                       </label>
                       <span className="text-[11px] text-[#BD6B4D] font-medium">
-                        Phụ kiện & thiệp tự động phối tone-sur-tone
+                        Phụ kiện & kẹp tóc tự động phối tone-sur-tone theo màu lược
                       </span>
                     </div>
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-                      {boxColors.map(c => (
-                        <button
-                          key={c.id}
-                          type="button"
-                          onClick={() => setBoxColor(c.id)}
-                          className={`p-3 rounded-2xl border text-center transition-all ${
-                            boxColor === c.id
-                              ? 'border-[#BD6B4D] bg-[#BD6B4D]/10 ring-2 ring-[#BD6B4D]/30 font-bold shadow-xs'
-                              : 'bg-white text-[#2C1E1A] border-[#2C1E1A]/10 hover:border-[#BD6B4D]/40'
-                          }`}
-                        >
-                          <div className="flex items-center justify-center gap-1.5 mb-1">
-                            <span className={`w-3 h-3 rounded-full ${c.colorDot} shadow-xs`}></span>
-                            <span className="text-xs font-bold text-[#2C1E1A]">{c.name}</span>
-                          </div>
-                          <div className="text-[10px] text-[#2C1E1A]/60 leading-tight">{c.desc}</div>
-                        </button>
-                      ))}
+                      {boxColors.map(c => {
+                        const displayName = `${productType === 'large' ? 'Box to' : 'Box bé'} - ${c.colorName}`;
+                        return (
+                          <button
+                            key={c.id}
+                            type="button"
+                            onClick={() => setBoxColor(c.id)}
+                            className={`p-3 rounded-2xl border text-center transition-all ${
+                              boxColor === c.id
+                                ? 'border-[#BD6B4D] bg-[#BD6B4D]/10 ring-2 ring-[#BD6B4D]/30 font-bold shadow-xs'
+                                : 'bg-white text-[#2C1E1A] border-[#2C1E1A]/10 hover:border-[#BD6B4D]/40'
+                            }`}
+                          >
+                            <div className="flex items-center justify-center gap-1.5 mb-1">
+                              <span className={`w-3 h-3 rounded-full ${c.colorDot} shadow-xs`}></span>
+                              <span className="text-xs font-bold text-[#2C1E1A]">{displayName}</span>
+                            </div>
+                            <div className="text-[10px] text-[#2C1E1A]/60 leading-tight">{c.desc}</div>
+                          </button>
+                        );
+                      })}
                     </div>
                   </div>
                 )}
@@ -2137,8 +2141,10 @@
                   </div>
                   {(productType === 'large' || productType === 'small') && (
                     <div className="flex justify-between items-center">
-                      <span className="text-[#2C1E1A]/60">Tone màu Box:</span>
-                      <span className="font-bold text-[#BD6B4D]">{activeBoxColor.name}</span>
+                      <span className="text-[#2C1E1A]/60">Phân loại:</span>
+                      <span className="font-bold text-[#BD6B4D]">
+                        {productType === 'large' ? 'Box to' : 'Box bé'} - {activeBoxColor.colorName}
+                      </span>
                     </div>
                   )}
                   {productType === 'card-heart' && (
