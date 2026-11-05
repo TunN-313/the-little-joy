@@ -686,7 +686,7 @@
           sizeName: 'Size Bé (20 x 15 cm)',
           name: 'Box Bé — Xanh Dương',
           code: 'BOX BÉ • XANH DƯƠNG',
-          image: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(7).png',
+          image: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(6).png',
           card: 'Thiệp Bear Card chú gấu (3 ảnh: 1 trong thiệp + 2 rời)',
           accessories: '1 Mèo bông xù trắng, Lược mini xanh nước biển, 2 Kẹp tóc pastel',
           highlight: 'Lược mini xanh nước biển tươi tắn phù hợp sinh nhật',
@@ -706,7 +706,7 @@
           sizeName: 'Size Bé (20 x 15 cm)',
           name: 'Box Bé — Tím',
           code: 'BOX BÉ • TÍM',
-          image: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(6).png',
+          image: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(7).png',
           card: 'Thiệp Bear Card chú gấu (3 ảnh: 1 trong thiệp + 2 rời)',
           accessories: '1 Mèo bông xù trắng, Lược mini tím pastel, 2 Kẹp tóc pastel',
           highlight: 'Lược mini tím pastel xinh xắn vừa vặn túi xách',
@@ -1480,8 +1480,8 @@
         { src: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(3).png', title: 'Box To 25x20cm • Xanh Baby', desc: 'Heart Card 8 ảnh & 2 mèo đôi' },
         { src: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(4).png', title: 'Box To 25x20cm • Hồng Sao', desc: 'Heart Card 8 ảnh & 2 mèo đôi' },
         { src: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(5).png', title: 'Box To 25x20cm • Đen Cổ Điển', desc: 'Heart Card 8 ảnh & 2 mèo đôi' },
-        { src: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(6).png', title: 'Box Bé 20x15cm • Bi Đỏ', desc: 'Bear Card 3 ảnh & mèo xù' },
-        { src: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(7).png', title: 'Box Bé 20x15cm • Xanh Baby', desc: 'Bear Card 3 ảnh & mèo xù' },
+        { src: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(6).png', title: 'Box Bé 20x15cm • Xanh Dương', desc: 'Bear Card 3 ảnh & mèo xù' },
+        { src: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(7).png', title: 'Box Bé 20x15cm • Tím Pastel', desc: 'Bear Card 3 ảnh & mèo xù' },
         { src: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(8).png', title: 'Box Bé 20x15cm • Hồng Sao', desc: 'Bear Card 3 ảnh & mèo xù' },
         { src: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(9).png', title: 'Box Bé 20x15cm • Đen Cổ Điển', desc: 'Bear Card 3 ảnh & mèo xù' },
         { src: 'Images/32.png', title: 'Phụ Kiện Handmade', desc: 'Lược pastel & kẹp nơ' },
@@ -1791,7 +1791,7 @@
           desc: 'Lược xanh nước biển pastel, kẹp & phụ kiện đồng bộ',
           colorDot: 'bg-sky-500',
           imageTo: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(3).png',
-          imageBe: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(7).png'
+          imageBe: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(6).png'
         },
         {
           id: 'pink',
@@ -1807,7 +1807,7 @@
           desc: 'Lược tím pastel vintage, kẹp & phụ kiện đồng bộ',
           colorDot: 'bg-purple-400',
           imageTo: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(2).png',
-          imageBe: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(6).png'
+          imageBe: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(7).png'
         },
       ];
 
@@ -1881,7 +1881,7 @@
           `Shop hướng dẫn mình gửi ảnh và gửi bản demo duyệt qua Zalo nhé!`;
 
         if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(plainText).catch(() => {});
+          navigator.clipboard.writeText(plainText).catch(() => { });
         }
 
         window.open('https://zalo.me/0961542126', '_blank');
@@ -1995,11 +1995,10 @@
                             key={c.id}
                             type="button"
                             onClick={() => setBoxColor(c.id)}
-                            className={`p-3 rounded-2xl border text-center transition-all ${
-                              boxColor === c.id
+                            className={`p-3 rounded-2xl border text-center transition-all ${boxColor === c.id
                                 ? 'border-[#BD6B4D] bg-[#BD6B4D]/10 ring-2 ring-[#BD6B4D]/30 font-bold shadow-xs'
                                 : 'bg-white text-[#2C1E1A] border-[#2C1E1A]/10 hover:border-[#BD6B4D]/40'
-                            }`}
+                              }`}
                           >
                             <div className="flex items-center justify-center gap-1.5 mb-1">
                               <span className={`w-3 h-3 rounded-full ${c.colorDot} shadow-xs`}></span>
@@ -2025,11 +2024,10 @@
                           key={h.id}
                           type="button"
                           onClick={() => setHeartColor(h.id)}
-                          className={`p-3 rounded-2xl border text-center transition-all ${
-                            heartColor === h.id
+                          className={`p-3 rounded-2xl border text-center transition-all ${heartColor === h.id
                               ? 'border-[#BD6B4D] bg-[#BD6B4D]/10 ring-2 ring-[#BD6B4D]/30 font-bold shadow-xs'
                               : 'bg-white text-[#2C1E1A] border-[#2C1E1A]/10 hover:border-[#BD6B4D]/40'
-                          }`}
+                            }`}
                         >
                           <div className="flex items-center justify-center gap-1.5">
                             <span className={`w-3 h-3 rounded-full ${h.colorDot} shadow-xs`}></span>
@@ -2107,9 +2105,8 @@
                   <img
                     src={previewImg}
                     alt="Xem trước The Little Joy"
-                    className={`max-w-full max-h-full transition-all duration-300 rounded-xl ${
-                      productType.startsWith('card') ? 'object-contain' : 'object-cover w-full h-full'
-                    }`}
+                    className={`max-w-full max-h-full transition-all duration-300 rounded-xl ${productType.startsWith('card') ? 'object-contain' : 'object-cover w-full h-full'
+                      }`}
                   />
                 </div>
 
