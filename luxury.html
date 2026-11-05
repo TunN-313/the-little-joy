@@ -890,20 +890,20 @@
     // 2 Mặt hàng: Thiệp Trái Tim & Thiệp Chú Gấu (Kèm xem ảnh thực tế phong phú)
     // =========================================================================
     const CardsSection = ({ onOpenCustomizerWithType }) => {
+      // 100% Ảnh thiệp thật - Tuyệt đối không dùng ảnh hộp quà
       const bearImages = [
         'Images/788452642_1397073875840615_3395007793016246134_n.jpg',
         'Images/790930395_1568126858402096_2704263053433922885_n.jpg',
         'Images/814660178_1631551601966983_2446902117944062335_n.jpg',
-        'Images/tr%C6%B0%E1%BB%9Bc%202%20(6).png',
       ];
       const [currentBearImg, setCurrentBearImg] = useState(0);
 
+      // 100% Ảnh thiệp thật - Tuyệt đối không dùng ảnh hộp quà
       const heartImages = [
         'Images/2.png',
         'Images/4.png',
         'Images/1.png',
         'Images/3.png',
-        'Images/tr%C6%B0%E1%BB%9Bc%202%20(2).png',
       ];
       const [currentHeartImg, setCurrentHeartImg] = useState(0);
 
@@ -1788,8 +1788,12 @@
       const activeStyleObj = styles.find(s => s.id === cardStyle) || styles[0];
       
       let previewImg = activeStyleObj.imageTo;
-      if (productType === 'small' || productType === 'card-bear') {
+      if (productType === 'small') {
         previewImg = activeStyleObj.imageBe;
+      } else if (productType === 'card-bear') {
+        previewImg = 'Images/788452642_1397073875840615_3395007793016246134_n.jpg';
+      } else if (productType === 'card-heart') {
+        previewImg = 'Images/2.png';
       }
 
       const getProductLabel = () => {
