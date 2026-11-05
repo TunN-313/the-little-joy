@@ -629,7 +629,8 @@
       const boxToSeries = [
         {
           id: 'to-green',
-          sizeName: 'Size To (25 x 20 cm)',
+          sizeName: 'Box To • 129.000đ',
+          price: '129.000đ',
           name: 'Box To — Xanh Lá',
           code: 'BOX TO • XANH LÁ',
           image: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(5).png',
@@ -639,7 +640,8 @@
         },
         {
           id: 'to-blue',
-          sizeName: 'Size To (25 x 20 cm)',
+          sizeName: 'Box To • 129.000đ',
+          price: '129.000đ',
           name: 'Box To — Xanh Dương',
           code: 'BOX TO • XANH DƯƠNG',
           image: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(3).png',
@@ -649,7 +651,8 @@
         },
         {
           id: 'to-pink',
-          sizeName: 'Size To (25 x 20 cm)',
+          sizeName: 'Box To • 129.000đ',
+          price: '129.000đ',
           name: 'Box To — Hồng',
           code: 'BOX TO • HỒNG',
           image: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(4).png',
@@ -659,7 +662,8 @@
         },
         {
           id: 'to-purple',
-          sizeName: 'Size To (25 x 20 cm)',
+          sizeName: 'Box To • 129.000đ',
+          price: '129.000đ',
           name: 'Box To — Tím',
           code: 'BOX TO • TÍM',
           image: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(2).png',
@@ -673,7 +677,8 @@
       const boxBeSeries = [
         {
           id: 'be-green',
-          sizeName: 'Size Bé (20 x 15 cm)',
+          sizeName: 'Box Bé • 79.000đ',
+          price: '79.000đ',
           name: 'Box Bé — Xanh Lá',
           code: 'BOX BÉ • XANH LÁ',
           image: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(9).png',
@@ -683,7 +688,8 @@
         },
         {
           id: 'be-blue',
-          sizeName: 'Size Bé (20 x 15 cm)',
+          sizeName: 'Box Bé • 79.000đ',
+          price: '79.000đ',
           name: 'Box Bé — Xanh Dương',
           code: 'BOX BÉ • XANH DƯƠNG',
           image: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(6).png',
@@ -693,7 +699,8 @@
         },
         {
           id: 'be-pink',
-          sizeName: 'Size Bé (20 x 15 cm)',
+          sizeName: 'Box Bé • 79.000đ',
+          price: '79.000đ',
           name: 'Box Bé — Hồng',
           code: 'BOX BÉ • HỒNG',
           image: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(8).png',
@@ -703,7 +710,8 @@
         },
         {
           id: 'be-purple',
-          sizeName: 'Size Bé (20 x 15 cm)',
+          sizeName: 'Box Bé • 79.000đ',
+          price: '79.000đ',
           name: 'Box Bé — Tím',
           code: 'BOX BÉ • TÍM',
           image: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(7).png',
@@ -728,7 +736,7 @@
                 Các Mẫu Quà Đang Chờ Bạn Khám Phá
               </h2>
               <p className="mt-3 text-base text-[#2C1E1A]/75 leading-relaxed font-normal">
-                Mỗi hộp quà được tạo tác theo hai quy cách kích thước chuẩn: <strong>Size To (25 x 20 cm)</strong> và <strong>Size Bé (20 x 15 cm)</strong>. Chọn size bạn cần để xem series các mẫu nền gợi ý:
+                Mỗi hộp quà được tạo tác theo hai quy cách: <strong>Combo Box To (129.000đ)</strong> và <strong>Combo Box Bé (79.000đ)</strong>. Chọn box bạn cần để xem series các mẫu gợi ý:
               </p>
 
               {/* TWO BIG SWITCHER TABS WITH HIGHLIGHTED SIZES */}
@@ -742,7 +750,7 @@
                     }`}
                 >
                   <Sparkles className="w-4 h-4" />
-                  <span>COMBO BOX TO (Size 25 x 20 cm)</span>
+                  <span>COMBO BOX TO • 129.000đ</span>
                 </button>
 
                 <button
@@ -754,7 +762,7 @@
                     }`}
                 >
                   <span>🧸</span>
-                  <span>COMBO BOX BÉ (Size 20 x 15 cm)</span>
+                  <span>COMBO BOX BÉ • 79.000đ</span>
                 </button>
               </div>
             </div>
@@ -766,9 +774,14 @@
                   {activeSize === 'box-to' ? '🎁' : '🧸'}
                 </div>
                 <div>
-                  <h3 className="font-serif text-lg sm:text-xl font-bold text-[#2C1E1A]">
-                    {activeSize === 'box-to' ? 'Combo Box To' : 'Combo Box Bé'}
-                  </h3>
+                  <div className="flex items-center gap-2.5 flex-wrap">
+                    <h3 className="font-serif text-lg sm:text-xl font-bold text-[#2C1E1A]">
+                      {activeSize === 'box-to' ? 'Combo Box To' : 'Combo Box Bé'}
+                    </h3>
+                    <span className="px-3 py-0.5 rounded-full bg-[#BD6B4D]/10 text-[#BD6B4D] font-extrabold text-sm">
+                      {activeSize === 'box-to' ? '129.000 VNĐ' : '79.000 VNĐ'}
+                    </span>
+                  </div>
                   <p className="text-xs sm:text-sm text-[#2C1E1A]/70">
                     {activeSize === 'box-to'
                       ? 'Trọn bộ gồm: Thiệp Heart Card (8 ảnh) + 2 Móc khóa mèo đôi + Lược pastel + Gương vintage + 2 Kẹp tóc'
@@ -783,7 +796,7 @@
                 onClick={() => onOpenCustomizerWithType(activeSize === 'box-to' ? 'large' : 'small')}
                 className="cta-shine px-6 py-3 rounded-full bg-[#BD6B4D] hover:bg-[#9e5033] text-white font-extrabold text-sm shadow-cta transition-all flex items-center justify-center gap-2 flex-shrink-0"
               >
-                <span>Phối Hộp {activeSize === 'box-to' ? 'Size To 25x20' : 'Size Bé 20x15'} Ngay</span>
+                <span>Tùy Biến {activeSize === 'box-to' ? 'Box To (129k)' : 'Box Bé (79k)'} Ngay</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>
@@ -995,8 +1008,8 @@
                 {/* Prominent CTA */}
                 <div className="mt-6 pt-5 border-t border-[#2C1E1A]/10 flex flex-col sm:flex-row items-center justify-between gap-3">
                   <div>
-                    <div className="text-[11px] text-[#2C1E1A]/60 font-semibold">Tùy biến theo yêu cầu</div>
-                    <div className="text-lg font-serif font-bold text-[#BD6B4D]">In ảnh & lời nhắn riêng</div>
+                    <div className="text-[11px] text-[#2C1E1A]/60 font-semibold uppercase tracking-wider">Giá Bán Lẻ</div>
+                    <div className="text-2xl font-serif font-extrabold text-[#BD6B4D]">39.000 VNĐ</div>
                   </div>
 
                   <button
@@ -1004,7 +1017,7 @@
                     onClick={() => onOpenCustomizerWithType('card-bear')}
                     className="cta-shine w-full sm:w-auto px-6 py-3 rounded-full bg-[#BD6B4D] hover:bg-[#9e5033] text-white font-extrabold text-xs sm:text-sm shadow-cta hover:shadow-cta-hover transition-all flex items-center justify-center gap-2 hover:scale-102"
                   >
-                    <span>Đặt Mua Thiệp Gấu Ngay</span>
+                    <span>Đặt Mua Thiệp Gấu (39k)</span>
                     <ArrowRight className="w-4 h-4" />
                   </button>
                 </div>
@@ -1051,8 +1064,8 @@
                 {/* Prominent CTA */}
                 <div className="mt-6 pt-5 border-t border-[#2C1E1A]/10 flex flex-col sm:flex-row items-center justify-between gap-3">
                   <div>
-                    <div className="text-[11px] text-[#2C1E1A]/60 font-semibold">Tùy biến theo yêu cầu</div>
-                    <div className="text-lg font-serif font-bold text-[#BD6B4D]">In ảnh & dán theo ý</div>
+                    <div className="text-[11px] text-[#2C1E1A]/60 font-semibold uppercase tracking-wider">Giá Bán Lẻ</div>
+                    <div className="text-2xl font-serif font-extrabold text-[#BD6B4D]">69.000 VNĐ</div>
                   </div>
 
                   <button
@@ -1060,7 +1073,7 @@
                     onClick={() => onOpenCustomizerWithType('card-heart')}
                     className="cta-shine w-full sm:w-auto px-6 py-3 rounded-full bg-[#BD6B4D] hover:bg-[#9e5033] text-white font-extrabold text-xs sm:text-sm shadow-cta hover:shadow-cta-hover transition-all flex items-center justify-center gap-2 hover:scale-102"
                   >
-                    <span>Đặt Mua Thiệp Trái Tim Ngay</span>
+                    <span>Đặt Mua Thiệp Trái Tim (69k)</span>
                     <ArrowRight className="w-4 h-4" />
                   </button>
                 </div>
@@ -1285,6 +1298,26 @@
                     <li className="flex items-center gap-2"><Check className="w-4 h-4 text-[#BD6B4D]" /> <span>Được duyệt bản demo qua các kênh liên lạc trước khi in.</span></li>
                     <li className="flex items-center gap-2"><Check className="w-4 h-4 text-[#BD6B4D]" /> <span>Giao hàng nhanh chóng, quà trao tận tay.</span></li>
                   </ul>
+
+                  {/* Bảng giá niêm yết bán lẻ minh bạch */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-5 p-3.5 rounded-2xl bg-white border border-[#2C1E1A]/10 text-xs">
+                    <div className="flex justify-between items-center p-1.5 border-b sm:border-b-0 border-[#2C1E1A]/5">
+                      <span className="text-[#2C1E1A]/70 font-medium">Thiệp Chú Gấu:</span>
+                      <span className="font-extrabold text-[#BD6B4D]">39.000 VNĐ</span>
+                    </div>
+                    <div className="flex justify-between items-center p-1.5 border-b sm:border-b-0 border-[#2C1E1A]/5">
+                      <span className="text-[#2C1E1A]/70 font-medium">Thiệp Trái Tim:</span>
+                      <span className="font-extrabold text-[#BD6B4D]">69.000 VNĐ</span>
+                    </div>
+                    <div className="flex justify-between items-center p-1.5">
+                      <span className="text-[#2C1E1A]/70 font-medium">Combo Box Bé:</span>
+                      <span className="font-extrabold text-[#BD6B4D]">79.000 VNĐ</span>
+                    </div>
+                    <div className="flex justify-between items-center p-1.5">
+                      <span className="text-[#2C1E1A]/70 font-medium">Combo Box To:</span>
+                      <span className="font-extrabold text-[#BD6B4D]">129.000 VNĐ</span>
+                    </div>
+                  </div>
                 </div>
 
                 <div className="mt-8 pt-6 border-t border-[#2C1E1A]/10">
@@ -1831,11 +1864,21 @@
         previewImg = activeHeartColor.image;
       }
 
+      const getProductPrice = () => {
+        switch (productType) {
+          case 'large': return '129.000 VNĐ';
+          case 'small': return '79.000 VNĐ';
+          case 'card-bear': return '39.000 VNĐ';
+          case 'card-heart': return '69.000 VNĐ';
+          default: return '129.000 VNĐ';
+        }
+      };
+
       const getProductLabel = () => {
         switch (productType) {
-          case 'large': return 'Combo Box To (25x20 cm • Heart Card 8 ảnh)';
-          case 'small': return 'Combo Box Bé (20x15 cm • Bear Card 3 ảnh)';
-          case 'card-bear': return 'Thiệp Chú Gấu Bear Card (Kèm ảnh Polaroid 5x7 cm)';
+          case 'large': return 'Combo Box To (Heart Card 8 ảnh)';
+          case 'small': return 'Combo Box Bé (Bear Card 3 ảnh)';
+          case 'card-bear': return 'Thiệp Chú Gấu Bear Card (Kèm ảnh Polaroid)';
           case 'card-heart': return 'Thiệp Trái Tim Heart Card (Kèm ảnh Polaroid)';
           default: return 'Hộp quà cá nhân hóa The Little Joy';
         }
@@ -1849,12 +1892,12 @@
         } else if (productType === 'card-heart') {
           details = `• Màu thiệp trái tim: ${activeHeartColor.name}`;
         } else {
-          details = `• Mẫu thiệp: Thiệp Chú Gấu Độc Bản (Kèm ảnh Polaroid 5x7 cm)`;
+          details = `• Mẫu thiệp: Thiệp Chú Gấu Độc Bản (Kèm ảnh Polaroid)`;
         }
 
         const plainText =
           `Chào The Little Joy! Mình muốn đặt hàng và duyệt demo:\n` +
-          `• Sản phẩm: ${getProductLabel()}\n` +
+          `• Sản phẩm: ${getProductLabel()} — Giá: ${getProductPrice()}\n` +
           `${details}\n` +
           `• Tên người nhận: "${recipientName}"\n` +
           `• Lời nhắn gửi: "${message}"\n` +
@@ -1912,7 +1955,10 @@
                         : 'border-[#2C1E1A]/10 bg-white hover:border-[#BD6B4D]/40'
                         }`}
                     >
-                      <div className="text-sm font-bold text-[#2C1E1A]">Box To (25x20cm)</div>
+                      <div className="flex items-center justify-between gap-1 mb-0.5">
+                        <span className="text-sm font-bold text-[#2C1E1A]">Box To</span>
+                        <span className="text-[11px] font-extrabold text-[#BD6B4D] bg-[#BD6B4D]/15 px-2 py-0.5 rounded-full">129.000đ</span>
+                      </div>
                       <div className="text-[11px] text-[#2C1E1A]/70">Heart Card, 8 ảnh, 2 mèo bông đôi, gương & lược.</div>
                     </button>
 
@@ -1924,7 +1970,10 @@
                         : 'border-[#2C1E1A]/10 bg-white hover:border-[#BD6B4D]/40'
                         }`}
                     >
-                      <div className="text-sm font-bold text-[#2C1E1A]">Box Bé (20x15cm)</div>
+                      <div className="flex items-center justify-between gap-1 mb-0.5">
+                        <span className="text-sm font-bold text-[#2C1E1A]">Box Bé</span>
+                        <span className="text-[11px] font-extrabold text-[#BD6B4D] bg-[#BD6B4D]/15 px-2 py-0.5 rounded-full">79.000đ</span>
+                      </div>
                       <div className="text-[11px] text-[#2C1E1A]/70">Bear Card, 3 ảnh, 1 mèo xù, lược pastel.</div>
                     </button>
 
@@ -1936,7 +1985,10 @@
                         : 'border-[#2C1E1A]/10 bg-white hover:border-[#BD6B4D]/40'
                         }`}
                     >
-                      <div className="text-sm font-bold text-[#2C1E1A]">Thiệp Chú Gấu</div>
+                      <div className="flex items-center justify-between gap-1 mb-0.5">
+                        <span className="text-sm font-bold text-[#2C1E1A]">Thiệp Chú Gấu</span>
+                        <span className="text-[11px] font-extrabold text-[#BD6B4D] bg-[#BD6B4D]/15 px-2 py-0.5 rounded-full">39.000đ</span>
+                      </div>
                       <div className="text-[11px] text-[#2C1E1A]/70">Thiệp bán lẻ kèm ảnh Polaroid 5x7cm.</div>
                     </button>
 
@@ -1948,7 +2000,10 @@
                         : 'border-[#2C1E1A]/10 bg-white hover:border-[#BD6B4D]/40'
                         }`}
                     >
-                      <div className="text-sm font-bold text-[#2C1E1A]">Thiệp Trái Tim</div>
+                      <div className="flex items-center justify-between gap-1 mb-0.5">
+                        <span className="text-sm font-bold text-[#2C1E1A]">Thiệp Trái Tim</span>
+                        <span className="text-[11px] font-extrabold text-[#BD6B4D] bg-[#BD6B4D]/15 px-2 py-0.5 rounded-full">69.000đ</span>
+                      </div>
                       <div className="text-[11px] text-[#2C1E1A]/70">Thiệp bán lẻ lồng ảnh kỷ niệm.</div>
                     </button>
                   </div>
@@ -2065,12 +2120,12 @@
                   </span>
                   <span className="text-[11px] font-extrabold px-3 py-0.5 rounded-full bg-[#F4DCD1] text-[#BD6B4D]">
                     {productType === 'large'
-                      ? 'BOX TO • 25x20'
+                      ? 'BOX TO • 129.000đ'
                       : productType === 'small'
-                        ? 'BOX BÉ • 20x15'
+                        ? 'BOX BÉ • 79.000đ'
                         : productType === 'card-bear'
-                          ? 'THIỆP GẤU'
-                          : 'THIỆP TRÁI TIM'}
+                          ? 'THIỆP GẤU • 39.000đ'
+                          : 'THIỆP TRÁI TIM • 69.000đ'}
                   </span>
                 </div>
 
@@ -2089,6 +2144,10 @@
                   <div className="flex justify-between items-start gap-2">
                     <span className="text-[#2C1E1A]/60 shrink-0">Sản phẩm:</span>
                     <span className="font-bold text-right">{getProductLabel()}</span>
+                  </div>
+                  <div className="flex justify-between items-center py-1.5 px-2.5 rounded-xl bg-[#FAF7F2] border border-[#2C1E1A]/5">
+                    <span className="text-[#2C1E1A]/70 font-semibold shrink-0">Giá sản phẩm:</span>
+                    <span className="font-black text-sm text-[#BD6B4D]">{getProductPrice()}</span>
                   </div>
                   {(productType === 'large' || productType === 'small') && (
                     <div className="flex justify-between items-center">
