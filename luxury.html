@@ -309,11 +309,15 @@
 
     // =========================================================================
     // 2. HERO SECTION & CRAFT COMMITMENT MARQUEE
-    // Ảnh 1 Fix: Dòng chữ chuyển động bên dưới được nâng lên cao, hiển thị trọn vẹn
-    // không bị che khuất ở bất kỳ độ phân giải nào; bỏ niêm phong sáp/nến thơm,
-    // thay bằng sản phẩm thực tế: thiệp custom, ảnh polaroid, mèo bông, giao hỏa tốc Hà Nội
+    // Ảnh 2 Fix: Thay vì phóng to 1 bức ảnh chụp có chữ viết tay làm nền mờ mịt,
+    // chuyển sang bố cục Spotlight 2 cột cao cấp (Editorial Boutique Hero):
+    // - Cột trái: Typography & Cam kết nghệ nhân rõ nét
+    // - Cột phải: Khung ảnh thật của hộp quà hiển thị 100% sắc nét, đúng tỉ lệ,
+    //   có chuyển đổi nhanh Box To (Heart Card) và Box Bé (Bear Card)
     // =========================================================================
     const HeroSection = ({ onOpenCustomizer }) => {
+      const [heroBox, setHeroBox] = useState('to');
+
       const craftItems = [
         "100% Gói Ghém Thủ Công Tỉ Mỉ",
         "Thiệp Custom Viết Tay Theo Yêu Cầu",
@@ -328,87 +332,136 @@
           <Navbar onOpenCustomizer={onOpenCustomizer} />
 
           <div className="max-w-[88rem] mx-auto px-6 pt-24 sm:pt-28">
-            <div className="relative w-full rounded-3xl overflow-hidden shadow-2xl border border-[#2C1E1A]/10 min-h-[580px] lg:min-h-[640px] flex flex-col justify-between">
+            <div className="relative w-full rounded-3xl overflow-hidden shadow-2xl border border-[#2C1E1A]/10 bg-gradient-to-br from-[#FAF7F2] via-[#FFFDF9] to-[#F4DCD1]/40 min-h-[580px] lg:min-h-[620px] flex flex-col justify-between">
               
-              {/* Background Video / Cinematic Unboxing Loop */}
-              <video
-                autoPlay
-                muted
-                loop
-                playsInline
-                poster="Images/tr%C6%B0%E1%BB%9Bc%202%20(2).png"
-                className="object-cover absolute inset-0 w-full h-full transform scale-105 filter brightness-95"
-              >
-                <source src="https://assets.mixkit.co/videos/preview/mixkit-hands-wrapping-a-gift-with-ribbon-42861-large.mp4" type="video/mp4" />
-              </video>
+              {/* Subtle ambient luxury light orbs */}
+              <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#BD6B4D]/10 rounded-full blur-3xl pointer-events-none -mr-24 -mt-24" />
+              <div className="absolute bottom-0 left-1/3 w-[400px] h-[400px] bg-[#F4DCD1]/60 rounded-full blur-3xl pointer-events-none" />
 
-              {/* Gentle Warm Gradient Overlay on the Left */}
-              <div className="absolute inset-0 bg-gradient-to-r from-[#FAF7F2]/95 via-[#FAF7F2]/80 md:via-[#FAF7F2]/70 to-transparent pointer-events-none" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#FAF7F2]/60 via-transparent to-black/10 pointer-events-none" />
+              {/* Main Content: 2-column Editorial Boutique Grid */}
+              <div className="relative z-10 p-8 sm:p-12 md:p-14 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center flex-1">
+                
+                {/* Left Column (7 cols): Typography, CTA & Marquee */}
+                <div className="lg:col-span-7 flex flex-col justify-center max-w-2xl">
+                  {/* Eyebrow */}
+                  <div className="inline-flex items-center gap-2 bg-[#F4DCD1]/90 backdrop-blur-sm px-3.5 py-1.5 rounded-full border border-[#BD6B4D]/30 mb-4 w-fit shadow-xs">
+                    <span className="w-2 h-2 rounded-full bg-[#BD6B4D] animate-ping" />
+                    <span className="text-[11px] md:text-xs font-semibold tracking-[0.2em] text-[#BD6B4D] uppercase">
+                      MÓN QUÀ ĐỘC BẢN CHO NGƯỜI ĐẶC BIỆT
+                    </span>
+                  </div>
 
-              {/* Top Right Shop Badge */}
-              <div className="absolute top-6 right-6 z-10 hidden sm:flex items-center gap-2 px-4 py-2 rounded-full bg-white/90 backdrop-blur-md border border-[#2C1E1A]/10 text-xs font-semibold text-[#2C1E1A] shadow-sm">
-                <span className="text-amber-500">★</span>
-                <span>Tặng kèm in ảnh Polaroid & Duyệt Demo qua Zalo</span>
-              </div>
+                  {/* Heading */}
+                  <h1 className="font-serif text-[#2C1E1A] text-4xl sm:text-5xl md:text-6xl font-semibold leading-[1.12] mb-4 tracking-[-0.03em]">
+                    Gói ghém yêu thương<br />trong từng khoảnh khắc
+                  </h1>
 
-              {/* Main Content Overlay */}
-              <div className="relative z-10 p-8 sm:p-12 md:p-16 max-w-2xl flex-1 flex flex-col justify-center">
-                {/* Eyebrow */}
-                <div className="inline-flex items-center gap-2 bg-[#F4DCD1]/90 backdrop-blur-sm px-3.5 py-1.5 rounded-full border border-[#BD6B4D]/30 mb-4 w-fit">
-                  <span className="w-2 h-2 rounded-full bg-[#BD6B4D] animate-ping" />
-                  <span className="text-[11px] md:text-xs font-semibold tracking-[0.2em] text-[#BD6B4D] uppercase">
-                    MÓN QUÀ ĐỘC BẢN CHO NGƯỜI ĐẶC BIỆT
-                  </span>
-                </div>
+                  {/* Supporting Text */}
+                  <p className="text-[#2C1E1A]/85 text-base sm:text-lg mb-8 leading-relaxed font-normal">
+                    Từng chiếc hộp quà được tạo tác thủ công tỉ mỉ với thiệp custom viết tay theo yêu cầu, ảnh in Polaroid kỷ niệm, cặp mèo bông xinh xắn và phụ kiện pastel ngọt ngào.
+                  </p>
 
-                {/* Heading */}
-                <h1 className="font-serif text-[#2C1E1A] text-4xl sm:text-5xl md:text-6xl font-semibold leading-[1.12] mb-4 tracking-[-0.03em]">
-                  Gói ghém yêu thương<br />trong từng khoảnh khắc
-                </h1>
-
-                {/* Supporting Text (Chính xác theo shop) */}
-                <p className="text-[#2C1E1A]/85 text-base sm:text-lg mb-8 leading-relaxed font-normal">
-                  Từng chiếc hộp quà được tạo tác thủ công tỉ mỉ với thiệp custom viết tay theo yêu cầu, ảnh in Polaroid kỷ niệm, cặp mèo bông xinh xắn và phụ kiện pastel ngọt ngào.
-                </p>
-
-                {/* Action Button */}
-                <div className="flex flex-wrap items-center gap-4">
-                  <button
-                    onClick={onOpenCustomizer}
-                    className="inline-flex items-center gap-3 bg-[#2C1E1A] text-white text-base md:text-lg font-medium pl-8 pr-2.5 py-2.5 rounded-full hover:bg-[#BD6B4D] transition-all duration-300 shadow-lg hover:shadow-xl group"
-                  >
-                    <span>Tạo hộp quà kỷ niệm</span>
-                    <div className="bg-white rounded-full p-2.5 transition-transform duration-300 group-hover:translate-x-1">
-                      <ArrowRight className="w-5 h-5 text-[#2C1E1A]" />
-                    </div>
-                  </button>
-
-                  <a
-                    href="#models"
-                    className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white/80 hover:bg-white text-[#2C1E1A] text-sm sm:text-base font-semibold border border-[#2C1E1A]/10 shadow-sm transition-all"
-                  >
-                    <span>Khám phá 8 mẫu hộp</span>
-                    <ArrowRight className="w-4 h-4 text-[#BD6B4D]" />
-                  </a>
-                </div>
-              </div>
-
-              {/* Craft Commitment Marquee (Được đặt an toàn, rõ ràng phía dưới thẻ Hero) */}
-              <div className="relative z-10 w-full px-6 pb-6">
-                <div className="w-full max-w-2xl overflow-hidden py-3 border border-[#2C1E1A]/10 bg-[#FAF7F2]/75 backdrop-blur-md rounded-2xl shadow-sm">
-                  <div className="flex animate-marquee-craft whitespace-nowrap">
-                    {[...craftItems, ...craftItems].map((item, index) => (
-                      <div
-                        key={index}
-                        className="mx-6 shrink-0 text-[#2C1E1A]/85 whitespace-nowrap text-xs sm:text-sm tracking-wide font-medium flex items-center gap-2"
-                      >
-                        <span className="text-[#BD6B4D]">✦</span>
-                        <span>{item}</span>
+                  {/* Action Buttons */}
+                  <div className="flex flex-wrap items-center gap-4 mb-8">
+                    <button
+                      onClick={onOpenCustomizer}
+                      className="inline-flex items-center gap-3 bg-[#2C1E1A] text-white text-base md:text-lg font-medium pl-8 pr-2.5 py-2.5 rounded-full hover:bg-[#BD6B4D] transition-all duration-300 shadow-lg hover:shadow-xl group"
+                    >
+                      <span>Tạo hộp quà kỷ niệm</span>
+                      <div className="bg-white rounded-full p-2.5 transition-transform duration-300 group-hover:translate-x-1">
+                        <ArrowRight className="w-5 h-5 text-[#2C1E1A]" />
                       </div>
-                    ))}
+                    </button>
+
+                    <a
+                      href="#models"
+                      className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white hover:bg-[#FAF7F2] text-[#2C1E1A] text-sm sm:text-base font-semibold border border-[#2C1E1A]/10 shadow-sm transition-all"
+                    >
+                      <span>Khám phá 8 mẫu hộp</span>
+                      <ArrowRight className="w-4 h-4 text-[#BD6B4D]" />
+                    </a>
+                  </div>
+
+                  {/* Craft Commitment Marquee */}
+                  <div className="w-full overflow-hidden py-3 border border-[#2C1E1A]/10 bg-white/70 backdrop-blur-md rounded-2xl shadow-xs">
+                    <div className="flex animate-marquee-craft whitespace-nowrap">
+                      {[...craftItems, ...craftItems].map((item, index) => (
+                        <div
+                          key={index}
+                          className="mx-5 shrink-0 text-[#2C1E1A]/85 whitespace-nowrap text-xs sm:text-sm tracking-wide font-medium flex items-center gap-2"
+                        >
+                          <span className="text-[#BD6B4D]">✦</span>
+                          <span>{item}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
+
+                {/* Right Column (5 cols): Spotlight Showcase Hộp Quà Thật Sắc Nét */}
+                <div className="lg:col-span-5 flex flex-col items-center">
+                  <div className="w-full max-w-md bg-white rounded-3xl p-4 sm:p-5 shadow-2xl border-2 border-[#BD6B4D]/25 relative group">
+                    
+                    {/* Top Switcher in Card: Cho phép xem nhanh Box To vs Box Bé */}
+                    <div className="flex items-center justify-between pb-3 mb-3 border-b border-[#2C1E1A]/10">
+                      <div className="flex gap-1.5 p-1 bg-[#FAF7F2] rounded-full border border-[#2C1E1A]/10">
+                        <button
+                          type="button"
+                          onClick={() => setHeroBox('to')}
+                          className={`px-3.5 py-1 rounded-full text-xs font-bold transition-all ${
+                            heroBox === 'to'
+                              ? 'bg-[#BD6B4D] text-white shadow-xs'
+                              : 'text-[#2C1E1A]/70 hover:text-[#BD6B4D]'
+                          }`}
+                        >
+                          Box To (Heart Card)
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setHeroBox('be')}
+                          className={`px-3.5 py-1 rounded-full text-xs font-bold transition-all ${
+                            heroBox === 'be'
+                              ? 'bg-[#BD6B4D] text-white shadow-xs'
+                              : 'text-[#2C1E1A]/70 hover:text-[#BD6B4D]'
+                          }`}
+                        >
+                          Box Bé (Bear Card)
+                        </button>
+                      </div>
+
+                      <span className="text-[11px] font-bold text-[#BD6B4D] bg-[#F4DCD1] px-2.5 py-0.5 rounded-full">
+                        {heroBox === 'to' ? '8 ẢNH' : '3 ẢNH'}
+                      </span>
+                    </div>
+
+                    {/* Ảnh hộp quà chụp thật 100%, sắc nét, không bị zoom vỡ nét */}
+                    <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-[#FAF7F2] border border-[#2C1E1A]/10 shadow-inner">
+                      <img
+                        src={heroBox === 'to' ? 'Images/tr%C6%B0%E1%BB%9Bc%202%20(5).png' : 'Images/tr%C6%B0%E1%BB%9Bc%202%20(6).png'}
+                        alt={heroBox === 'to' ? 'Combo Box To' : 'Combo Box Bé'}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+
+                      {/* Badge trên ảnh */}
+                      <div className="absolute top-3 left-3 bg-[#2C1E1A]/85 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold text-[#F4DCD1]">
+                        {heroBox === 'to' ? 'BOX TO • 2 MÈO BÔNG ĐÔI' : 'BOX BÉ • 1 MÈO BÔNG XÙ'}
+                      </div>
+                    </div>
+
+                    {/* Tóm tắt phụ kiện bên dưới ảnh */}
+                    <div className="mt-4 pt-3 border-t border-[#2C1E1A]/10 flex items-center justify-between text-xs text-[#2C1E1A]/80">
+                      <div className="flex items-center gap-1.5 font-medium">
+                        <Sparkles className="w-3.5 h-3.5 text-[#BD6B4D]" />
+                        <span>{heroBox === 'to' ? 'Kèm Lược & Gương vintage' : 'Kèm Lược mini pastel'}</span>
+                      </div>
+                      <span className="font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full">
+                        ✓ Duyệt demo Zalo
+                      </span>
+                    </div>
+
+                  </div>
+                </div>
+
               </div>
 
             </div>
@@ -498,25 +551,30 @@
                 </div>
               </div>
 
-              {/* Card 2: Ảnh Polaroid lưu giữ kỉ niệm (Thay thế phần khắc tên) */}
+              {/* Card 2: Ảnh Polaroid lưu giữ kỉ niệm kèm thiệp gấu */}
               <div className="rounded-3xl bg-[#2C1E1A] p-7 flex flex-col justify-between text-white shadow-md relative overflow-hidden group hover:border-[#F4DCD1]/30 border border-transparent transition-all">
                 <div className="flex justify-between items-start mb-4">
                   <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center text-[#F4DCD1]">
                     <Camera className="w-6 h-6" />
                   </div>
-                  <div className="w-14 h-14 rounded-xl overflow-hidden border border-white/20 shadow-sm">
-                    <img src="Images/tr%C6%B0%E1%BB%9Bc%202%20(12).png" alt="Ảnh Polaroid" className="w-full h-full object-cover" />
+                  {/* Ảnh 1 Fix: Lấy ảnh thiệp gấu (Bear Card) thật của shop */}
+                  <div className="w-16 h-16 rounded-2xl overflow-hidden border-2 border-white/20 shadow-md bg-[#FAF7F2]">
+                    <img 
+                      src="Images/tr%C6%B0%E1%BB%9Bc%202%20(6).png" 
+                      alt="Thiệp chú gấu Bear Card" 
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" 
+                    />
                   </div>
                 </div>
                 <div>
                   <div className="text-[10px] uppercase tracking-wider text-[#F4DCD1]/70 font-semibold mb-1">
-                    In ảnh theo yêu cầu
+                    Thiệp gấu & Ảnh in sắc nét
                   </div>
                   <h3 className="font-serif text-2xl font-semibold text-[#F4DCD1] mb-2 leading-tight">
                     Ảnh Polaroid<br />lưu giữ kỉ niệm
                   </h3>
                   <p className="text-white/75 text-xs sm:text-sm leading-relaxed">
-                    Ảnh in mini sắc nét, màu sắc tươi tắn, không bay màu, đính kèm lồng thiệp hoặc cất giữ trong ví tiện lợi.
+                    Ảnh in mini sắc nét lồng xinh xắn trong thiệp chú gấu Bear Card, màu tươi tắn, không bay màu, lưu giữ từng khoảnh khắc đáng nhớ.
                   </p>
                 </div>
               </div>
