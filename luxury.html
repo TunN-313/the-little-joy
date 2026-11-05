@@ -383,10 +383,73 @@
     };
 
     // =========================================================================
-    // 2. HERO SECTION — BOUTIQUE COMMERCE HEADLINE & SPOTLIGHT
+    // 2. HERO SECTION — BOUTIQUE COMMERCE HEADLINE & AUTO-RANDOM PHOTO SHOWCASE
     // =========================================================================
     const HeroSection = ({ onOpenCustomizer, onOpenSize }) => {
-      const [heroBox, setHeroBox] = useState('nhom'); // 'nhom' | 'to' | 'be'
+      // Toàn bộ ảnh sản phẩm thực tế trong thư mục Images
+      const allHeroImages = [
+        'Images/4%20box.JPG',
+        'Images/%E1%BA%A2nh%20m%E1%BA%ABu%20sp.jpg',
+        'Images/box%20h%E1%BB%93ng.jpg',
+        'Images/box%20xanh.jpg',
+        'Images/IMG_1771.JPG',
+        'Images/IMG_1774.JPG',
+        'Images/2.png',
+        'Images/4.png',
+        'Images/1.png',
+        'Images/3.png',
+        'Images/788452642_1397073875840615_3395007793016246134_n.jpg',
+        'Images/790930395_1568126858402096_2704263053433922885_n.jpg',
+        'Images/814660178_1631551601966983_2446902117944062335_n.jpg',
+        'Images/7.png',
+        'Images/9.png',
+        'Images/tr%C6%B0%E1%BB%9Bc%202%20(2).png',
+        'Images/tr%C6%B0%E1%BB%9Bc%202%20(3).png',
+        'Images/tr%C6%B0%E1%BB%9Bc%202%20(4).png',
+        'Images/tr%C6%B0%E1%BB%9Bc%202%20(5).png',
+        'Images/tr%C6%B0%E1%BB%9Bc%202%20(6).png',
+        'Images/tr%C6%B0%E1%BB%9Bc%202%20(7).png',
+        'Images/tr%C6%B0%E1%BB%9Bc%202%20(8).png',
+        'Images/tr%C6%B0%E1%BB%9Bc%202%20(9).png',
+        'Images/32.png',
+        'Images/sau%201.png',
+      ];
+
+      // Thuật toán chuyển đổi ngẫu nhiên sang ảnh khác sau mỗi 3 giây
+      const [currentImgIndex, setCurrentImgIndex] = useState(0);
+      const [isFading, setIsFading] = useState(false);
+
+      useEffect(() => {
+        const timer = setInterval(() => {
+          setIsFading(true);
+          setTimeout(() => {
+            setCurrentImgIndex((prev) => {
+              let next;
+              do {
+                next = Math.floor(Math.random() * allHeroImages.length);
+              } while (next === prev && allHeroImages.length > 1);
+              return next;
+            });
+            setIsFading(false);
+          }, 300);
+        }, 3000);
+
+        return () => clearInterval(timer);
+      }, []);
+
+      const handleNextRandom = () => {
+        setIsFading(true);
+        setTimeout(() => {
+          setCurrentImgIndex((prev) => {
+            let next;
+            do {
+              next = Math.floor(Math.random() * allHeroImages.length);
+            } while (next === prev && allHeroImages.length > 1);
+            return next;
+          });
+          setIsFading(false);
+        }, 200);
+      };
 
       const craftItems = [
         "100% Gói Ghém Thủ Công Tỉ Mỉ",
@@ -397,35 +460,6 @@
         "Cặp Móc Khóa Mèo Bông Đôi",
         "Hỏa Tốc Hà Nội 2H & Toàn Quốc 2-3 Ngày"
       ];
-
-      const heroSpotlight = {
-        nhom: {
-          tag: 'BỘ 4 BOX QUÀ • ẢNH CHỤP THỰC TẾ',
-          badge: 'SET QUÀ KỶ NIỆM',
-          img: 'Images/4%20box.JPG',
-          sub: '4 Box hoàn thiện: Mèo đôi, thiệp, lược pastel & phụ kiện',
-          btnText: 'Xem Tất Cả 8 Mẫu Hộp Quà',
-          action: () => onOpenSize('large'),
-        },
-        to: {
-          tag: 'BOX TO • 25x20 CM • 2 MÈO ĐÔI',
-          badge: '8 ẢNH POLAROID',
-          img: 'Images/box%20h%E1%BB%93ng.jpg',
-          sub: 'Kèm Heart Card, Cặp mèo bông đôi, Gương & Lược pastel',
-          btnText: 'Khám Phá Chi Tiết Box To',
-          action: () => onOpenSize('large'),
-        },
-        be: {
-          tag: 'BOX BÉ • 20x15 CM • 1 MÈO BÔNG',
-          badge: '3 ẢNH POLAROID',
-          img: 'Images/box%20xanh.jpg',
-          sub: 'Kèm Bear Card, 1 Mèo bông xù trắng & Lược pastel mini',
-          btnText: 'Khám Phá Chi Tiết Box Bé',
-          action: () => onOpenSize('small'),
-        },
-      };
-
-      const curHero = heroSpotlight[heroBox] || heroSpotlight.nhom;
 
       return (
         <section className="relative w-full overflow-hidden bg-[#FAF7F2] py-8 md:py-12">
@@ -510,86 +544,69 @@
                   </div>
                 </div>
 
-                {/* Right Column (5 cols): Spotlight Showcase with 3 Toggles (Nhóm 4 Box, Box To, Box Bé) */}
+                {/* Right Column (5 cols): Auto-Rotating Random Photo Showcase (Chuyển ngẫu nhiên sau mỗi 3s) */}
                 <div className="lg:col-span-5 flex flex-col items-center">
                   <div className="w-full max-w-md bg-white rounded-3xl p-5 shadow-2xl border-2 border-[#BD6B4D]/30 relative">
                     
-                    {/* Top Switcher: Nhóm 4 Box vs Box To vs Box Bé */}
-                    <div className="flex items-center justify-between pb-3.5 mb-3.5 border-b border-[#2C1E1A]/10 gap-2">
-                      <div className="flex gap-1 sm:gap-1.5 p-1 bg-[#FAF7F2] rounded-full border border-[#2C1E1A]/10 overflow-x-auto">
-                        <button
-                          type="button"
-                          onClick={() => setHeroBox('nhom')}
-                          className={`px-3 sm:px-3.5 py-1.5 rounded-full text-xs font-bold transition-all whitespace-nowrap ${
-                            heroBox === 'nhom'
-                              ? 'bg-[#BD6B4D] text-white shadow-sm scale-102'
-                              : 'text-[#2C1E1A]/70 hover:text-[#BD6B4D]'
-                          }`}
-                        >
-                          Nhóm 4 Box
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => setHeroBox('to')}
-                          className={`px-3 sm:px-3.5 py-1.5 rounded-full text-xs font-bold transition-all whitespace-nowrap ${
-                            heroBox === 'to'
-                              ? 'bg-[#BD6B4D] text-white shadow-sm scale-102'
-                              : 'text-[#2C1E1A]/70 hover:text-[#BD6B4D]'
-                          }`}
-                        >
-                          Box To (25x20)
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => setHeroBox('be')}
-                          className={`px-3 sm:px-3.5 py-1.5 rounded-full text-xs font-bold transition-all whitespace-nowrap ${
-                            heroBox === 'be'
-                              ? 'bg-[#BD6B4D] text-white shadow-sm scale-102'
-                              : 'text-[#2C1E1A]/70 hover:text-[#BD6B4D]'
-                          }`}
-                        >
-                          Box Bé (20x15)
-                        </button>
+                    {/* Header: Showcase Trình Diễn Ảnh Thực Tế */}
+                    <div className="flex items-center justify-between pb-3.5 mb-3.5 border-b border-[#2C1E1A]/10">
+                      <div className="inline-flex items-center gap-2 text-[#BD6B4D] font-extrabold text-xs uppercase tracking-wider">
+                        <Sparkles className="w-4 h-4 text-[#BD6B4D]" />
+                        <span>KHOẢNH KHẮC THỰC TẾ</span>
                       </div>
 
-                      <span className="text-[11px] font-extrabold text-[#BD6B4D] bg-[#F4DCD1] px-2.5 py-1 rounded-full shrink-0">
-                        {curHero.badge}
-                      </span>
+                      <div className="flex items-center gap-2 bg-[#FAF7F2] px-3 py-1 rounded-full border border-[#2C1E1A]/10 text-[11px] text-[#2C1E1A]/70 font-semibold">
+                        <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                        <span>Tự đổi mỗi 3s</span>
+                      </div>
                     </div>
 
-                    {/* Uncropped, Crystal Clear Giftbox Photo */}
-                    <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-[#FAF7F2] border border-[#2C1E1A]/10 shadow-inner group/img">
+                    {/* Ô Ảnh Tự Động Chuyển Đổi Sau 3 Giây */}
+                    <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-[#FAF7F2] border border-[#2C1E1A]/10 shadow-inner group">
                       <img
-                        src={curHero.img}
-                        alt={curHero.tag}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover/img:scale-105"
+                        src={allHeroImages[currentImgIndex]}
+                        alt="Khoảnh khắc The Little Joy"
+                        className={`w-full h-full object-cover transition-all duration-500 ease-in-out ${
+                          isFading ? 'opacity-30 scale-95' : 'opacity-100 scale-100'
+                        }`}
                       />
 
-                      <div className="absolute top-3 left-3 bg-[#2C1E1A]/90 backdrop-blur-md px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-bold text-[#F4DCD1]">
-                        {curHero.tag}
+                      {/* Tag góc ảnh */}
+                      <div className="absolute top-3 left-3 bg-[#2C1E1A]/85 backdrop-blur-md px-3 py-1 rounded-full text-[11px] font-bold text-[#F4DCD1] shadow-md flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#BD6B4D]"></span>
+                        <span>THE LITTLE JOY • HÀ NỘI</span>
                       </div>
+
+                      {/* Nút bấm đổi ảnh ngẫu nhiên ngay lập tức */}
+                      <button
+                        type="button"
+                        onClick={handleNextRandom}
+                        title="Bấm để đổi ảnh ngẫu nhiên khác ngay"
+                        className="absolute bottom-3 right-3 p-2 rounded-full bg-white/90 hover:bg-white text-[#2C1E1A] shadow-md transition-all hover:scale-110 active:scale-95"
+                      >
+                        <Sparkles className="w-4 h-4 text-[#BD6B4D]" />
+                      </button>
                     </div>
 
-                    {/* Box specs & CTA */}
+                    {/* Dưới ảnh: Cam kết & Nút xem bộ sưu tập */}
                     <div className="mt-4 pt-3.5 border-t border-[#2C1E1A]/10 space-y-3">
                       <div className="flex items-center justify-between text-xs text-[#2C1E1A]/85">
-                        <div className="flex items-center gap-1.5 font-semibold text-[11px] sm:text-xs">
-                          <Sparkles className="w-3.5 h-3.5 text-[#BD6B4D] shrink-0" />
-                          <span className="truncate">{curHero.sub}</span>
+                        <div className="flex items-center gap-1.5 font-semibold text-[11px] sm:text-xs text-[#2C1E1A]/80">
+                          <span className="text-[#BD6B4D] font-bold">♥</span>
+                          <span>Ảnh chụp từ các set quà gửi khách</span>
                         </div>
-                        <span className="font-bold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-full shrink-0 text-[10px]">
-                          ✓ Duyệt demo Zalo
+                        <span className="font-bold text-emerald-800 bg-emerald-100 px-2.5 py-0.5 rounded-full text-[10px]">
+                          ✓ Duyệt trước demo Zalo
                         </span>
                       </div>
 
-                      <button
-                        type="button"
-                        onClick={curHero.action}
-                        className="w-full py-3 px-5 rounded-full bg-[#2C1E1A] hover:bg-[#BD6B4D] text-white font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2 group/btn"
+                      <a
+                        href="#boxes"
+                        className="cta-shine w-full py-3.5 px-5 rounded-full bg-[#2C1E1A] hover:bg-[#BD6B4D] text-white font-extrabold text-sm shadow-md transition-all flex items-center justify-center gap-2 group/btn hover:scale-102"
                       >
-                        <span>{curHero.btnText}</span>
+                        <span>Khám Phá Tất Cả Mẫu Hộp Quà</span>
                         <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
-                      </button>
+                      </a>
                     </div>
 
                   </div>
