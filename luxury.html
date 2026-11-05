@@ -992,11 +992,11 @@
                     <ul className="space-y-1.5">
                       <li className="flex items-start gap-2">
                         <Check className="w-3.5 h-3.5 text-[#BD6B4D] mt-0.5 shrink-0" />
-                        <span><strong>01 thiệp viết thư:</strong> In trên giấy mỹ thuật định lượng dày cao cấp.</span>
+                        <span><strong>01 thiệp viết thư:</strong> In trên giấy mỹ thuật, bố cục độc đáo.</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <Check className="w-3.5 h-3.5 text-[#BD6B4D] mt-0.5 shrink-0" />
-                        <span><strong>01 ảnh Polaroid:</strong> Size 5 x 7 cm dán đính trên thiệp từ ảnh khách gửi (rõ nét, chống phai).</span>
+                        <span><strong>01 ảnh Polaroid:</strong> Size 5 x 7 cm dán đính trên thiệp từ ảnh khách gửi.</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <Check className="w-3.5 h-3.5 text-[#BD6B4D] mt-0.5 shrink-0" />
@@ -1380,7 +1380,7 @@
                   <div className="p-5 rounded-2xl bg-white border border-[#2C1E1A]/10 shadow-xs">
                     <div className="font-bold text-base text-[#2C1E1A] mb-1 flex items-center gap-2">
                       <span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
-                      <span>Hỏa Tốc Nội Thành Hà Nội: 2H – 4H</span>
+                      <span>Giao hàng nhanh chóng 24H</span>
                     </div>
                     <p className="text-xs sm:text-sm text-[#2C1E1A]/70">
                       Đáp ứng nhu cầu quà tặng gấp trong ngày, sinh nhật bất ngờ cho người thương.
@@ -1761,8 +1761,8 @@
     // =========================================================================
     const CustomizerModal = ({ isOpen, onClose, initialType = 'large', preselectedModel = null }) => {
       const [productType, setProductType] = useState(initialType); // 'large' | 'small' | 'card-bear' | 'card-heart'
-      const [cardStyle, setCardStyle] = useState('bicolor');
-      const [combColor, setCombColor] = useState('pink');
+      const [boxColor, setBoxColor] = useState('bicolor'); // 'bicolor' | 'blue' | 'pink' | 'black'
+      const [heartColor, setHeartColor] = useState('brown'); // 'brown' | 'blue' | 'pink' | 'burgundy'
       const [recipientName, setRecipientName] = useState('Em yêu');
       const [message, setMessage] = useState('Always make time for those who matter ❤️');
 
@@ -1770,10 +1770,10 @@
         if (preselectedModel) {
           if (preselectedModel.id.startsWith('to-')) setProductType('large');
           if (preselectedModel.id.startsWith('be-')) setProductType('small');
-          if (preselectedModel.id.includes('bicolor')) setCardStyle('bicolor');
-          if (preselectedModel.id.includes('blue')) setCardStyle('blue');
-          if (preselectedModel.id.includes('pink')) setCardStyle('pink');
-          if (preselectedModel.id.includes('black')) setCardStyle('black');
+          if (preselectedModel.id.includes('bicolor')) setBoxColor('bicolor');
+          if (preselectedModel.id.includes('blue')) setBoxColor('blue');
+          if (preselectedModel.id.includes('pink')) setBoxColor('pink');
+          if (preselectedModel.id.includes('black')) setBoxColor('black');
         } else {
           setProductType(initialType);
         }
@@ -1781,28 +1781,86 @@
 
       if (!isOpen) return null;
 
-      const styles = [
-        { id: 'bicolor', name: 'Bi Đỏ Kem Burgundy', imageTo: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(2).png', imageBe: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(6).png' },
-        { id: 'blue', name: 'Xanh Baby Chấm Bi Nâu', imageTo: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(3).png', imageBe: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(7).png' },
-        { id: 'pink', name: 'Hồng Phấn Ngôi Sao', imageTo: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(4).png', imageBe: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(8).png' },
-        { id: 'black', name: 'Đen Chấm Bi Cổ Điển', imageTo: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(5).png', imageBe: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(9).png' },
+      // 4 Tone màu Box (phụ kiện, lược, thiệp... tự động đồng bộ theo màu box)
+      const boxColors = [
+        {
+          id: 'bicolor',
+          name: 'Đỏ Kem Burgundy',
+          desc: 'Tone đỏ kem ấm áp, lãng mạn',
+          colorDot: 'bg-[#8B2635]',
+          imageTo: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(2).png',
+          imageBe: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(6).png'
+        },
+        {
+          id: 'blue',
+          name: 'Xanh Baby Pastel',
+          desc: 'Tone xanh baby dịu mát, ngọt ngào',
+          colorDot: 'bg-[#88A9C3]',
+          imageTo: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(3).png',
+          imageBe: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(7).png'
+        },
+        {
+          id: 'pink',
+          name: 'Hồng Phấn Vintage',
+          desc: 'Tone hồng pastel mộng mơ, tinh tế',
+          colorDot: 'bg-[#E5A9B4]',
+          imageTo: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(4).png',
+          imageBe: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(8).png'
+        },
+        {
+          id: 'black',
+          name: 'Đen Cổ Điển Chấm Bi',
+          desc: 'Tone đen kem vintage sang trọng',
+          colorDot: 'bg-[#2C1E1A]',
+          imageTo: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(5).png',
+          imageBe: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(9).png'
+        },
       ];
 
-      const activeStyleObj = styles.find(s => s.id === cardStyle) || styles[0];
+      // Tone màu thiệp trái tim
+      const heartColors = [
+        {
+          id: 'brown',
+          name: 'Nâu Kem Vintage',
+          colorDot: 'bg-[#5C3D2E]',
+          image: 'Images/2.png'
+        },
+        {
+          id: 'blue',
+          name: 'Xanh Baby Chấm Bi',
+          colorDot: 'bg-[#88A9C3]',
+          image: 'Images/4.png'
+        },
+        {
+          id: 'pink',
+          name: 'Hồng Phấn Ngọt Ngào',
+          colorDot: 'bg-[#E5A9B4]',
+          image: 'Images/2.png'
+        },
+        {
+          id: 'burgundy',
+          name: 'Đỏ Kem Rực Rỡ',
+          colorDot: 'bg-[#8B2635]',
+          image: 'Images/4.png'
+        },
+      ];
 
-      let previewImg = activeStyleObj.imageTo;
+      const activeBoxColor = boxColors.find(b => b.id === boxColor) || boxColors[0];
+      const activeHeartColor = heartColors.find(h => h.id === heartColor) || heartColors[0];
+
+      let previewImg = activeBoxColor.imageTo;
       if (productType === 'small') {
-        previewImg = activeStyleObj.imageBe;
+        previewImg = activeBoxColor.imageBe;
       } else if (productType === 'card-bear') {
         previewImg = 'Images/788452642_1397073875840615_3395007793016246134_n.jpg';
       } else if (productType === 'card-heart') {
-        previewImg = 'Images/2.png';
+        previewImg = activeHeartColor.image;
       }
 
       const getProductLabel = () => {
         switch (productType) {
-          case 'large': return 'Combo Box To (Size 25x20 cm • Heart Card 8 ảnh)';
-          case 'small': return 'Combo Box Bé (Size 20x15 cm • Bear Card 3 ảnh)';
+          case 'large': return 'Combo Box To (25x20 cm • Heart Card 8 ảnh)';
+          case 'small': return 'Combo Box Bé (20x15 cm • Bear Card 3 ảnh)';
           case 'card-bear': return 'Thiệp Chú Gấu Bear Card (Kèm ảnh Polaroid 5x7 cm)';
           case 'card-heart': return 'Thiệp Trái Tim Heart Card (Kèm ảnh Polaroid)';
           default: return 'Hộp quà cá nhân hóa The Little Joy';
@@ -1810,11 +1868,19 @@
       };
 
       const handleSendZalo = () => {
+        let details = '';
+        if (productType === 'large' || productType === 'small') {
+          details = `• Tone màu Box: ${activeBoxColor.name} (Phụ kiện, lược & thiệp phối tone-sur-tone)`;
+        } else if (productType === 'card-heart') {
+          details = `• Màu thiệp trái tim: ${activeHeartColor.name}`;
+        } else {
+          details = `• Mẫu thiệp: Thiệp Chú Gấu Độc Bản (Kèm ảnh Polaroid 5x7 cm)`;
+        }
+
         const text = encodeURIComponent(
           `Chào The Little Joy! Mình muốn đặt hàng và duyệt demo:\n` +
           `• Sản phẩm: ${getProductLabel()}\n` +
-          `• Mẫu nền thiệp: ${activeStyleObj.name}\n` +
-          `• Phụ kiện: ${combColor === 'pink' ? 'Hồng Pastel' : combColor === 'yellow' ? 'Vàng Pastel' : 'Tím Pastel'}\n` +
+          `${details}\n` +
           `• Tên người nhận: "${recipientName}"\n` +
           `• Lời nhắn gửi: "${message}"\n` +
           `Shop hướng dẫn mình gửi ảnh và gửi bản demo duyệt qua Zalo nhé!`
@@ -1909,62 +1975,87 @@
                   </div>
                 </div>
 
-                {/* 2. Chọn Nền Thiệp */}
-                <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-[#2C1E1A] mb-2">
-                    2. Mẫu họa tiết nền thiệp (4 mẫu thực tế)
-                  </label>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                    {styles.map(s => (
-                      <button
-                        key={s.id}
-                        type="button"
-                        onClick={() => setCardStyle(s.id)}
-                        className={`p-2.5 rounded-xl border text-center text-xs font-semibold transition-all ${cardStyle === s.id
-                          ? 'bg-[#2C1E1A] text-white border-[#2C1E1A] font-bold shadow-xs'
-                          : 'bg-white text-[#2C1E1A] border-[#2C1E1A]/10 hover:border-[#BD6B4D]'
-                          }`}
-                      >
-                        {s.name}
-                      </button>
-                    ))}
-                  </div>
-                </div>
+                {/* 2. CHỌN MÀU CHO TỪNG LOẠI SẢN PHẨM */}
 
-                {/* 3. Màu Phụ Kiện (nếu chọn box) */}
+                {/* NẾU LÀ BOX (BOX TO / BOX BÉ): CHỈ CHỌN 1 MÀU BOX, PHỤ KIỆN TỰ ĐỘNG THEO MÀU */}
                 {(productType === 'large' || productType === 'small') && (
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-[#2C1E1A] mb-2">
-                      3. Tone màu lược chải tóc mini pastel
-                    </label>
-                    <div className="flex gap-3">
-                      {[
-                        { id: 'pink', name: 'Hồng Pastel', color: 'bg-pink-300' },
-                        { id: 'yellow', name: 'Vàng Pastel', color: 'bg-amber-200' },
-                        { id: 'purple', name: 'Tím Pastel', color: 'bg-purple-200' },
-                      ].map(c => (
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
+                      <label className="block text-xs font-bold uppercase tracking-wider text-[#2C1E1A]">
+                        2. Chọn Tone Màu Hộp Quà
+                      </label>
+                      <span className="text-[11px] text-[#BD6B4D] font-medium">
+                        Phụ kiện & thiệp tự động phối tone-sur-tone
+                      </span>
+                    </div>
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                      {boxColors.map(c => (
                         <button
                           key={c.id}
                           type="button"
-                          onClick={() => setCombColor(c.id)}
-                          className={`flex items-center gap-2 px-3.5 py-1.5 rounded-full border text-xs font-medium transition-all ${combColor === c.id
-                            ? 'border-[#BD6B4D] bg-white ring-2 ring-[#BD6B4D]/30 font-bold'
-                            : 'border-[#2C1E1A]/10 bg-white/60 hover:bg-white'
-                            }`}
+                          onClick={() => setBoxColor(c.id)}
+                          className={`p-3 rounded-2xl border text-center transition-all ${
+                            boxColor === c.id
+                              ? 'border-[#BD6B4D] bg-[#BD6B4D]/10 ring-2 ring-[#BD6B4D]/30 font-bold shadow-xs'
+                              : 'bg-white text-[#2C1E1A] border-[#2C1E1A]/10 hover:border-[#BD6B4D]/40'
+                          }`}
                         >
-                          <span className={`w-3.5 h-3.5 rounded-full ${c.color}`}></span>
-                          <span>{c.name}</span>
+                          <div className="flex items-center justify-center gap-1.5 mb-1">
+                            <span className={`w-3 h-3 rounded-full ${c.colorDot} shadow-xs`}></span>
+                            <span className="text-xs font-bold text-[#2C1E1A]">{c.name}</span>
+                          </div>
+                          <div className="text-[10px] text-[#2C1E1A]/60 leading-tight">{c.desc}</div>
                         </button>
                       ))}
                     </div>
                   </div>
                 )}
 
-                {/* 4. Tên Người Nhận & Lời Nhắn */}
+                {/* NẾU LÀ THIỆP TRÁI TIM: GIỮ 1 OPTION CHỌN MÀU THIỆP */}
+                {productType === 'card-heart' && (
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-wider text-[#2C1E1A] mb-2">
+                      2. Chọn Tone Màu Thiệp Trái Tim
+                    </label>
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                      {heartColors.map(h => (
+                        <button
+                          key={h.id}
+                          type="button"
+                          onClick={() => setHeartColor(h.id)}
+                          className={`p-3 rounded-2xl border text-center transition-all ${
+                            heartColor === h.id
+                              ? 'border-[#BD6B4D] bg-[#BD6B4D]/10 ring-2 ring-[#BD6B4D]/30 font-bold shadow-xs'
+                              : 'bg-white text-[#2C1E1A] border-[#2C1E1A]/10 hover:border-[#BD6B4D]/40'
+                          }`}
+                        >
+                          <div className="flex items-center justify-center gap-1.5">
+                            <span className={`w-3 h-3 rounded-full ${h.colorDot} shadow-xs`}></span>
+                            <span className="text-xs font-bold text-[#2C1E1A]">{h.name}</span>
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* NẾU LÀ THIỆP GẤU: KHÔNG CÓ BƯỚC CHỌN MÀU (VÌ CHỈ CÓ 1 MẪU ĐỘC BẢN) */}
+                {productType === 'card-bear' && (
+                  <div className="p-3.5 rounded-2xl bg-white border border-[#2C1E1A]/10 flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-full bg-[#BD6B4D]/10 flex items-center justify-center shrink-0 text-[#BD6B4D]">
+                      <Sparkles className="w-4 h-4" />
+                    </div>
+                    <div className="text-xs text-[#2C1E1A]/80 leading-relaxed">
+                      <strong>Mẫu Thiệp Chú Gấu Độc Bản:</strong> Dáng gấu ôm ảnh Polaroid mini duy nhất một mẫu chuẩn, in ảnh theo file bạn gửi.
+                    </div>
+                  </div>
+                )}
+
+                {/* 3. Tên Người Nhận & Lời Nhắn */}
                 <div className="space-y-3">
                   <div>
                     <label className="block text-xs font-bold uppercase tracking-wider text-[#2C1E1A] mb-1">
-                      {productType.startsWith('card') ? '3. Tên người nhận trên thiệp' : '4. Tên người nhận in trang trọng'}
+                      {productType === 'card-bear' ? '2. Tên người nhận trên thiệp' : '3. Tên người nhận in trang trọng'}
                     </label>
                     <input
                       type="text"
@@ -1977,7 +2068,7 @@
 
                   <div>
                     <label className="block text-xs font-bold uppercase tracking-wider text-[#2C1E1A] mb-1">
-                      {productType.startsWith('card') ? '4. Lời chúc riêng' : '5. Lời chúc riêng'}
+                      {productType === 'card-bear' ? '3. Lời chúc riêng' : '4. Lời chúc riêng'}
                     </label>
                     <textarea
                       rows={3}
@@ -1991,60 +2082,76 @@
 
               </div>
 
-              {/* Right Preview Card (5 cols) */}
-              <div className="md:col-span-5 bg-white rounded-2xl p-5 border-2 border-[#2C1E1A]/10 shadow-lg sticky top-0">
-                <div className="flex items-center justify-between pb-3 mb-3 border-b border-[#2C1E1A]/10">
-                  <div className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                    <span className="text-xs uppercase tracking-wider font-extrabold text-[#2C1E1A]">
-                      Mô phỏng (Live Preview)
-                    </span>
-                  </div>
-                  <span className="text-[11px] font-extrabold px-2.5 py-0.5 rounded-full bg-[#F4DCD1] text-[#BD6B4D]">
-                    {productType === 'large' ? 'BOX TO • 25x20' : productType === 'small' ? 'BOX BÉ • 20x15' : 'THIỆP RIÊNG'}
+              {/* Right Preview Card (5 cols) - Bỏ chữ LIVE PREVIEW & Bỏ ô ghi tên bên cạnh */}
+              <div className="md:col-span-5 bg-white rounded-3xl p-5 sm:p-6 border-2 border-[#2C1E1A]/10 shadow-lg sticky top-0">
+                {/* Header thanh lịch, không chữ LIVE PREVIEW */}
+                <div className="flex items-center justify-between pb-3 mb-3.5 border-b border-[#2C1E1A]/10">
+                  <span className="text-xs uppercase tracking-wider font-extrabold text-[#2C1E1A]">
+                    Xem trước mẫu
+                  </span>
+                  <span className="text-[11px] font-extrabold px-3 py-0.5 rounded-full bg-[#F4DCD1] text-[#BD6B4D]">
+                    {productType === 'large'
+                      ? 'BOX TO • 25x20'
+                      : productType === 'small'
+                        ? 'BOX BÉ • 20x15'
+                        : productType === 'card-bear'
+                          ? 'THIỆP GẤU'
+                          : 'THIỆP TRÁI TIM'}
                   </span>
                 </div>
 
-                <div className="rounded-xl overflow-hidden aspect-[4/3] bg-[#FAF7F2] mb-3 border border-[#2C1E1A]/10">
+                {/* Khung ảnh thực tế sắc nét, fit vừa vặn */}
+                <div className="rounded-2xl overflow-hidden aspect-[4/3] bg-[#FAF7F2] mb-4 border border-[#2C1E1A]/10 flex items-center justify-center p-2">
                   <img
                     src={previewImg}
-                    alt="Preview"
-                    className="w-full h-full object-cover transition-all duration-300"
+                    alt="Xem trước The Little Joy"
+                    className={`max-w-full max-h-full transition-all duration-300 rounded-xl ${
+                      productType.startsWith('card') ? 'object-contain' : 'object-cover w-full h-full'
+                    }`}
                   />
                 </div>
 
-                {/* Recipient preview */}
-                <div className="p-3 rounded-xl bg-[#FAF7F2] border border-[#2C1E1A]/10 text-center mb-3">
-                  <div className="text-[10px] uppercase font-bold text-[#2C1E1A]/60">Dành tặng:</div>
-                  <div className="font-serif text-lg font-bold text-[#BD6B4D] mt-0.5">
-                    "{recipientName || 'Người thương'}"
+                {/* Tóm tắt thông tin sản phẩm */}
+                <div className="text-xs space-y-2 text-[#2C1E1A]/85 border-t border-[#2C1E1A]/10 pt-3.5">
+                  <div className="flex justify-between items-start gap-2">
+                    <span className="text-[#2C1E1A]/60 shrink-0">Sản phẩm:</span>
+                    <span className="font-bold text-right">{getProductLabel()}</span>
                   </div>
-                  <div className="text-xs italic text-[#2C1E1A]/70 mt-1 line-clamp-2">
-                    “{message || 'Made from little moments, made for someone special'}”
+                  {(productType === 'large' || productType === 'small') && (
+                    <div className="flex justify-between items-center">
+                      <span className="text-[#2C1E1A]/60">Tone màu Box:</span>
+                      <span className="font-bold text-[#BD6B4D]">{activeBoxColor.name}</span>
+                    </div>
+                  )}
+                  {productType === 'card-heart' && (
+                    <div className="flex justify-between items-center">
+                      <span className="text-[#2C1E1A]/60">Màu thiệp:</span>
+                      <span className="font-bold text-[#BD6B4D]">{activeHeartColor.name}</span>
+                    </div>
+                  )}
+                  {productType === 'card-bear' && (
+                    <div className="flex justify-between items-center">
+                      <span className="text-[#2C1E1A]/60">Mẫu thiệp:</span>
+                      <span className="font-bold text-[#BD6B4D]">Mẫu Chú Gấu Độc Bản</span>
+                    </div>
+                  )}
+                  <div className="flex justify-between items-center">
+                    <span className="text-[#2C1E1A]/60">Dành tặng:</span>
+                    <span className="font-semibold text-[#2C1E1A] truncate max-w-[160px]">
+                      {recipientName || 'Người thương'}
+                    </span>
                   </div>
-                </div>
-
-                {/* Summary */}
-                <div className="text-xs space-y-1.5 text-[#2C1E1A]/85 border-t border-[#2C1E1A]/10 pt-3">
-                  <div className="flex justify-between">
-                    <span className="text-[#2C1E1A]/60">Sản phẩm:</span>
-                    <span className="font-bold">{getProductLabel()}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-[#2C1E1A]/60">Mẫu nền:</span>
-                    <span className="font-bold">{activeStyleObj.name}</span>
-                  </div>
-                  <div className="flex justify-between">
+                  <div className="flex justify-between items-center">
                     <span className="text-[#2C1E1A]/60">Quyền lợi:</span>
-                    <span className="font-bold text-emerald-700">Duyệt demo Zalo trước khi in</span>
+                    <span className="font-bold text-emerald-700">Duyệt demo trước khi in</span>
                   </div>
                 </div>
 
-                {/* SUPER PROMINENT SUBMIT CTA */}
+                {/* Nút gửi cấu hình qua Zalo */}
                 <button
                   type="button"
                   onClick={handleSendZalo}
-                  className="cta-shine mt-4 w-full py-4 px-5 rounded-full bg-[#BD6B4D] hover:bg-[#9e5033] text-white font-extrabold text-sm sm:text-base shadow-cta hover:shadow-cta-hover flex items-center justify-center gap-2 transition-all hover:scale-102 ring-2 ring-[#BD6B4D]/30"
+                  className="cta-shine mt-5 w-full py-3.5 px-5 rounded-full bg-[#BD6B4D] hover:bg-[#9e5033] text-white font-extrabold text-sm sm:text-base shadow-cta hover:shadow-cta-hover flex items-center justify-center gap-2 transition-all hover:scale-102 ring-2 ring-[#BD6B4D]/30"
                 >
                   <MessageCircle className="w-5 h-5 text-white" />
                   <span>Gửi Cấu Hình Qua Zalo Lên Mẫu</span>
