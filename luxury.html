@@ -53,7 +53,7 @@
           },
           animation: {
             'marquee-craft': 'marqueeCraft 25s linear infinite',
-            'marquee-photos': 'marqueePhotos 38s linear infinite',
+            'marquee-photos': 'marqueePhotos 65s linear infinite',
             'pulse-glow': 'pulseGlow 2.5s infinite',
           },
           keyframes: {
@@ -386,16 +386,46 @@
     // 2. HERO SECTION — BOUTIQUE COMMERCE HEADLINE & SPOTLIGHT
     // =========================================================================
     const HeroSection = ({ onOpenCustomizer, onOpenSize }) => {
-      const [heroBox, setHeroBox] = useState('to');
+      const [heroBox, setHeroBox] = useState('nhom'); // 'nhom' | 'to' | 'be'
 
       const craftItems = [
         "100% Gói Ghém Thủ Công Tỉ Mỉ",
+        "Bộ 4 Box Quà Kỷ Niệm Hoàn Thiện",
         "Size To 25x20cm • Size Bé 20x15cm",
         "Thiệp Gấu & Thiệp Trái Tim 11x14cm",
         "In Ảnh Polaroid 5x7cm Sắc Nét",
         "Cặp Móc Khóa Mèo Bông Đôi",
         "Hỏa Tốc Hà Nội 2H & Toàn Quốc 2-3 Ngày"
       ];
+
+      const heroSpotlight = {
+        nhom: {
+          tag: 'BỘ 4 BOX QUÀ • ẢNH CHỤP THỰC TẾ',
+          badge: 'SET QUÀ KỶ NIỆM',
+          img: 'Images/4%20box.JPG',
+          sub: '4 Box hoàn thiện: Mèo đôi, thiệp, lược pastel & phụ kiện',
+          btnText: 'Xem Tất Cả 8 Mẫu Hộp Quà',
+          action: () => onOpenSize('large'),
+        },
+        to: {
+          tag: 'BOX TO • 25x20 CM • 2 MÈO ĐÔI',
+          badge: '8 ẢNH POLAROID',
+          img: 'Images/box%20h%E1%BB%93ng.jpg',
+          sub: 'Kèm Heart Card, Cặp mèo bông đôi, Gương & Lược pastel',
+          btnText: 'Khám Phá Chi Tiết Box To',
+          action: () => onOpenSize('large'),
+        },
+        be: {
+          tag: 'BOX BÉ • 20x15 CM • 1 MÈO BÔNG',
+          badge: '3 ẢNH POLAROID',
+          img: 'Images/box%20xanh.jpg',
+          sub: 'Kèm Bear Card, 1 Mèo bông xù trắng & Lược pastel mini',
+          btnText: 'Khám Phá Chi Tiết Box Bé',
+          action: () => onOpenSize('small'),
+        },
+      };
+
+      const curHero = heroSpotlight[heroBox] || heroSpotlight.nhom;
 
       return (
         <section className="relative w-full overflow-hidden bg-[#FAF7F2] py-8 md:py-12">
@@ -480,73 +510,84 @@
                   </div>
                 </div>
 
-                {/* Right Column (5 cols): Spotlight Showcase with Size Toggles */}
+                {/* Right Column (5 cols): Spotlight Showcase with 3 Toggles (Nhóm 4 Box, Box To, Box Bé) */}
                 <div className="lg:col-span-5 flex flex-col items-center">
                   <div className="w-full max-w-md bg-white rounded-3xl p-5 shadow-2xl border-2 border-[#BD6B4D]/30 relative">
                     
-                    {/* Top Switcher: Size To (25x20) vs Size Bé (20x15) */}
-                    <div className="flex items-center justify-between pb-3.5 mb-3.5 border-b border-[#2C1E1A]/10">
-                      <div className="flex gap-2 p-1 bg-[#FAF7F2] rounded-full border border-[#2C1E1A]/10">
+                    {/* Top Switcher: Nhóm 4 Box vs Box To vs Box Bé */}
+                    <div className="flex items-center justify-between pb-3.5 mb-3.5 border-b border-[#2C1E1A]/10 gap-2">
+                      <div className="flex gap-1 sm:gap-1.5 p-1 bg-[#FAF7F2] rounded-full border border-[#2C1E1A]/10 overflow-x-auto">
+                        <button
+                          type="button"
+                          onClick={() => setHeroBox('nhom')}
+                          className={`px-3 sm:px-3.5 py-1.5 rounded-full text-xs font-bold transition-all whitespace-nowrap ${
+                            heroBox === 'nhom'
+                              ? 'bg-[#BD6B4D] text-white shadow-sm scale-102'
+                              : 'text-[#2C1E1A]/70 hover:text-[#BD6B4D]'
+                          }`}
+                        >
+                          Nhóm 4 Box
+                        </button>
                         <button
                           type="button"
                           onClick={() => setHeroBox('to')}
-                          className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all ${
+                          className={`px-3 sm:px-3.5 py-1.5 rounded-full text-xs font-bold transition-all whitespace-nowrap ${
                             heroBox === 'to'
                               ? 'bg-[#BD6B4D] text-white shadow-sm scale-102'
                               : 'text-[#2C1E1A]/70 hover:text-[#BD6B4D]'
                           }`}
                         >
-                          Size To (25x20cm)
+                          Box To (25x20)
                         </button>
                         <button
                           type="button"
                           onClick={() => setHeroBox('be')}
-                          className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all ${
+                          className={`px-3 sm:px-3.5 py-1.5 rounded-full text-xs font-bold transition-all whitespace-nowrap ${
                             heroBox === 'be'
                               ? 'bg-[#BD6B4D] text-white shadow-sm scale-102'
                               : 'text-[#2C1E1A]/70 hover:text-[#BD6B4D]'
                           }`}
                         >
-                          Size Bé (20x15cm)
+                          Box Bé (20x15)
                         </button>
                       </div>
 
-                      <span className="text-xs font-extrabold text-[#BD6B4D] bg-[#F4DCD1] px-3 py-1 rounded-full">
-                        {heroBox === 'to' ? '8 ẢNH' : '3 ẢNH'}
+                      <span className="text-[11px] font-extrabold text-[#BD6B4D] bg-[#F4DCD1] px-2.5 py-1 rounded-full shrink-0">
+                        {curHero.badge}
                       </span>
                     </div>
 
                     {/* Uncropped, Crystal Clear Giftbox Photo */}
                     <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-[#FAF7F2] border border-[#2C1E1A]/10 shadow-inner group/img">
                       <img
-                        src={heroBox === 'to' ? 'Images/tr%C6%B0%E1%BB%9Bc%202%20(5).png' : 'Images/tr%C6%B0%E1%BB%9Bc%202%20(6).png'}
-                        alt={heroBox === 'to' ? 'Combo Box To 25x20cm' : 'Combo Box Bé 20x15cm'}
+                        src={curHero.img}
+                        alt={curHero.tag}
                         className="w-full h-full object-cover transition-transform duration-500 group-hover/img:scale-105"
                       />
 
-                      <div className="absolute top-3 left-3 bg-[#2C1E1A]/90 backdrop-blur-md px-3 py-1 rounded-full text-[11px] font-bold text-[#F4DCD1]">
-                        {heroBox === 'to' ? 'BOX TO • 25x20 CM • 2 MÈO ĐÔI' : 'BOX BÉ • 20x15 CM • 1 MÈO BÔNG'}
+                      <div className="absolute top-3 left-3 bg-[#2C1E1A]/90 backdrop-blur-md px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-bold text-[#F4DCD1]">
+                        {curHero.tag}
                       </div>
                     </div>
 
                     {/* Box specs & CTA */}
                     <div className="mt-4 pt-3.5 border-t border-[#2C1E1A]/10 space-y-3">
                       <div className="flex items-center justify-between text-xs text-[#2C1E1A]/85">
-                        <div className="flex items-center gap-1.5 font-semibold">
-                          <Sparkles className="w-4 h-4 text-[#BD6B4D]" />
-                          <span>{heroBox === 'to' ? 'Kèm Heart Card, Gương & Lược' : 'Kèm Bear Card & Lược pastel'}</span>
+                        <div className="flex items-center gap-1.5 font-semibold text-[11px] sm:text-xs">
+                          <Sparkles className="w-3.5 h-3.5 text-[#BD6B4D] shrink-0" />
+                          <span className="truncate">{curHero.sub}</span>
                         </div>
-                        <span className="font-bold text-emerald-800 bg-emerald-100 px-2.5 py-0.5 rounded-full">
-                          ✓ Duyệt trước demo Zalo
+                        <span className="font-bold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-full shrink-0 text-[10px]">
+                          ✓ Duyệt demo Zalo
                         </span>
                       </div>
 
                       <button
                         type="button"
-                        onClick={() => onOpenSize(heroBox === 'to' ? 'large' : 'small')}
+                        onClick={curHero.action}
                         className="w-full py-3 px-5 rounded-full bg-[#2C1E1A] hover:bg-[#BD6B4D] text-white font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2 group/btn"
                       >
-                        <span>Xem Chi Tiết {heroBox === 'to' ? 'Box To (25x20)' : 'Box Bé (20x15)'}</span>
+                        <span>{curHero.btnText}</span>
                         <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
                       </button>
                     </div>
@@ -846,9 +887,26 @@
 
     // =========================================================================
     // 4. SẢN PHẨM MỚI BÁN LẺ: THIỆP CÁ NHÂN HÓA (Mô tả chuẩn TikTok Shop)
-    // 2 Mặt hàng: Thiệp Trái Tim & Thiệp Chú Gấu
+    // 2 Mặt hàng: Thiệp Trái Tim & Thiệp Chú Gấu (Kèm xem ảnh thực tế phong phú)
     // =========================================================================
     const CardsSection = ({ onOpenCustomizerWithType }) => {
+      const bearImages = [
+        'Images/788452642_1397073875840615_3395007793016246134_n.jpg',
+        'Images/790930395_1568126858402096_2704263053433922885_n.jpg',
+        'Images/814660178_1631551601966983_2446902117944062335_n.jpg',
+        'Images/tr%C6%B0%E1%BB%9Bc%202%20(6).png',
+      ];
+      const [currentBearImg, setCurrentBearImg] = useState(0);
+
+      const heartImages = [
+        'Images/2.png',
+        'Images/4.png',
+        'Images/1.png',
+        'Images/3.png',
+        'Images/tr%C6%B0%E1%BB%9Bc%202%20(2).png',
+      ];
+      const [currentHeartImg, setCurrentHeartImg] = useState(0);
+
       return (
         <section id="cards" className="bg-[#FAF7F2] px-6 py-20 border-t border-[#2C1E1A]/10">
           <div className="max-w-[88rem] mx-auto">
@@ -872,15 +930,34 @@
               {/* SẢN PHẨM 1: THIỆP CHÚ GẤU (Bear Card) */}
               <div className="bg-white rounded-3xl p-7 sm:p-9 border-2 border-[#2C1E1A]/10 hover:border-[#BD6B4D] shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between">
                 <div>
-                  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-[#FAF7F2] border border-[#2C1E1A]/10 mb-6 group">
+                  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-[#FAF7F2] border border-[#2C1E1A]/10 mb-4 group">
                     <img
-                      src="Images/tr%C6%B0%E1%BB%9Bc%202%20(6).png"
+                      src={bearImages[currentBearImg]}
                       alt="Thiệp Chú Gấu Bear Card"
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute top-3 left-3 bg-[#BD6B4D] text-white text-xs font-extrabold px-3.5 py-1.5 rounded-full shadow-md">
                       THIỆP GẤU • SIZE 11 x 14 CM
                     </div>
+                  </div>
+
+                  {/* Danh sách ảnh mẫu thiệp gấu */}
+                  <div className="flex items-center gap-2 mb-6 overflow-x-auto pb-1">
+                    {bearImages.map((img, idx) => (
+                      <button
+                        key={idx}
+                        type="button"
+                        onClick={() => setCurrentBearImg(idx)}
+                        className={`w-14 h-14 rounded-xl overflow-hidden border-2 shrink-0 transition-all ${
+                          currentBearImg === idx
+                            ? 'border-[#BD6B4D] ring-2 ring-[#BD6B4D]/30 scale-105'
+                            : 'border-transparent opacity-70 hover:opacity-100'
+                        }`}
+                      >
+                        <img src={img} alt="Mẫu thiệp gấu" className="w-full h-full object-cover" />
+                      </button>
+                    ))}
+                    <span className="text-[11px] text-[#2C1E1A]/60 ml-2 font-medium shrink-0">Bấm xem ảnh</span>
                   </div>
 
                   <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#2C1E1A] mb-2">
@@ -913,7 +990,7 @@
                 <div className="mt-8 pt-6 border-t border-[#2C1E1A]/10 flex flex-col sm:flex-row items-center justify-between gap-4">
                   <div>
                     <div className="text-xs text-[#2C1E1A]/60 font-semibold">Tùy biến theo yêu cầu</div>
-                    <div className="text-xl font-serif font-bold text-[#BD6B4D]">Liên hệ đặt riêng</div>
+                    <div className="text-xl font-serif font-bold text-[#BD6B4D]">In ảnh & lời nhắn riêng</div>
                   </div>
 
                   <button
@@ -930,15 +1007,34 @@
               {/* SẢN PHẨM 2: THIỆP TRÁI TIM (Heart Card) */}
               <div className="bg-white rounded-3xl p-7 sm:p-9 border-2 border-[#2C1E1A]/10 hover:border-[#BD6B4D] shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between">
                 <div>
-                  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-[#FAF7F2] border border-[#2C1E1A]/10 mb-6 group">
+                  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-[#FAF7F2] border border-[#2C1E1A]/10 mb-4 group">
                     <img
-                      src="Images/tr%C6%B0%E1%BB%9Bc%202%20(2).png"
+                      src={heartImages[currentHeartImg]}
                       alt="Thiệp Trái Tim Heart Card"
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute top-3 left-3 bg-[#BD6B4D] text-white text-xs font-extrabold px-3.5 py-1.5 rounded-full shadow-md">
                       THIỆP TRÁI TIM • SIZE 11 x 14 CM
                     </div>
+                  </div>
+
+                  {/* Danh sách ảnh mẫu thiệp tim */}
+                  <div className="flex items-center gap-2 mb-6 overflow-x-auto pb-1">
+                    {heartImages.map((img, idx) => (
+                      <button
+                        key={idx}
+                        type="button"
+                        onClick={() => setCurrentHeartImg(idx)}
+                        className={`w-14 h-14 rounded-xl overflow-hidden border-2 shrink-0 transition-all ${
+                          currentHeartImg === idx
+                            ? 'border-[#BD6B4D] ring-2 ring-[#BD6B4D]/30 scale-105'
+                            : 'border-transparent opacity-70 hover:opacity-100'
+                        }`}
+                      >
+                        <img src={img} alt="Mẫu thiệp tim" className="w-full h-full object-cover" />
+                      </button>
+                    ))}
+                    <span className="text-[11px] text-[#2C1E1A]/60 ml-2 font-medium shrink-0">Bấm xem ảnh</span>
                   </div>
 
                   <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#2C1E1A] mb-2">
@@ -971,7 +1067,7 @@
                 <div className="mt-8 pt-6 border-t border-[#2C1E1A]/10 flex flex-col sm:flex-row items-center justify-between gap-4">
                   <div>
                     <div className="text-xs text-[#2C1E1A]/60 font-semibold">Tùy biến theo yêu cầu</div>
-                    <div className="text-xl font-serif font-bold text-[#BD6B4D]">Liên hệ đặt riêng</div>
+                    <div className="text-xl font-serif font-bold text-[#BD6B4D]">In ảnh & dán theo ý</div>
                   </div>
 
                   <button
@@ -1360,20 +1456,42 @@
 
     // =========================================================================
     // 9. PHOTO MARQUEE & FEEDBACK
+    // Toàn bộ ảnh thực tế, ưu tiên ảnh chụp nhóm sản phẩm, thiệp tim, thiệp gấu
     // =========================================================================
     const PhotoMarqueeSection = ({ onSelectImage }) => {
       const carouselPhotos = [
-        { src: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(2).png', title: 'Box To 25x20cm • Bi Đỏ', desc: 'Heart Card 8 ảnh' },
-        { src: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(3).png', title: 'Box To 25x20cm • Xanh Baby', desc: 'Heart Card 8 ảnh' },
-        { src: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(4).png', title: 'Box To 25x20cm • Hồng Sao', desc: 'Heart Card 8 ảnh' },
-        { src: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(5).png', title: 'Box To 25x20cm • Đen Cổ Điển', desc: 'Heart Card 8 ảnh' },
-        { src: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(6).png', title: 'Box Bé 20x15cm • Bi Đỏ', desc: 'Bear Card 3 ảnh' },
-        { src: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(7).png', title: 'Box Bé 20x15cm • Xanh Baby', desc: 'Bear Card 3 ảnh' },
-        { src: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(8).png', title: 'Box Bé 20x15cm • Hồng Sao', desc: 'Bear Card 3 ảnh' },
-        { src: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(9).png', title: 'Box Bé 20x15cm • Đen Cổ Điển', desc: 'Bear Card 3 ảnh' },
-        { src: 'Images/788452642_1397073875840615_3395007793016246134_n.jpg', title: 'Feedback Khách Hàng', desc: 'Mở hộp thực tế' },
-        { src: 'Images/790930395_1568126858402096_2704263053433922885_n.jpg', title: 'Feedback Khách Hàng', desc: 'Set quà hoàn thiện' },
-        { src: 'Images/%E1%BA%A2nh%20m%E1%BA%ABu%20sp.jpg', title: 'Chi Tiết Phụ Kiện', desc: 'Mèo xù & Lược pastel' },
+        // Nhóm 1: Ưu tiên ảnh chụp nhóm sản phẩm & thực tế
+        { src: 'Images/4%20box.JPG', title: 'Bộ 4 Box Quà Kỷ Niệm', desc: 'Ảnh chụp nhóm 4 hộp hoàn thiện' },
+        { src: 'Images/%E1%BA%A2nh%20m%E1%BA%ABu%20sp.jpg', title: 'Set Quà & Phụ Kiện', desc: 'Mèo bông, gương & lược pastel' },
+        { src: 'Images/box%20h%E1%BB%93ng.jpg', title: 'Box Hồng Pastel Ngọt Ngào', desc: 'Tone hồng tiểu thư mộng mơ' },
+        { src: 'Images/box%20xanh.jpg', title: 'Box Xanh Baby Thanh Lịch', desc: 'Tone pastel nhẹ nhàng tinh tế' },
+        { src: 'Images/IMG_1771.JPG', title: 'Góc Chụp Thực Tế Set Quà', desc: 'Đóng gói thủ công tỉ mỉ' },
+        { src: 'Images/IMG_1774.JPG', title: 'Chi Tiết Hộp Quà Trao Tay', desc: 'Từng món quà đong đầy cảm xúc' },
+        
+        // Nhóm 2: Ảnh các mẫu thiệp trái tim (Heart Card)
+        { src: 'Images/2.png', title: 'Thiệp Trái Tim Độc Bản', desc: 'Heart Card dán Polaroid 5x7cm' },
+        { src: 'Images/4.png', title: 'Thiệp Trái Tim Kỷ Niệm', desc: 'Thiết kế mở gập độc đáo' },
+        { src: 'Images/1.png', title: 'Mẫu Box Bi Đỏ Burgundy', desc: 'Thiệp tim & phụ kiện đôi' },
+        { src: 'Images/3.png', title: 'Mẫu Box Hồng Sao Vintage', desc: 'Thiệp tim & phụ kiện đôi' },
+
+        // Nhóm 3: Ảnh các mẫu thiệp chú gấu (Bear Card) & Feedback
+        { src: 'Images/788452642_1397073875840615_3395007793016246134_n.jpg', title: 'Thiệp Chú Gấu Bear Card', desc: 'Thiệp gấu ôm ảnh mini cưng xỉu' },
+        { src: 'Images/790930395_1568126858402096_2704263053433922885_n.jpg', title: 'Set Thiệp Gấu Hoàn Thiện', desc: 'Bao thư mỹ thuật trao tay' },
+        { src: 'Images/814660178_1631551601966983_2446902117944062335_n.jpg', title: 'Feedback Mở Hộp Quà', desc: 'Niềm vui của người thương' },
+        { src: 'Images/7.png', title: 'Mẫu Box Bé Bi Đỏ', desc: 'Bear Card & mèo xù trắng' },
+        { src: 'Images/9.png', title: 'Mẫu Box Bé Hồng Sao', desc: 'Bear Card & mèo xù trắng' },
+
+        // Nhóm 4: Các mẫu Box To 25x20cm & Box Bé 20x15cm
+        { src: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(2).png', title: 'Box To 25x20cm • Bi Đỏ', desc: 'Heart Card 8 ảnh & 2 mèo đôi' },
+        { src: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(3).png', title: 'Box To 25x20cm • Xanh Baby', desc: 'Heart Card 8 ảnh & 2 mèo đôi' },
+        { src: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(4).png', title: 'Box To 25x20cm • Hồng Sao', desc: 'Heart Card 8 ảnh & 2 mèo đôi' },
+        { src: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(5).png', title: 'Box To 25x20cm • Đen Cổ Điển', desc: 'Heart Card 8 ảnh & 2 mèo đôi' },
+        { src: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(6).png', title: 'Box Bé 20x15cm • Bi Đỏ', desc: 'Bear Card 3 ảnh & mèo xù' },
+        { src: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(7).png', title: 'Box Bé 20x15cm • Xanh Baby', desc: 'Bear Card 3 ảnh & mèo xù' },
+        { src: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(8).png', title: 'Box Bé 20x15cm • Hồng Sao', desc: 'Bear Card 3 ảnh & mèo xù' },
+        { src: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(9).png', title: 'Box Bé 20x15cm • Đen Cổ Điển', desc: 'Bear Card 3 ảnh & mèo xù' },
+        { src: 'Images/32.png', title: 'Phụ Kiện Handmade', desc: 'Lược pastel & kẹp nơ' },
+        { src: 'Images/sau%201.png', title: 'Bao Thư Trang Trọng', desc: 'Chỉn chu từng chi tiết' },
       ];
 
       return (
