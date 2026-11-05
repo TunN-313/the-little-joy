@@ -1146,7 +1146,7 @@
                       onChange={(e) => setMessage(e.target.value)}
                       className="w-full px-4 py-2.5 rounded-xl border border-[#2C1E1A]/20 bg-white text-[#2C1E1A] text-sm focus:outline-none focus:ring-2 focus:ring-[#BD6B4D]"
                       placeholder="Nhập lời chúc đong đầy yêu thương của bạn..."
-                    />
+                    ></textarea>
                   </div>
                 </div>
 
@@ -1402,6 +1402,14 @@
         setCustomizerOpen(true);
       };
 
+      const handleOpenLarge = () => {
+        handleOpenCustomizer('large');
+      };
+
+      const handleCloseCustomizer = () => {
+        setCustomizerOpen(false);
+      };
+
       return (
         <div className="flex flex-col bg-[#FAF7F2] text-[#2C1E1A] min-h-screen">
           {/* Top Announcement Bar */}
@@ -1410,13 +1418,13 @@
           </div>
 
           {/* 1. Hero & Navbar */}
-          <HeroSection onOpenCustomizer={() => handleOpenCustomizer('large')} />
+          <HeroSection onOpenCustomizer={handleOpenLarge} />
 
           {/* 2. InfoSection (Bento Grid tinh tế, ảnh sáng, thiệp trái tim, ảnh polaroid) */}
-          <InfoSection onOpenCustomizer={() => handleOpenCustomizer('large')} />
+          <InfoSection onOpenCustomizer={handleOpenLarge} />
 
           {/* 3. Photo Carousel Marquee (Ảnh chuyển động, hover dừng & phóng to) */}
-          <PhotoMarqueeSection onSelectImage={() => handleOpenCustomizer('large')} />
+          <PhotoMarqueeSection onSelectImage={handleOpenLarge} />
 
           {/* 4. Bộ sưu tập 8 mẫu thực tế (4 Box To + 4 Box Bé, không che khuất) */}
           <ProductModelsSection onOpenCustomizerWithModel={handleOpenCustomizerWithModel} />
@@ -1425,12 +1433,12 @@
           <TestimonialsSection />
 
           {/* 6. Footer mộc mạc với lời tri ân Founder tại Hà Nội */}
-          <Footer onOpenCustomizer={() => handleOpenCustomizer('large')} />
+          <Footer onOpenCustomizer={handleOpenLarge} />
 
           {/* Customizer Modal */}
           <CustomizerModal
             isOpen={customizerOpen}
-            onClose={() => setCustomizerOpen(false)}
+            onClose={handleCloseCustomizer}
             initialType={selectedBoxType}
             preselectedModel={preselectedModel}
           />
