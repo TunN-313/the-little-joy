@@ -25,5 +25,4 @@ build/
 .env
 .env.local
 
-# Local Media & Raw Assets (Ignored from GitHub repository)
-Images/
+

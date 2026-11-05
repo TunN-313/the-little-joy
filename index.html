@@ -106,7 +106,8 @@
       top: -12px;
       left: 50%;
       margin-left: -45px;
-      backdrop-blur: 2px;
+      -webkit-backdrop-filter: blur(2px);
+      backdrop-filter: blur(2px);
       box-shadow: 0 2px 5px rgba(0,0,0,0.05);
       z-index: 20;
     }
@@ -118,9 +119,13 @@
   <!-- ========================================== -->
   <!-- TOP ANNOUNCEMENT BAR                       -->
   <!-- ========================================== -->
-  <div class="bg-secondary/70 text-text-main text-xs sm:text-sm py-2 px-4 text-center border-b border-primary/20 flex items-center justify-center gap-2 font-medium">
+  <div class="bg-secondary/70 text-text-main text-xs sm:text-sm py-2 px-4 text-center border-b border-primary/20 flex flex-wrap items-center justify-center gap-2 font-medium">
     <span>🧸</span>
     <span><strong>The Little Joy (EST. 2026):</strong> Tặng kèm in ảnh Polaroid & hỗ trợ gửi bản demo thiệp duyệt qua Zalo trước khi giao!</span>
+    <a href="luxury.html" class="inline-flex items-center gap-1 text-primary hover:text-primary-hover font-bold ml-1 bg-surface/70 px-2.5 py-0.5 rounded-full border border-primary/20">
+      <span>✨ Khám phá giao diện Luxury Boutique mới</span>
+      <span>&rarr;</span>
+    </a>
   </div>
 
   <!-- ========================================== -->
