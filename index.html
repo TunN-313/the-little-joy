@@ -1,0 +1,2372 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Little Joy — Hộp Quà & Thiệp Cá Nhân Hóa | Made from little moments, made for someone special</title>
+  <meta name="description"
+    content="The Little Joy: Hộp quà cá nhân hóa đong đầy yêu thương tại Hà Nội. Box to 25x20cm, Box bé 20x15cm, thiệp chú gấu và thiệp trái tim kèm ảnh Polaroid 5x7cm. Duyệt bản demo trước khi in!">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="Images/LOGO.png">
+
+  <!-- Google Fonts: Playfair Display + Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&display=swap"
+    rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            alabaster: '#FAF7F2',
+            terracotta: {
+              DEFAULT: '#BD6B4D',
+              dark: '#9e5033',
+              light: '#d68366',
+              glow: '#e07954',
+            },
+            blush: {
+              DEFAULT: '#F4DCD1',
+              soft: '#fdf6f2',
+            },
+            espresso: {
+              DEFAULT: '#2C1E1A',
+              card: '#221613',
+              light: '#3f2c27',
+            },
+            gold: {
+              DEFAULT: '#D4AF37',
+              wax: '#c79f2d',
+              light: '#f5e8b5',
+            }
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+          },
+          boxShadow: {
+            'cta': '0 10px 25px -3px rgba(189, 107, 77, 0.4), 0 4px 6px -2px rgba(189, 107, 77, 0.2)',
+            'cta-hover': '0 20px 30px -4px rgba(189, 107, 77, 0.5), 0 8px 10px -3px rgba(189, 107, 77, 0.3)',
+          },
+          animation: {
+            'marquee-craft': 'marqueeCraft 25s linear infinite',
+            'marquee-photos': 'marqueePhotos 65s linear infinite',
+            'pulse-glow': 'pulseGlow 2.5s infinite',
+          },
+          keyframes: {
+            marqueeCraft: {
+              '0%': { transform: 'translateX(0%)' },
+              '100%': { transform: 'translateX(-50%)' },
+            },
+            marqueePhotos: {
+              '0%': { transform: 'translateX(0%)' },
+              '100%': { transform: 'translateX(-50%)' },
+            },
+            pulseGlow: {
+              '0%, 100%': { transform: 'scale(1)', opacity: '1' },
+              '50%': { transform: 'scale(1.03)', opacity: '0.95' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- React 18 & ReactDOM -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <!-- Babel Standalone for JSX in browser -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    body {
+      background-color: #FAF7F2;
+      color: #2C1E1A;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+    }
+
+    ::selection {
+      background-color: #F4DCD1;
+      color: #2C1E1A;
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #FAF7F2;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #BD6B4D;
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #9e5033;
+    }
+
+    .pause-on-hover:hover .marquee-track {
+      animation-play-state: paused !important;
+    }
+
+    /* Hiệu ứng tia sáng quét nhẹ qua nút CTA */
+    .cta-shine {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-shine::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -60%;
+      width: 40%;
+      height: 200%;
+      background: linear-gradient(to right,
+          rgba(255, 255, 255, 0) 0%,
+          rgba(255, 255, 255, 0.35) 50%,
+          rgba(255, 255, 255, 0) 100%);
+      transform: rotate(25deg);
+      animation: shineLoop 4s infinite ease-in-out;
+    }
+
+    @keyframes shineLoop {
+      0% {
+        left: -60%;
+      }
+
+      30%,
+      100% {
+        left: 140%;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-[#FAF7F2] text-[#2C1E1A] antialiased selection:bg-[#F4DCD1] selection:text-[#2C1E1A] pb-16 md:pb-0">
+  <div id="root"></div>
+
+  <!-- React Application -->
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+
+    // =========================================================================
+    // ICONS (SVG geometry matching lucide-react)
+    // =========================================================================
+    const ArrowRight = ({ className = "w-5 h-5", ...props }) => (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className={className} {...props}>
+        <path d="M5 12h14M12 5l7 7-7 7" />
+      </svg>
+    );
+
+    const Heart = ({ className = "w-5 h-5", ...props }) => (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} {...props}>
+        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+      </svg>
+    );
+
+    const Sparkles = ({ className = "w-5 h-5", ...props }) => (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} {...props}>
+        <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
+        <path d="M5 3v4M3 5h4M19 17v4M17 19h4" />
+      </svg>
+    );
+
+    const Check = ({ className = "w-4 h-4", ...props }) => (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={className} {...props}>
+        <path d="M20 6 9 17l-5-5" />
+      </svg>
+    );
+
+    const Star = ({ className = "w-4 h-4", ...props }) => (
+      <svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="1" className={className} {...props}>
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+      </svg>
+    );
+
+    const Camera = ({ className = "w-5 h-5", ...props }) => (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} {...props}>
+        <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" />
+        <circle cx="12" cy="13" r="3" />
+      </svg>
+    );
+
+    const MessageCircle = ({ className = "w-5 h-5", ...props }) => (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} {...props}>
+        <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
+      </svg>
+    );
+
+    const X = ({ className = "w-5 h-5", ...props }) => (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} {...props}>
+        <path d="M18 6 6 18M6 6l12 12" />
+      </svg>
+    );
+
+    const Menu = ({ className = "w-6 h-6", ...props }) => (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} {...props}>
+        <line x1="4" x2="20" y1="12" y2="12" />
+        <line x1="4" x2="20" y1="6" y2="6" />
+        <line x1="4" x2="20" y1="18" y2="18" />
+      </svg>
+    );
+
+    const Eye = ({ className = "w-5 h-5", ...props }) => (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} {...props}>
+        <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
+        <circle cx="12" cy="12" r="3" />
+      </svg>
+    );
+
+    const Truck = ({ className = "w-5 h-5", ...props }) => (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} {...props}>
+        <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2" />
+        <path d="M15 18H9" />
+        <path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 17.52 8H14v10Z" />
+        <circle cx="17" cy="18" r="2" />
+        <circle cx="7" cy="18" r="2" />
+      </svg>
+    );
+
+    const ShieldCheck = ({ className = "w-5 h-5", ...props }) => (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} {...props}>
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
+        <path d="m9 12 2 2 4-4" />
+      </svg>
+    );
+
+    const ShoppingBag = ({ className = "w-5 h-5", ...props }) => (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} {...props}>
+        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" />
+        <path d="M3 6h18" />
+        <path d="M16 10a4 4 0 0 1-8 0" />
+      </svg>
+    );
+
+    const ExternalLink = ({ className = "w-4 h-4", ...props }) => (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} {...props}>
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+        <polyline points="15 3 21 3 21 9" />
+        <line x1="10" x2="21" y1="14" y2="3" />
+      </svg>
+    );
+
+    // =========================================================================
+    // 1. TOP ANNOUNCEMENT & NAVBAR
+    // =========================================================================
+    const Navbar = ({ onOpenCustomizer }) => {
+      const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+      return (
+        <header className="sticky top-0 z-40 bg-[#FAF7F2]/95 backdrop-blur-md border-b border-[#2C1E1A]/10 transition-all">
+          {/* Top Announcement Bar */}
+          <div className="bg-[#2C1E1A] text-white text-[11px] sm:text-xs py-2 px-4 text-center flex flex-wrap items-center justify-center gap-2 font-medium">
+            <span>🧸 <strong>The Little Joy (Hà Nội):</strong> Tặng kèm in ảnh Polaroid & hỗ trợ gửi bản demo thiệp duyệt qua Zalo trước khi giao!</span>
+            <span className="hidden md:inline text-[#D4AF37]">•</span>
+            <span className="hidden md:inline text-[#F4DCD1]">Giao hàng nhanh chóng trong 24h</span>
+          </div>
+
+          <div className="max-w-[88rem] mx-auto px-6 py-4 flex items-center justify-between">
+            {/* Logo + Slogan */}
+            <a href="#" className="flex items-center gap-3.5 group">
+              <div className="w-11 h-11 rounded-full overflow-hidden border-2 border-[#BD6B4D] shadow-sm transition-transform duration-300 group-hover:scale-105 bg-white flex-shrink-0">
+                <img
+                  src="Images/LOGO.png"
+                  alt="The Little Joy Logo"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="flex flex-col">
+                <span className="font-serif text-2xl md:text-[26px] font-bold tracking-tight text-[#2C1E1A] leading-tight">
+                  The Little Joy
+                </span>
+                <span className="text-[11px] text-[#BD6B4D] font-semibold tracking-tight -mt-0.5 hidden sm:block">
+                  Made from little moments, made for someone special
+                </span>
+              </div>
+            </a>
+
+            {/* Navigation Menu */}
+            <nav className="hidden lg:flex items-center gap-7 text-sm font-semibold text-[#2C1E1A]/85">
+              <a href="#boxes" className="hover:text-[#BD6B4D] transition-colors">
+                Hộp Quà Cá Nhân Hóa
+              </a>
+              <a href="#cards" className="hover:text-[#BD6B4D] transition-colors">
+                Thiệp Cá Nhân Hóa
+              </a>
+              <a href="#unique" className="hover:text-[#BD6B4D] transition-colors">
+                Ý Nghĩa & Điểm Đặc Biệt
+              </a>
+              <a href="#how-to-order" className="hover:text-[#BD6B4D] transition-colors">
+                Cách Đặt Hàng & Sỉ Lẻ
+              </a>
+              <a href="#shipping" className="hover:text-[#BD6B4D] transition-colors">
+                Giao Hàng & Đổi Trả
+              </a>
+              <a href="#social" className="hover:text-[#BD6B4D] transition-colors">
+                Kênh Shop
+              </a>
+            </nav>
+
+            {/* Right Buttons: SUPER PROMINENT CTA */}
+            <div className="flex items-center gap-3">
+              <button
+                type="button"
+                onClick={onOpenCustomizer}
+                className="cta-shine inline-flex items-center gap-2 bg-[#BD6B4D] hover:bg-[#9e5033] text-white text-sm sm:text-base font-bold px-6 sm:px-7 py-2.5 sm:py-3 rounded-full shadow-cta hover:shadow-cta-hover hover:scale-105 active:scale-95 transition-all duration-300 ring-2 ring-[#BD6B4D]/30"
+              >
+                <Sparkles className="w-4 h-4 text-white animate-spin" style={{ animationDuration: '4s' }} />
+                <span>Tự Phối Quà Ngay</span>
+              </button>
+
+              {/* Mobile Menu Toggle */}
+              <button
+                type="button"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="lg:hidden p-2.5 rounded-full bg-white border border-[#2C1E1A]/10 text-[#2C1E1A]"
+                aria-label="Menu"
+              >
+                {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              </button>
+            </div>
+          </div>
+
+          {/* Mobile Dropdown */}
+          {mobileMenuOpen && (
+            <div className="lg:hidden px-6 pb-6 bg-[#FAF7F2] border-t border-[#2C1E1A]/10 flex flex-col gap-3 text-center">
+              <a href="#boxes" onClick={() => setMobileMenuOpen(false)} className="py-2 text-base font-semibold text-[#2C1E1A] hover:text-[#BD6B4D]">
+                Hộp Quà (Size To & Bé)
+              </a>
+              <a href="#cards" onClick={() => setMobileMenuOpen(false)} className="py-2 text-base font-semibold text-[#2C1E1A] hover:text-[#BD6B4D]">
+                Thiệp Cá Nhân Hóa (Bán Lẻ)
+              </a>
+              <a href="#unique" onClick={() => setMobileMenuOpen(false)} className="py-2 text-base font-semibold text-[#2C1E1A] hover:text-[#BD6B4D]">
+                Ý Nghĩa & Điểm Unique
+              </a>
+              <a href="#how-to-order" onClick={() => setMobileMenuOpen(false)} className="py-2 text-base font-semibold text-[#2C1E1A] hover:text-[#BD6B4D]">
+                Cách Đặt Hàng & Sỉ Lẻ
+              </a>
+              <a href="#shipping" onClick={() => setMobileMenuOpen(false)} className="py-2 text-base font-semibold text-[#2C1E1A] hover:text-[#BD6B4D]">
+                Giao Hàng & Đổi Trả 48H
+              </a>
+              <div className="pt-2 flex flex-col gap-2">
+                <button
+                  type="button"
+                  onClick={() => { setMobileMenuOpen(false); onOpenCustomizer(); }}
+                  className="w-full py-3 rounded-full bg-[#BD6B4D] text-white font-bold text-sm shadow-md"
+                >
+                  Tự Phối Quà Ngay
+                </button>
+                <a
+                  href="https://www.tiktok.com/@the.little.joy.26?lang=vi-VN"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-2.5 rounded-full bg-black text-white font-bold text-xs flex items-center justify-center gap-1.5"
+                >
+                  <span>Xem Shop Trên TikTok</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              </div>
+            </div>
+          )}
+        </header>
+      );
+    };
+
+    // =========================================================================
+    // 2. HERO SECTION — BOUTIQUE COMMERCE HEADLINE & AUTO-RANDOM PHOTO SHOWCASE
+    // =========================================================================
+    const HeroSection = ({ onOpenCustomizer, onOpenSize }) => {
+      // Toàn bộ ảnh sản phẩm thực tế trong thư mục Images
+      const allHeroImages = [
+        'Images/4%20box.JPG',
+        'Images/%E1%BA%A2nh%20m%E1%BA%ABu%20sp.jpg',
+        'Images/box%20h%E1%BB%93ng.jpg',
+        'Images/box%20xanh.jpg',
+        'Images/IMG_1771.JPG',
+        'Images/IMG_1774.JPG',
+        'Images/2.png',
+        'Images/4.png',
+        'Images/1.png',
+        'Images/3.png',
+        'Images/788452642_1397073875840615_3395007793016246134_n.jpg',
+        'Images/790930395_1568126858402096_2704263053433922885_n.jpg',
+        'Images/814660178_1631551601966983_2446902117944062335_n.jpg',
+        'Images/7.png',
+        'Images/9.png',
+        'Images/tr%C6%B0%E1%BB%9Bc%202%20(2).png',
+        'Images/tr%C6%B0%E1%BB%9Bc%202%20(3).png',
+        'Images/tr%C6%B0%E1%BB%9Bc%202%20(4).png',
+        'Images/tr%C6%B0%E1%BB%9Bc%202%20(5).png',
+        'Images/tr%C6%B0%E1%BB%9Bc%202%20(6).png',
+        'Images/tr%C6%B0%E1%BB%9Bc%202%20(7).png',
+        'Images/tr%C6%B0%E1%BB%9Bc%202%20(8).png',
+        'Images/tr%C6%B0%E1%BB%9Bc%202%20(9).png',
+        'Images/32.png',
+        'Images/sau%201.png',
+      ];
+
+      // Thuật toán chuyển đổi ngẫu nhiên sang ảnh khác sau mỗi 3 giây
+      const [currentImgIndex, setCurrentImgIndex] = useState(0);
+      const [isFading, setIsFading] = useState(false);
+
+      useEffect(() => {
+        const timer = setInterval(() => {
+          setIsFading(true);
+          setTimeout(() => {
+            setCurrentImgIndex((prev) => {
+              let next;
+              do {
+                next = Math.floor(Math.random() * allHeroImages.length);
+              } while (next === prev && allHeroImages.length > 1);
+              return next;
+            });
+            setIsFading(false);
+          }, 300);
+        }, 3000);
+
+        return () => clearInterval(timer);
+      }, []);
+
+      const handleNextRandom = () => {
+        setIsFading(true);
+        setTimeout(() => {
+          setCurrentImgIndex((prev) => {
+            let next;
+            do {
+              next = Math.floor(Math.random() * allHeroImages.length);
+            } while (next === prev && allHeroImages.length > 1);
+            return next;
+          });
+          setIsFading(false);
+        }, 200);
+      };
+
+      const craftItems = [
+        "100% Gói Ghém Thủ Công Tỉ Mỉ",
+        "Bộ 4 Box Quà Kỷ Niệm Hoàn Thiện",
+        "Size To 25x20cm • Size Bé 20x15cm",
+        "Thiệp Gấu & Thiệp Trái Tim Độc Bản",
+        "In Ảnh Polaroid 5x7cm Sắc Nét",
+        "2 Móc Khóa Mèo Đáng Yêu",
+        "Giao Hàng Nhanh Chóng Trong 24H"
+      ];
+
+      return (
+        <section className="relative w-full overflow-hidden bg-[#FAF7F2] py-8 md:py-12">
+          <div className="max-w-[88rem] mx-auto px-6">
+            <div className="relative w-full rounded-3xl overflow-hidden shadow-2xl border-2 border-[#BD6B4D]/20 bg-gradient-to-br from-[#FAF7F2] via-[#FFFDF9] to-[#F4DCD1]/50 p-8 sm:p-12 md:p-14">
+
+              {/* Subtle ambient light */}
+              <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#BD6B4D]/10 rounded-full blur-3xl pointer-events-none -mr-24 -mt-24"></div>
+              <div className="absolute bottom-0 left-1/4 w-[400px] h-[400px] bg-[#F4DCD1]/60 rounded-full blur-3xl pointer-events-none"></div>
+
+              <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+
+                {/* Left Column (7 cols): Message, USP, Super Prominent CTAs */}
+                <div className="lg:col-span-7 flex flex-col justify-center max-w-2xl">
+                  {/* Eyebrow */}
+                  <div className="inline-flex items-center gap-2 bg-[#F4DCD1] px-4 py-1.5 rounded-full border border-[#BD6B4D]/40 mb-4 w-fit shadow-xs">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#BD6B4D] animate-ping"></span>
+                    <span className="text-xs font-bold tracking-[0.18em] text-[#BD6B4D] uppercase">
+                      HỘP QUÀ CÁ NHÂN HÓA • STUDIO HÀ NỘI
+                    </span>
+                  </div>
+
+                  {/* Headline */}
+                  <h1 className="font-serif text-[#2C1E1A] text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.15] mb-5 tracking-[-0.03em]">
+                    Gói ghém yêu thương<br />trong từng khoảnh khắc
+                  </h1>
+
+                  {/* Emotional Narrative (Ý nghĩa sản phẩm theo TikTok Shop) */}
+                  <p className="text-[#2C1E1A]/85 text-base sm:text-lg mb-8 leading-relaxed font-normal">
+                    Không chỉ đơn giản là một hộp quà có sẵn, bạn có thể cá nhân hóa bằng những bức ảnh và lời nhắn của riêng mình cho những người thân yêu. Mỗi set quà vì vậy có thể trở thành một món quà độc bản lưu giữ lại những kỉ niệm đáng nhớ.
+                  </p>
+
+                  {/* SUPER PROMINENT ACTION BUTTONS */}
+                  <div className="flex flex-wrap items-center gap-4 mb-8">
+                    {/* Primary Big CTA with glow and shine */}
+                    <button
+                      type="button"
+                      onClick={onOpenCustomizer}
+                      className="cta-shine inline-flex items-center gap-3 bg-[#BD6B4D] hover:bg-[#9e5033] text-white text-base sm:text-lg font-extrabold px-8 sm:px-9 py-4 rounded-full shadow-cta hover:shadow-cta-hover hover:scale-105 active:scale-95 transition-all duration-300 ring-4 ring-[#BD6B4D]/25"
+                    >
+                      <Sparkles className="w-5 h-5 text-amber-200" />
+                      <span>Tự Phối Hộp Quà Kỷ Niệm</span>
+                      <div className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center">
+                        <ArrowRight className="w-4 h-4 text-white" />
+                      </div>
+                    </button>
+
+                    {/* Secondary prominent button */}
+                    <a
+                      href="#boxes"
+                      className="inline-flex items-center gap-2 px-6 sm:px-7 py-3.5 sm:py-4 rounded-full bg-white hover:bg-[#FAF7F2] text-[#2C1E1A] text-sm sm:text-base font-bold border-2 border-[#2C1E1A]/20 hover:border-[#BD6B4D] shadow-md transition-all hover:scale-102"
+                    >
+                      <span>Xem 2 Kích Thước Hộp</span>
+                      <ArrowRight className="w-4 h-4 text-[#BD6B4D]" />
+                    </a>
+
+                    {/* TikTok Shop Badge Button */}
+                    <a
+                      href="https://www.tiktok.com/@the.little.joy.26?lang=vi-VN"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-black hover:bg-neutral-800 text-white text-xs sm:text-sm font-bold shadow-md transition-all hover:scale-102"
+                    >
+                      <span>Mua Tại TikTok Shop</span>
+                      <ExternalLink className="w-3.5 h-3.5 text-rose-400" />
+                    </a>
+                  </div>
+
+                  {/* Craft Commitment Marquee */}
+                  <div className="w-full overflow-hidden py-3 border border-[#2C1E1A]/10 bg-white/80 backdrop-blur-md rounded-2xl shadow-xs">
+                    <div className="flex animate-marquee-craft whitespace-nowrap">
+                      {[...craftItems, ...craftItems].map((item, index) => (
+                        <div
+                          key={index}
+                          className="mx-5 shrink-0 text-[#2C1E1A]/90 whitespace-nowrap text-xs sm:text-sm tracking-wide font-semibold flex items-center gap-2"
+                        >
+                          <span className="text-[#BD6B4D]">✦</span>
+                          <span>{item}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right Column (5 cols): Auto-Rotating Random Photo Showcase (Chuyển ngẫu nhiên sau mỗi 3s) */}
+                <div className="lg:col-span-5 flex flex-col items-center">
+                  <div className="w-full max-w-md bg-white rounded-3xl p-5 shadow-2xl border-2 border-[#BD6B4D]/30 relative">
+
+                    {/* Header: Showcase Trình Diễn Ảnh Thực Tế */}
+                    <div className="flex items-center justify-between pb-3.5 mb-3.5 border-b border-[#2C1E1A]/10">
+                      <div className="inline-flex items-center gap-2 text-[#BD6B4D] font-extrabold text-xs uppercase tracking-wider">
+                        <Sparkles className="w-4 h-4 text-[#BD6B4D]" />
+                        <span>KHOẢNH KHẮC THỰC TẾ</span>
+                      </div>
+                    </div>
+
+                    {/* Ô Ảnh Tự Động Chuyển Đổi Sau 3 Giây */}
+                    <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-[#FAF7F2] border border-[#2C1E1A]/10 shadow-inner group">
+                      <img
+                        src={allHeroImages[currentImgIndex]}
+                        alt="Khoảnh khắc The Little Joy"
+                        className={`w-full h-full object-cover transition-all duration-500 ease-in-out ${isFading ? 'opacity-30 scale-95' : 'opacity-100 scale-100'
+                          }`}
+                      />
+
+                      {/* Tag góc ảnh */}
+                      <div className="absolute top-3 left-3 bg-[#2C1E1A]/85 backdrop-blur-md px-3 py-1 rounded-full text-[11px] font-bold text-[#F4DCD1] shadow-md flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#BD6B4D]"></span>
+                        <span>THE LITTLE JOY • HÀ NỘI</span>
+                      </div>
+
+                      {/* Nút bấm đổi ảnh ngẫu nhiên ngay lập tức */}
+                      <button
+                        type="button"
+                        onClick={handleNextRandom}
+                        title="Bấm để đổi ảnh ngẫu nhiên khác ngay"
+                        className="absolute bottom-3 right-3 p-2 rounded-full bg-white/90 hover:bg-white text-[#2C1E1A] shadow-md transition-all hover:scale-110 active:scale-95"
+                      >
+                        <Sparkles className="w-4 h-4 text-[#BD6B4D]" />
+                      </button>
+                    </div>
+
+                    {/* Dưới ảnh: Cam kết & Nút xem bộ sưu tập */}
+                    <div className="mt-4 pt-3.5 border-t border-[#2C1E1A]/10 space-y-3">
+                      <div className="flex items-center justify-between text-xs text-[#2C1E1A]/85">
+                        <div className="flex items-center gap-1.5 font-semibold text-[11px] sm:text-xs text-[#2C1E1A]/80">
+                          <span className="text-[#BD6B4D] font-bold">♥</span>
+                          <span>Ảnh chụp từ các set quà gửi khách</span>
+                        </div>
+                        <span className="font-bold text-emerald-800 bg-emerald-100 px-2.5 py-0.5 rounded-full text-[10px]">
+                          ✓ Duyệt trước demo Zalo
+                        </span>
+                      </div>
+
+                      <a
+                        href="#boxes"
+                        className="cta-shine w-full py-3.5 px-5 rounded-full bg-[#2C1E1A] hover:bg-[#BD6B4D] text-white font-extrabold text-sm shadow-md transition-all flex items-center justify-center gap-2 group/btn hover:scale-102"
+                      >
+                        <span>Khám Phá Tất Cả Mẫu Hộp Quà</span>
+                        <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
+                      </a>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </section>
+      );
+    };
+
+    // =========================================================================
+    // 3. PRODUCT SECTION: HỘP QUÀ CÁ NHÂN HÓA (SIZE TO 25x20 & SIZE BÉ 20x15)
+    // Chia rõ từng size, cuộn series 4 mẫu nền thật
+    // =========================================================================
+    const BoxesSection = ({ onSelectModel, onOpenCustomizerWithType }) => {
+      const [activeSize, setActiveSize] = useState('box-to'); // 'box-to' | 'box-be'
+      const [selectedImageModal, setSelectedImageModal] = useState(null);
+
+      // 4 Mẫu Box To 25x20 cm đặt tên theo màu lược
+      const boxToSeries = [
+        {
+          id: 'to-green',
+          sizeName: 'Box To • 129.000đ',
+          price: '129.000đ',
+          name: 'Box To — Xanh Lá',
+          code: 'BOX TO • XANH LÁ',
+          image: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(5).png',
+          card: 'Thiệp trái tim (8 ảnh: 3 trong thiệp + 5 rời)',
+          accessories: '2 móc khóa mèo đáng yêu, Lược xanh lá cây pastel, Gương vintage, 2 Kẹp tóc',
+          highlight: 'Lược xanh lá cây pastel tươi tắn, phụ kiện phối tone-sur-tone',
+        },
+        {
+          id: 'to-blue',
+          sizeName: 'Box To • 129.000đ',
+          price: '129.000đ',
+          name: 'Box To — Xanh Dương',
+          code: 'BOX TO • XANH DƯƠNG',
+          image: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(3).png',
+          card: 'Thiệp trái tim (8 ảnh: 3 trong thiệp + 5 rời)',
+          accessories: '2 móc khóa mèo đáng yêu, Lược xanh nước biển pastel, Gương vintage, 2 Kẹp tóc',
+          highlight: 'Lược xanh nước biển thanh mát, nhẹ nhàng',
+        },
+        {
+          id: 'to-pink',
+          sizeName: 'Box To • 129.000đ',
+          price: '129.000đ',
+          name: 'Box To — Hồng',
+          code: 'BOX TO • HỒNG',
+          image: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(4).png',
+          card: 'Thiệp trái tim (8 ảnh: 3 trong thiệp + 5 rời)',
+          accessories: '2 móc khóa mèo đáng yêu, Lược hồng pastel, Gương vintage, 2 Kẹp tóc',
+          highlight: 'Lược hồng pastel ngọt ngào, tiểu thư mộng mơ',
+        },
+        {
+          id: 'to-purple',
+          sizeName: 'Box To • 129.000đ',
+          price: '129.000đ',
+          name: 'Box To — Tím',
+          code: 'BOX TO • TÍM',
+          image: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(2).png',
+          card: 'Thiệp trái tim (8 ảnh: 3 trong thiệp + 5 rời)',
+          accessories: '2 móc khóa mèo đáng yêu, Lược tím pastel, Gương vintage, 2 Kẹp tóc',
+          highlight: 'Lược tím pastel vintage, lãng mạn ấm áp',
+        },
+      ];
+
+      // 4 Mẫu Box Bé 20x15 cm đặt tên theo màu lược
+      const boxBeSeries = [
+        {
+          id: 'be-green',
+          sizeName: 'Box Bé • 79.000đ',
+          price: '79.000đ',
+          name: 'Box Bé — Xanh Lá',
+          code: 'BOX BÉ • XANH LÁ',
+          image: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(9).png',
+          card: 'Thiệp gấu (3 ảnh: 1 trong thiệp + 2 rời)',
+          accessories: 'Móc khóa mèo đáng yêu, Lược mini xanh lá cây, 2 Kẹp tóc pastel',
+          highlight: 'Lược mini xanh lá cây xinh xắn tặng bạn thân hoặc tự thưởng',
+        },
+        {
+          id: 'be-blue',
+          sizeName: 'Box Bé • 79.000đ',
+          price: '79.000đ',
+          name: 'Box Bé — Xanh Dương',
+          code: 'BOX BÉ • XANH DƯƠNG',
+          image: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(6).png',
+          card: 'Thiệp gấu (3 ảnh: 1 trong thiệp + 2 rời)',
+          accessories: 'Móc khóa mèo đáng yêu, Lược mini xanh nước biển, 2 Kẹp tóc pastel',
+          highlight: 'Lược mini xanh nước biển tươi tắn phù hợp sinh nhật',
+        },
+        {
+          id: 'be-pink',
+          sizeName: 'Box Bé • 79.000đ',
+          price: '79.000đ',
+          name: 'Box Bé — Hồng',
+          code: 'BOX BÉ • HỒNG',
+          image: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(8).png',
+          card: 'Thiệp gấu (3 ảnh: 1 trong thiệp + 2 rời)',
+          accessories: 'Móc khóa mèo đáng yêu, Lược mini hồng pastel, 2 Kẹp tóc pastel',
+          highlight: 'Lược mini hồng pastel nhỏ xinh làm người thương mỉm cười',
+        },
+        {
+          id: 'be-purple',
+          sizeName: 'Box Bé • 79.000đ',
+          price: '79.000đ',
+          name: 'Box Bé — Tím',
+          code: 'BOX BÉ • TÍM',
+          image: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(7).png',
+          card: 'Thiệp gấu (3 ảnh: 1 trong thiệp + 2 rời)',
+          accessories: 'Móc khóa mèo đáng yêu, Lược mini tím pastel, 2 Kẹp tóc pastel',
+          highlight: 'Lược mini tím pastel xinh xắn vừa vặn túi xách',
+        },
+      ];
+
+      const currentSeries = activeSize === 'box-to' ? boxToSeries : boxBeSeries;
+
+      return (
+        <section id="boxes" className="bg-[#FAF7F2] px-6 py-20 border-t border-[#2C1E1A]/10">
+          <div className="max-w-[88rem] mx-auto">
+
+            {/* Header */}
+            <div className="text-center max-w-3xl mx-auto mb-12">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F4DCD1] border border-[#BD6B4D]/30 text-xs font-bold text-[#BD6B4D] uppercase tracking-wider mb-3">
+                <span>📦 BỘ SƯU TẬP HỘP QUÀ THE LITTLE JOY</span>
+              </div>
+              <h2 className="font-serif text-[#2C1E1A] text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">
+                Các Mẫu Quà Đang Chờ Bạn Khám Phá
+              </h2>
+              <p className="mt-3 text-base text-[#2C1E1A]/75 leading-relaxed font-normal">
+                Mỗi hộp quà được tạo tác theo hai quy cách: <strong>Combo Box To (129.000đ)</strong> và <strong>Combo Box Bé (79.000đ)</strong>. Chọn box bạn cần để xem series các mẫu gợi ý:
+              </p>
+
+              {/* TWO BIG SWITCHER TABS WITH HIGHLIGHTED SIZES */}
+              <div className="mt-8 inline-flex p-2 bg-white rounded-full border-2 border-[#BD6B4D]/30 shadow-md gap-2">
+                <button
+                  type="button"
+                  onClick={() => setActiveSize('box-to')}
+                  className={`px-6 sm:px-8 py-3.5 rounded-full text-xs sm:text-sm font-extrabold transition-all duration-300 flex items-center gap-2 ${activeSize === 'box-to'
+                    ? 'bg-[#BD6B4D] text-white shadow-cta scale-102 ring-2 ring-[#BD6B4D]/20'
+                    : 'text-[#2C1E1A]/80 hover:text-[#BD6B4D]'
+                    }`}
+                >
+                  <Sparkles className="w-4 h-4" />
+                  <span>COMBO BOX TO • 129.000đ</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setActiveSize('box-be')}
+                  className={`px-6 sm:px-8 py-3.5 rounded-full text-xs sm:text-sm font-extrabold transition-all duration-300 flex items-center gap-2 ${activeSize === 'box-be'
+                    ? 'bg-[#BD6B4D] text-white shadow-cta scale-102 ring-2 ring-[#BD6B4D]/20'
+                    : 'text-[#2C1E1A]/80 hover:text-[#BD6B4D]'
+                    }`}
+                >
+                  <span>🧸</span>
+                  <span>COMBO BOX BÉ • 79.000đ</span>
+                </button>
+              </div>
+            </div>
+
+            {/* Banner tóm tắt kích thước đang chọn */}
+            <div className="mb-10 p-5 rounded-2xl bg-white border border-[#2C1E1A]/10 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div className="flex items-center gap-3.5">
+                <div className="w-12 h-12 rounded-2xl bg-[#F4DCD1] flex items-center justify-center text-2xl text-[#BD6B4D] flex-shrink-0">
+                  {activeSize === 'box-to' ? '🎁' : '🧸'}
+                </div>
+                <div>
+                  <div className="flex items-center gap-2.5 flex-wrap">
+                    <h3 className="font-serif text-lg sm:text-xl font-bold text-[#2C1E1A]">
+                      {activeSize === 'box-to' ? 'Combo Box To' : 'Combo Box Bé'}
+                    </h3>
+                    <span className="px-3 py-0.5 rounded-full bg-[#BD6B4D]/10 text-[#BD6B4D] font-extrabold text-sm">
+                      {activeSize === 'box-to' ? '129.000 VNĐ' : '79.000 VNĐ'}
+                    </span>
+                  </div>
+                  <p className="text-xs sm:text-sm text-[#2C1E1A]/70">
+                    {activeSize === 'box-to'
+                      ? 'Trọn bộ gồm: Thiệp trái tim (8 ảnh) + 2 móc khóa mèo đáng yêu + Lược pastel + Gương vintage + 2 Kẹp tóc'
+                      : 'Trọn bộ gồm: Thiệp gấu (3 ảnh) + Móc khóa mèo đáng yêu + Lược pastel mini + 2 Kẹp tóc'}
+                  </p>
+                </div>
+              </div>
+
+              {/* Big CTA */}
+              <button
+                type="button"
+                onClick={() => onOpenCustomizerWithType(activeSize === 'box-to' ? 'large' : 'small')}
+                className="cta-shine px-6 py-3 rounded-full bg-[#BD6B4D] hover:bg-[#9e5033] text-white font-extrabold text-sm shadow-cta transition-all flex items-center justify-center gap-2 flex-shrink-0"
+              >
+                <span>Tùy Biến {activeSize === 'box-to' ? 'Box To (129k)' : 'Box Bé (79k)'} Ngay</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Grid 4 Mẫu Series của Kích Thước Đang Chọn */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {currentSeries.map((item) => (
+                <div
+                  key={item.id}
+                  className="bg-white rounded-3xl overflow-hidden border-2 border-[#2C1E1A]/10 hover:border-[#BD6B4D] shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group"
+                >
+                  <div>
+                    {/* Ảnh sản phẩm thật 100% không bị che */}
+                    <div className="relative aspect-[4/3] overflow-hidden bg-[#FAF7F2] border-b border-[#2C1E1A]/10">
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+
+                      {/* Badge Mã Mẫu & Size */}
+                      <div className="absolute top-3 left-3 bg-[#2C1E1A]/90 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold text-[#F4DCD1]">
+                        {item.code}
+                      </div>
+
+                      <div className="absolute top-3 right-3 bg-white/95 px-2.5 py-0.5 rounded-full text-[10px] font-extrabold text-[#BD6B4D] shadow-xs">
+                        {item.sizeName}
+                      </div>
+
+                      {/* Phóng to */}
+                      <button
+                        type="button"
+                        onClick={() => setSelectedImageModal(item.image)}
+                        className="absolute bottom-3 right-3 p-2 bg-white/95 hover:bg-white text-[#2C1E1A] rounded-full shadow-md transition-transform hover:scale-110"
+                        title="Xem ảnh phóng to"
+                      >
+                        <Eye className="w-4 h-4 text-[#BD6B4D]" />
+                      </button>
+                    </div>
+
+                    {/* Chi tiết nội dung */}
+                    <div className="p-5 sm:p-6 space-y-3">
+                      <h4 className="font-serif text-lg font-bold text-[#2C1E1A] leading-snug">
+                        {item.name}
+                      </h4>
+
+                      <div className="text-xs text-[#BD6B4D] font-bold bg-[#F4DCD1]/60 px-3 py-1.5 rounded-xl w-fit">
+                        {item.highlight}
+                      </div>
+
+                      <div className="text-xs space-y-2 text-[#2C1E1A]/85 border-t border-[#2C1E1A]/10 pt-3">
+                        <div className="flex items-start gap-2">
+                          <span className="text-[#BD6B4D] font-bold text-sm leading-none">💌</span>
+                          <span><strong>Thiệp:</strong> {item.card}</span>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <span className="text-[#BD6B4D] font-bold text-sm leading-none">🧸</span>
+                          <span><strong>Phụ kiện:</strong> {item.accessories}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* PROMINENT ACTION BUTTON ON EACH CARD */}
+                  <div className="p-5 sm:p-6 pt-0 space-y-2">
+                    <button
+                      type="button"
+                      onClick={() => onSelectModel(item)}
+                      className="cta-shine w-full py-3 px-4 rounded-full bg-[#BD6B4D] hover:bg-[#9e5033] text-white font-extrabold text-xs sm:text-sm shadow-cta hover:shadow-cta-hover transition-all flex items-center justify-center gap-2 hover:scale-102"
+                    >
+                      <Sparkles className="w-3.5 h-3.5" />
+                      <span>Chọn Phối Mẫu Này Ngay</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </button>
+
+                    <a
+                      href="https://www.tiktok.com/@the.little.joy.26?lang=vi-VN"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full py-2 rounded-full bg-white hover:bg-[#FAF7F2] text-[#2C1E1A] text-xs font-bold border border-[#2C1E1A]/20 transition-all flex items-center justify-center gap-1.5"
+                    >
+                      <span>Mua qua TikTok Shop</span>
+                      <ExternalLink className="w-3 h-3 text-neutral-500" />
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Modal Xem ảnh phóng to */}
+            {selectedImageModal && (
+              <div
+                className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fadeIn"
+                onClick={() => setSelectedImageModal(null)}
+              >
+                <div className="relative max-w-4xl max-h-[90vh] bg-white rounded-2xl overflow-hidden p-2 shadow-2xl">
+                  <button
+                    type="button"
+                    onClick={() => setSelectedImageModal(null)}
+                    className="absolute top-4 right-4 z-10 p-2 rounded-full bg-black/60 text-white hover:bg-black transition-colors"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                  <img src={selectedImageModal} alt="Ảnh mẫu phóng to" className="max-w-full max-h-[85vh] object-contain rounded-xl" />
+                </div>
+              </div>
+            )}
+
+          </div>
+        </section>
+      );
+    };
+
+    // =========================================================================
+    // 4. SẢN PHẨM MỚI BÁN LẺ: THIỆP CÁ NHÂN HÓA (Thuật toán tự động chiếu ảnh)
+    // 100% Ảnh thiệp thật (Gấu & Tim) - Vừa vặn màn hình - Bỏ ghi kích thước
+    // =========================================================================
+    const CardsSection = ({ onOpenCustomizerWithType }) => {
+      // 100% Ảnh thiệp gấu thật (Không chứa bất kỳ ảnh hộp quà nào)
+      const bearImages = [
+        'Images/788452642_1397073875840615_3395007793016246134_n.jpg',
+        'Images/790930395_1568126858402096_2704263053433922885_n.jpg',
+      ];
+      const [currentBearImg, setCurrentBearImg] = useState(0);
+      const [bearFading, setBearFading] = useState(false);
+
+      // 100% Ảnh thiệp tim thật (Không chứa bất kỳ ảnh hộp quà nào)
+      const heartImages = [
+        'Images/2.png',
+        'Images/4.png',
+      ];
+      const [currentHeartImg, setCurrentHeartImg] = useState(0);
+      const [heartFading, setHeartFading] = useState(false);
+
+      // Thuật toán tự động thay nhau chiếu ảnh sau mỗi 3 giây
+      useEffect(() => {
+        const timer = setInterval(() => {
+          setBearFading(true);
+          setHeartFading(true);
+          setTimeout(() => {
+            setCurrentBearImg((prev) => (prev + 1) % bearImages.length);
+            setCurrentHeartImg((prev) => (prev + 1) % heartImages.length);
+            setBearFading(false);
+            setHeartFading(false);
+          }, 350);
+        }, 3000);
+
+        return () => clearInterval(timer);
+      }, []);
+
+      return (
+        <section id="cards" className="bg-[#FAF7F2] px-6 py-12 md:py-16 border-t border-[#2C1E1A]/10">
+          <div className="max-w-5xl mx-auto">
+
+            {/* Header chuẩn TikTok Shop */}
+            <div className="text-center max-w-2xl mx-auto mb-10 md:mb-12">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#F4DCD1] border border-[#BD6B4D]/30 text-xs font-bold text-[#BD6B4D] uppercase tracking-wider mb-2.5">
+                <span>💌 BÁN LẺ THIỆP RIÊNG BIỆT</span>
+              </div>
+              <h2 className="font-serif text-[#2C1E1A] text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight">
+                Thiệp Cá Nhân Hóa – The Little Joy
+              </h2>
+              <p className="mt-3 text-sm sm:text-base text-[#2C1E1A]/80 leading-relaxed font-normal">
+                “Một chiếc thiệp nhỏ để bạn gửi gắm một bức ảnh và một lời nhắn thật riêng đến người đặc biệt. Không phải một chiếc thiệp có sẵn — bạn gửi ảnh của mình, tụi mình giúp bạn biến nó thành một món quà mang dấu ấn riêng.”
+              </p>
+            </div>
+
+            {/* 2 Sản phẩm thiệp bán lẻ (Thiết kế vừa vặn khung nhìn) */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+
+              {/* SẢN PHẨM 1: THIỆP GẤU */}
+              <div className="bg-white rounded-3xl p-6 sm:p-7 border-2 border-[#2C1E1A]/10 hover:border-[#BD6B4D] shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between">
+                <div>
+                  {/* Khung ảnh chiếu tự động */}
+                  <div className="relative h-64 sm:h-72 rounded-2xl overflow-hidden bg-[#FAF7F2] border border-[#2C1E1A]/10 mb-5 flex items-center justify-center p-3 group">
+                    <img
+                      src={bearImages[currentBearImg]}
+                      alt="Thiệp Gấu"
+                      className={`max-w-full max-h-full object-contain rounded-xl drop-shadow-md transition-all duration-500 ease-in-out ${bearFading ? 'opacity-30 scale-98' : 'opacity-100 scale-100'
+                        }`}
+                    />
+                    <div className="absolute top-3 left-3 bg-[#BD6B4D] text-white text-[11px] font-extrabold px-3 py-1 rounded-full shadow-md">
+                      THIỆP GẤU ĐỘC BẢN
+                    </div>
+                  </div>
+
+                  <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#2C1E1A] mb-2">
+                    Thiệp Gấu Cá Nhân Hóa
+                  </h3>
+                  <p className="text-xs sm:text-sm text-[#2C1E1A]/70 mb-4 leading-relaxed">
+                    Thiệp gấu ôm ảnh mini siêu cưng. Thích hợp tặng bạn bè, người thương vào ngày sinh nhật hoặc những ngày bình thường cần một lời động viên ngọt ngào.
+                  </p>
+
+                  <div className="space-y-2 bg-[#FAF7F2] p-4 rounded-2xl border border-[#2C1E1A]/10 text-xs sm:text-[13px] text-[#2C1E1A]/85">
+                    <div className="font-bold text-[11px] uppercase tracking-wider text-[#BD6B4D]">Sản phẩm gồm:</div>
+                    <ul className="space-y-1.5">
+                      <li className="flex items-start gap-2">
+                        <Check className="w-3.5 h-3.5 text-[#BD6B4D] mt-0.5 shrink-0" />
+                        <span><strong>01 thiệp viết thư:</strong> In trên giấy mỹ thuật, bố cục độc đáo.</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <Check className="w-3.5 h-3.5 text-[#BD6B4D] mt-0.5 shrink-0" />
+                        <span><strong>01 ảnh Polaroid:</strong> Size 5 x 7 cm dán đính trên thiệp từ ảnh khách gửi.</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Prominent CTA */}
+                <div className="mt-6 pt-5 border-t border-[#2C1E1A]/10 flex flex-col sm:flex-row items-center justify-between gap-3">
+                  <div>
+                    <div className="text-[11px] text-[#2C1E1A]/60 font-semibold uppercase tracking-wider">Giá Bán Lẻ</div>
+                    <div className="text-2xl font-serif font-extrabold text-[#BD6B4D]">39.000 VNĐ</div>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() => onOpenCustomizerWithType('card-bear')}
+                    className="cta-shine w-full sm:w-auto px-6 py-3 rounded-full bg-[#BD6B4D] hover:bg-[#9e5033] text-white font-extrabold text-xs sm:text-sm shadow-cta hover:shadow-cta-hover transition-all flex items-center justify-center gap-2 hover:scale-102"
+                  >
+                    <span>Đặt Mua Thiệp Gấu (39k)</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+
+              {/* SẢN PHẨM 2: THIỆP TRÁI TIM */}
+              <div className="bg-white rounded-3xl p-6 sm:p-7 border-2 border-[#2C1E1A]/10 hover:border-[#BD6B4D] shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between">
+                <div>
+                  {/* Khung ảnh chiếu tự động */}
+                  <div className="relative h-64 sm:h-72 rounded-2xl overflow-hidden bg-[#FAF7F2] border border-[#2C1E1A]/10 mb-5 flex items-center justify-center p-3 group">
+                    <img
+                      src={heartImages[currentHeartImg]}
+                      alt="Thiệp Trái Tim"
+                      className={`max-w-full max-h-full object-contain rounded-xl drop-shadow-md transition-all duration-500 ease-in-out ${heartFading ? 'opacity-30 scale-98' : 'opacity-100 scale-100'
+                        }`}
+                    />
+                    <div className="absolute top-3 left-3 bg-[#BD6B4D] text-white text-[11px] font-extrabold px-3 py-1 rounded-full shadow-md">
+                      THIỆP TRÁI TIM ĐỘC BẢN
+                    </div>
+                  </div>
+
+                  <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#2C1E1A] mb-2">
+                    Thiệp Trái Tim Cá Nhân Hóa
+                  </h3>
+                  <p className="text-xs sm:text-sm text-[#2C1E1A]/70 mb-4 leading-relaxed">
+                    Thiết kế dáng trái tim lớn mở gập độc đáo. Chứa trọn ảnh kỷ niệm ngọt ngào và những dòng tâm sự viết tay dành riêng cho người bạn yêu thương nhất.
+                  </p>
+
+                  <div className="space-y-2 bg-[#FAF7F2] p-4 rounded-2xl border border-[#2C1E1A]/10 text-xs sm:text-[13px] text-[#2C1E1A]/85">
+                    <div className="font-bold text-[11px] uppercase tracking-wider text-[#BD6B4D]">Sản phẩm gồm:</div>
+                    <ul className="space-y-1.5">
+                      <li className="flex items-start gap-2">
+                        <Check className="w-3.5 h-3.5 text-[#BD6B4D] mt-0.5 shrink-0" />
+                        <span><strong>01 thiệp trái tim 3D:</strong> Thiết kế mở gập độc bản lưu giữ kỷ niệm.</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <Check className="w-3.5 h-3.5 text-[#BD6B4D] mt-0.5 shrink-0" />
+                        <span><strong>Ảnh in kỷ niệm:</strong> Dán sẵn ảnh Polaroid sắc nét từ file ảnh khách cung cấp.</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Prominent CTA */}
+                <div className="mt-6 pt-5 border-t border-[#2C1E1A]/10 flex flex-col sm:flex-row items-center justify-between gap-3">
+                  <div>
+                    <div className="text-[11px] text-[#2C1E1A]/60 font-semibold uppercase tracking-wider">Giá Bán Lẻ</div>
+                    <div className="text-2xl font-serif font-extrabold text-[#BD6B4D]">69.000 VNĐ</div>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() => onOpenCustomizerWithType('card-heart')}
+                    className="cta-shine w-full sm:w-auto px-6 py-3 rounded-full bg-[#BD6B4D] hover:bg-[#9e5033] text-white font-extrabold text-xs sm:text-sm shadow-cta hover:shadow-cta-hover transition-all flex items-center justify-center gap-2 hover:scale-102"
+                  >
+                    <span>Đặt Mua Thiệp Trái Tim (69k)</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+      );
+    };
+
+    // =========================================================================
+    // 5. MỤC ĐÍCH, Ý NGHĨA & ĐIỂM UNIQUE CỦA SẢN PHẨM
+    // =========================================================================
+    const UniqueSection = () => {
+      const usps = [
+        {
+          title: "Cá nhân hóa 100%",
+          desc: "Không phải một chiếc hộp có sẵn rập khuôn — bạn gửi ảnh của mình và lời chúc riêng, shop giúp bạn tạo tác thành món quà độc nhất vô nhị.",
+          icon: "📸",
+        },
+        {
+          title: "Duyệt demo trước khi đi đơn",
+          desc: "100% khách hàng được shop gửi bản xem trước (demo) thiết kế thiệp qua kênh liên lạc của shop. Bạn duyệt ưng ý thì shop mới tiến hành in và đóng gói.",
+          icon: "✨",
+        },
+        {
+          title: "Đầy đủ phụ kiện đồng bộ",
+          desc: "2 móc khóa mèo đáng yêu, lược, gương và kẹp tóc nàng thơ được sắp xếp chỉn chu.",
+          icon: "🧸",
+        },
+        {
+          title: "Đóng gói an toàn 3 lớp",
+          desc: "Chống móp góc hộp tuyệt đối khi giao hàng với thùng carton 3 lớp và xốp khí chịu lực, đảm bảo món quà đến tay vuông vắn.",
+          icon: "📦",
+        },
+      ];
+
+      return (
+        <section id="unique" className="bg-white px-6 py-20 border-t border-[#2C1E1A]/10">
+          <div className="max-w-[88rem] mx-auto">
+
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <div className="text-xs uppercase tracking-[0.2em] font-bold text-[#BD6B4D] mb-2">
+                GIÁ TRỊ CỐT LÕI • THE LITTLE JOY
+              </div>
+              <h2 className="font-serif text-[#2C1E1A] text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">
+                Món Quà Mang Dấu Ấn Của Riêng Bạn
+              </h2>
+              <p className="mt-3 text-base text-[#2C1E1A]/75 leading-relaxed font-normal">
+                Chúng mình tin rằng món quà giá trị nhất không nằm ở giá tiền, mà nằm ở sự hiện diện của những kỷ niệm và sự chân thành bạn gửi gắm.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {usps.map((usp, idx) => (
+                <div
+                  key={idx}
+                  className="p-7 rounded-3xl bg-[#FAF7F2] border border-[#2C1E1A]/10 hover:border-[#BD6B4D] shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+                >
+                  <div className="text-3xl mb-4">{usp.icon}</div>
+                  <div>
+                    <h3 className="font-serif text-xl font-bold text-[#2C1E1A] mb-2">
+                      {usp.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-[#2C1E1A]/75 leading-relaxed">
+                      {usp.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+          </div>
+        </section>
+      );
+    };
+
+    // =========================================================================
+    // 6. QUY TRÌNH 3 BƯỚC ĐẶT HÀNG & LƯU Ý GỬI ẢNH (Chuẩn TikTok Shop)
+    // =========================================================================
+    const HowToOrderSection = ({ onOpenCustomizer }) => {
+      const steps = [
+        {
+          num: "Bước 01",
+          title: "Đặt mua sản phẩm",
+          desc: "Chọn kích thước hộp quà (Size To 25x20 / Size Bé 20x15) hoặc Thiệp bán lẻ, chọn mẫu nền thiệp và tone màu phụ kiện bạn thích.",
+        },
+        {
+          num: "Bước 02",
+          title: "Nhắn tin gửi ảnh cho shop",
+          desc: "Sau khi đặt hàng, bạn hãy nhắn tin cho shop qua Zalo hoặc TikTok Shop để được nhân viên hướng dẫn các bước gửi ảnh chi tiết nha.",
+        },
+        {
+          num: "Bước 03",
+          title: "Shop xác nhận & lên mẫu",
+          desc: "Shop gửi bạn bản demo thiết kế thiệp duyệt trước. Sau khi bạn xác nhận ưng ý, shop sẽ tiến hành in ấn và đóng gói gửi bạn.",
+        },
+      ];
+
+      return (
+        <section id="how-to-order" className="bg-[#FAF7F2] px-6 py-20 border-t border-[#2C1E1A]/10">
+          <div className="max-w-[88rem] mx-auto">
+
+            <div className="text-center max-w-3xl mx-auto mb-14">
+              <div className="text-xs uppercase tracking-[0.2em] font-bold text-[#BD6B4D] mb-2">
+                HƯỚNG DẪN MUA HÀNG DỄ DÀNG
+              </div>
+              <h2 className="font-serif text-[#2C1E1A] text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">
+                3 Bước Để Có Món Quà Độc Bản
+              </h2>
+            </div>
+
+            {/* 3 Bước */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+              {steps.map((step, idx) => (
+                <div key={idx} className="bg-white rounded-3xl p-8 border border-[#2C1E1A]/10 shadow-sm relative overflow-hidden">
+                  <div className="text-xs font-extrabold uppercase tracking-widest text-[#BD6B4D] mb-2">
+                    {step.num}
+                  </div>
+                  <h3 className="font-serif text-2xl font-bold text-[#2C1E1A] mb-3">
+                    {step.title}
+                  </h3>
+                  <p className="text-sm text-[#2C1E1A]/75 leading-relaxed">
+                    {step.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            {/* Khối Lưu Ý Khi Đặt Hàng (Chuẩn TikTok Shop của The Little Joy) */}
+            <div className="bg-white rounded-3xl p-8 sm:p-10 border-2 border-[#BD6B4D]/30 shadow-md">
+              <div className="flex items-center gap-2 mb-4">
+                <span className="text-xl">⚠️</span>
+                <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#2C1E1A]">
+                  Lưu Ý Khi Đặt Hàng & Gửi Ảnh:
+                </h3>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm text-[#2C1E1A]/85">
+                <div className="space-y-2.5">
+                  <div className="flex items-start gap-2.5">
+                    <span className="text-[#BD6B4D] font-bold">•</span>
+                    <span><strong>Gửi ảnh rõ nét:</strong> Vui lòng gửi ảnh có chất lượng tương đối rõ nét để ảnh Polaroid in ra được đẹp và tươi sáng hơn.</span>
+                  </div>
+                  <div className="flex items-start gap-2.5">
+                    <span className="text-[#BD6B4D] font-bold">•</span>
+                    <span><strong>Chênh lệch màu nhẹ:</strong> Ảnh thành phẩm có thể có chênh lệch màu nhẹ do sự khác biệt giữa màn hình hiển thị của các thiết bị.</span>
+                  </div>
+                  <div className="flex items-start gap-2.5">
+                    <span className="text-[#BD6B4D] font-bold">•</span>
+                    <span><strong>Kiểm tra kỹ lời nhắn:</strong> Vui lòng kiểm tra kỹ nội dung/lời nhắn trước khi shop tiến hành in thiệp.</span>
+                  </div>
+                </div>
+
+                <div className="space-y-2.5">
+                  <div className="flex items-start gap-2.5">
+                    <span className="text-[#BD6B4D] font-bold">•</span>
+                    <span><strong>Đối với Box To:</strong> Xem các mẫu nền shop gợi ý và chọn 1 mẫu bạn thích nhất. Mỗi mẫu đã có sẵn bố cục khung ảnh + các hoạ tiết trang trí.</span>
+                  </div>
+                  <div className="flex items-start gap-2.5">
+                    <span className="text-[#BD6B4D] font-bold">•</span>
+                    <span><strong>Điều kiện ánh sáng:</strong> Màu sắc và cách sắp xếp thực tế có thể có một chút khác biệt so với hình ảnh tùy theo điều kiện ánh sáng và từng sản phẩm thủ công.</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Call to action inside note */}
+              <div className="mt-6 pt-5 border-t border-[#2C1E1A]/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <span className="text-xs text-[#2C1E1A]/70 font-semibold">
+                  Sẵn sàng gửi gắm yêu thương đến người thương?
+                </span>
+                <button
+                  type="button"
+                  onClick={onOpenCustomizer}
+                  className="cta-shine px-7 py-3 rounded-full bg-[#BD6B4D] hover:bg-[#9e5033] text-white font-extrabold text-xs sm:text-sm shadow-cta transition-all hover:scale-105"
+                >
+                  Bắt Đầu Phối Quà & Gửi Ảnh Ngay →
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </section>
+      );
+    };
+
+    // =========================================================================
+    // 7. CHÍNH SÁCH BÁN SỈ & BÁN LẺ
+    // =========================================================================
+    const WholesaleRetailSection = ({ onOpenCustomizer }) => {
+      return (
+        <section className="bg-white px-6 py-20 border-t border-[#2C1E1A]/10">
+          <div className="max-w-[88rem] mx-auto">
+
+            <div className="text-center max-w-3xl mx-auto mb-14">
+              <div className="text-xs uppercase tracking-[0.2em] font-bold text-[#BD6B4D] mb-2">
+                HỖ TRỢ KHÁCH HÀNG ĐA DẠNG
+              </div>
+              <h2 className="font-serif text-[#2C1E1A] text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">
+                Chính Sách Đặt Hàng: Sỉ & Lẻ
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+              {/* KHÁCH MUA LẺ */}
+              <div className="bg-[#FAF7F2] rounded-3xl p-8 sm:p-10 border border-[#2C1E1A]/10 flex flex-col justify-between">
+                <div>
+                  <div className="inline-block px-3.5 py-1 rounded-full bg-[#F4DCD1] text-[#BD6B4D] text-xs font-extrabold uppercase tracking-wider mb-3">
+                    Dành Cho Khách Hàng Mua Lẻ (Từ 1 Hộp)
+                  </div>
+                  <h3 className="font-serif text-2xl font-bold text-[#2C1E1A] mb-3">
+                    Trao gửi yêu thương cá nhân
+                  </h3>
+                  <p className="text-sm text-[#2C1E1A]/75 mb-6 leading-relaxed">
+                    Dù chỉ 1 chiếc thiệp hay 1 hộp quà kỷ niệm, The Little Joy đều tận tâm chăm chút từng nét viết tay và chỉnh sửa ảnh chu đáo trước khi giao.
+                  </p>
+                  <ul className="space-y-2.5 text-xs sm:text-sm text-[#2C1E1A]/85">
+                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-[#BD6B4D]" /> <span>Tặng kèm in ảnh Polaroid sắc nét.</span></li>
+                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-[#BD6B4D]" /> <span>Được duyệt bản demo qua các kênh liên lạc trước khi in.</span></li>
+                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-[#BD6B4D]" /> <span>Giao hàng nhanh chóng, quà trao tận tay.</span></li>
+                  </ul>
+
+                  {/* Bảng giá niêm yết bán lẻ minh bạch */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-5 p-3.5 rounded-2xl bg-white border border-[#2C1E1A]/10 text-xs">
+                    <div className="flex justify-between items-center p-1.5 border-b sm:border-b-0 border-[#2C1E1A]/5">
+                      <span className="text-[#2C1E1A]/70 font-medium">Thiệp Gấu:</span>
+                      <span className="font-extrabold text-[#BD6B4D]">39.000 VNĐ</span>
+                    </div>
+                    <div className="flex justify-between items-center p-1.5 border-b sm:border-b-0 border-[#2C1E1A]/5">
+                      <span className="text-[#2C1E1A]/70 font-medium">Thiệp Trái Tim:</span>
+                      <span className="font-extrabold text-[#BD6B4D]">69.000 VNĐ</span>
+                    </div>
+                    <div className="flex justify-between items-center p-1.5">
+                      <span className="text-[#2C1E1A]/70 font-medium">Combo Box Bé:</span>
+                      <span className="font-extrabold text-[#BD6B4D]">79.000 VNĐ</span>
+                    </div>
+                    <div className="flex justify-between items-center p-1.5">
+                      <span className="text-[#2C1E1A]/70 font-medium">Combo Box To:</span>
+                      <span className="font-extrabold text-[#BD6B4D]">129.000 VNĐ</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-8 pt-6 border-t border-[#2C1E1A]/10">
+                  <button
+                    type="button"
+                    onClick={onOpenCustomizer}
+                    className="cta-shine w-full py-3.5 px-6 rounded-full bg-[#BD6B4D] hover:bg-[#9e5033] text-white font-extrabold text-sm shadow-cta transition-all hover:scale-102 flex items-center justify-center gap-2"
+                  >
+                    <span>Đặt Hàng Lẻ Ngay</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+
+              {/* KHÁCH MUA SỈ */}
+              <div className="bg-[#2C1E1A] text-white rounded-3xl p-8 sm:p-10 border border-[#2C1E1A] flex flex-col justify-between shadow-xl">
+                <div>
+                  <div className="inline-block px-3.5 py-1 rounded-full bg-white/10 text-[#F4DCD1] text-xs font-extrabold uppercase tracking-wider mb-3">
+                    Đơn Hàng Sỉ
+                  </div>
+                  <h3 className="font-serif text-2xl font-bold text-white mb-3">
+                    Quà Tặng Sự Kiện & Đơn Hàng Sỉ
+                  </h3>
+                  <p className="text-sm text-white/75 mb-6 leading-relaxed">
+                    Món quà ý nghĩa đầy tình cảm cho người thân, bạn bè cùng lớp, chị em trong công ty cho các dịp đặc biệt như 20/10, 8/3,...
+                  </p>
+                  <ul className="space-y-2.5 text-xs sm:text-sm text-white/85">
+                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-[#D4AF37]" /> <span>Chiết khấu ưu đãi hấp dẫn theo số lượng đơn hàng.</span></li>
+                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-[#D4AF37]" /> <span>Hỗ trợ in ảnh Polaroid và lời nhắn riêng cho từng bạn, từng thành viên.</span></li>
+                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-[#D4AF37]" /> <span>Đóng gói cẩn thận từng set quà, sẵn sàng trao tặng ngay trong ngày lễ.</span></li>
+                  </ul>
+                </div>
+
+                <div className="mt-8 pt-6 border-t border-white/10">
+                  <a
+                    href="https://zalo.me/0961542126"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-3.5 px-6 rounded-full bg-white hover:bg-[#FAF7F2] text-[#2C1E1A] font-extrabold text-sm shadow-md transition-all hover:scale-102 flex items-center justify-center gap-2"
+                  >
+                    <span>Liên Hệ Tư Vấn Báo Giá Sỉ Qua Zalo</span>
+                    <ArrowRight className="w-4 h-4 text-[#BD6B4D]" />
+                  </a>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+      );
+    };
+
+    // =========================================================================
+    // 8. VẬN CHUYỂN & CHÍNH SÁCH ĐỔI TRẢ 48H
+    // =========================================================================
+    const ShippingAndReturnSection = () => {
+      return (
+        <section id="shipping" className="bg-[#FAF7F2] px-6 py-20 border-t border-[#2C1E1A]/10">
+          <div className="max-w-[88rem] mx-auto">
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+
+              {/* Cột Trái: VẬN CHUYỂN & GIAO HÀNG */}
+              <div className="space-y-6">
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F4DCD1] text-xs font-bold text-[#BD6B4D] uppercase tracking-wider">
+                  <Truck className="w-4 h-4" />
+                  <span>VẬN CHUYỂN & THỜI GIAN GIAO HÀNG</span>
+                </div>
+
+                <h3 className="font-serif text-3xl font-bold text-[#2C1E1A]">
+                  Giao Hàng Nhanh Chóng & An Toàn Tuyệt Đối
+                </h3>
+
+                <div className="space-y-4 text-sm text-[#2C1E1A]/85">
+                  <div className="p-5 rounded-2xl bg-white border border-[#2C1E1A]/10 shadow-xs">
+                    <div className="font-bold text-base text-[#2C1E1A] mb-1 flex items-center gap-2">
+                      <span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                      <span>Giao Hàng Nhanh Chóng Trong 24H</span>
+                    </div>
+                    <p className="text-xs sm:text-sm text-[#2C1E1A]/70">
+                      Đóng gói cẩn thận và giao hàng nhanh chóng trong 24h, đảm bảo quà đến kịp thời cho ngày đặc biệt của bạn.
+                    </p>
+                  </div>
+
+                  <div className="p-5 rounded-2xl bg-white border border-[#2C1E1A]/10 shadow-xs">
+                    <div className="font-bold text-base text-[#2C1E1A] mb-1 flex items-center gap-2">
+                      <span className="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
+                      <span>Giao Tiêu Chuẩn Toàn Quốc: 2 – 3 Ngày</span>
+                    </div>
+                    <p className="text-xs sm:text-sm text-[#2C1E1A]/70">
+                      Giao nhanh liên tỉnh thông qua các đơn vị chuyển phát uy tín có mã tracking đơn hàng.
+                    </p>
+                  </div>
+
+                  <div className="p-5 rounded-2xl bg-white border border-[#2C1E1A]/10 shadow-xs">
+                    <div className="font-bold text-base text-[#2C1E1A] mb-1">
+                      📦 Đóng Gói Chống Sốc An Toàn
+                    </div>
+                    <p className="text-xs sm:text-sm text-[#2C1E1A]/70">
+                      Hộp quà được bọc túi bóng khí chống nước và đặt trong thùng carton 3 lớp cứng cáp, dán tem hàng dễ vỡ để đảm bảo góc hộp không bị móp méo khi vận chuyển xa.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Cột Phải: CHÍNH SÁCH ĐỔI TRẢ & BẢO HÀNH 48H */}
+              <div className="space-y-6">
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F4DCD1] text-xs font-bold text-[#BD6B4D] uppercase tracking-wider">
+                  <ShieldCheck className="w-4 h-4" />
+                  <span>CHÍNH SÁCH MUA HÀNG & ĐỔI TRẢ</span>
+                </div>
+
+                <h3 className="font-serif text-3xl font-bold text-[#2C1E1A]">
+                  Bảo Vệ Quyền Lợi Khách Hàng
+                </h3>
+
+                <div className="space-y-4 text-sm text-[#2C1E1A]/85">
+                  <div className="p-5 rounded-2xl bg-white border border-[#2C1E1A]/10 shadow-xs">
+                    <div className="font-bold text-base text-[#2C1E1A] mb-1">
+                      🔍 Kiểm Tra Sản Phẩm Trước Khi Gửi
+                    </div>
+                    <p className="text-xs sm:text-sm text-[#2C1E1A]/70">
+                      Shop luôn chụp ảnh hoặc quay video thành phẩm gửi cho bạn kiểm tra trước khi bàn giao cho đơn vị vận chuyển.
+                    </p>
+                  </div>
+
+                  <div className="p-5 rounded-2xl bg-white border border-[#2C1E1A]/10 shadow-xs">
+                    <div className="font-bold text-base text-[#2C1E1A] mb-1">
+                      🔄 Hỗ Trợ Đổi Trả Trong 48 Giờ
+                    </div>
+                    <p className="text-xs sm:text-sm text-[#2C1E1A]/70">
+                      Nếu sản phẩm gặp vấn đề trong quá trình chuẩn bị hoặc vận chuyển (móp hộp, in sai ảnh/nội dung), vui lòng liên hệ shop và cung cấp hình ảnh/video khi nhận hàng để được đổi mới 1-1 ngay nhé.
+                    </p>
+                  </div>
+
+                  {/* Lời tri ân mộc mạc từ shop */}
+                  <div className="p-6 rounded-2xl bg-[#BD6B4D]/10 border-2 border-[#BD6B4D]/30">
+                    <p className="font-serif text-sm italic text-[#2C1E1A] leading-relaxed">
+                      “Cảm ơn bạn đã lựa chọn một món quà nhỏ từ The Little Joy. Hy vọng chiếc hộp này sẽ thay bạn gửi đến người nhận một chút yêu thương nhé.”
+                    </p>
+                    <div className="text-xs font-bold text-[#BD6B4D] mt-2">
+                      — The Little Joy Team (Hà Nội)
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+      );
+    };
+
+    // =========================================================================
+    // 9. PHOTO MARQUEE & FEEDBACK
+    // Toàn bộ ảnh thực tế, ưu tiên ảnh chụp nhóm sản phẩm, thiệp tim, thiệp gấu
+    // =========================================================================
+    const PhotoMarqueeSection = ({ onSelectImage }) => {
+      const carouselPhotos = [
+        // Nhóm 1: Ưu tiên ảnh chụp nhóm sản phẩm & thực tế
+        { src: 'Images/4%20box.JPG', title: 'Bộ 4 Box Quà Kỷ Niệm', desc: 'Ảnh chụp nhóm 4 hộp hoàn thiện' },
+        { src: 'Images/%E1%BA%A2nh%20m%E1%BA%ABu%20sp.jpg', title: 'Set Quà & Phụ Kiện', desc: 'Mèo bông, gương & lược pastel' },
+        { src: 'Images/box%20h%E1%BB%93ng.jpg', title: 'Box Hồng Pastel Ngọt Ngào', desc: 'Tone hồng tiểu thư mộng mơ' },
+        { src: 'Images/box%20xanh.jpg', title: 'Box Xanh Baby Thanh Lịch', desc: 'Tone pastel nhẹ nhàng tinh tế' },
+        { src: 'Images/IMG_1771.JPG', title: 'Góc Chụp Thực Tế Set Quà', desc: 'Đóng gói thủ công tỉ mỉ' },
+        { src: 'Images/IMG_1774.JPG', title: 'Chi Tiết Hộp Quà Trao Tay', desc: 'Từng món quà đong đầy cảm xúc' },
+
+        // Nhóm 2: Ảnh các mẫu thiệp trái tim (Heart Card)
+        { src: 'Images/2.png', title: 'Thiệp Trái Tim Độc Bản', desc: 'Heart Card dán Polaroid 5x7cm' },
+        { src: 'Images/4.png', title: 'Thiệp Trái Tim Kỷ Niệm', desc: 'Thiết kế mở gập độc đáo' },
+        { src: 'Images/1.png', title: 'Mẫu Box Bi Đỏ Burgundy', desc: 'Thiệp tim & phụ kiện đôi' },
+        { src: 'Images/3.png', title: 'Mẫu Box Hồng Sao Vintage', desc: 'Thiệp tim & phụ kiện đôi' },
+
+        // Nhóm 3: Ảnh các mẫu thiệp chú gấu (Bear Card) & Feedback
+        { src: 'Images/788452642_1397073875840615_3395007793016246134_n.jpg', title: 'Thiệp Chú Gấu Bear Card', desc: 'Thiệp gấu ôm ảnh mini cưng xỉu' },
+        { src: 'Images/790930395_1568126858402096_2704263053433922885_n.jpg', title: 'Set Thiệp Gấu Hoàn Thiện', desc: 'Bao thư mỹ thuật trao tay' },
+        { src: 'Images/814660178_1631551601966983_2446902117944062335_n.jpg', title: 'Feedback Mở Hộp Quà', desc: 'Niềm vui của người thương' },
+        { src: 'Images/7.png', title: 'Mẫu Box Bé Bi Đỏ', desc: 'Bear Card & mèo xù trắng' },
+        { src: 'Images/9.png', title: 'Mẫu Box Bé Hồng Sao', desc: 'Bear Card & mèo xù trắng' },
+
+        // Nhóm 4: Các mẫu Box To 25x20cm & Box Bé 20x15cm
+        { src: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(2).png', title: 'Box To 25x20cm • Bi Đỏ', desc: 'Heart Card 8 ảnh & 2 mèo đôi' },
+        { src: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(3).png', title: 'Box To 25x20cm • Xanh Baby', desc: 'Heart Card 8 ảnh & 2 mèo đôi' },
+        { src: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(4).png', title: 'Box To 25x20cm • Hồng Sao', desc: 'Heart Card 8 ảnh & 2 mèo đôi' },
+        { src: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(5).png', title: 'Box To 25x20cm • Đen Cổ Điển', desc: 'Heart Card 8 ảnh & 2 mèo đôi' },
+        { src: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(6).png', title: 'Box Bé 20x15cm • Xanh Dương', desc: 'Bear Card 3 ảnh & mèo xù' },
+        { src: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(7).png', title: 'Box Bé 20x15cm • Tím Pastel', desc: 'Bear Card 3 ảnh & mèo xù' },
+        { src: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(8).png', title: 'Box Bé 20x15cm • Hồng Sao', desc: 'Bear Card 3 ảnh & mèo xù' },
+        { src: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(9).png', title: 'Box Bé 20x15cm • Đen Cổ Điển', desc: 'Bear Card 3 ảnh & mèo xù' },
+        { src: 'Images/32.png', title: 'Phụ Kiện Handmade', desc: 'Lược pastel & kẹp nơ' },
+        { src: 'Images/sau%201.png', title: 'Bao Thư Trang Trọng', desc: 'Chỉn chu từng chi tiết' },
+      ];
+
+      return (
+        <section id="gallery" className="bg-[#FAF7F2] py-16 border-y border-[#2C1E1A]/10 overflow-hidden pause-on-hover">
+          <div className="max-w-[88rem] mx-auto px-6 mb-8 flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div className="max-w-xl">
+              <div className="flex items-center gap-1.5 text-[#D4AF37] mb-2">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-4 h-4 fill-current" />
+                ))}
+                <span className="text-xs font-bold text-[#BD6B4D] ml-2 uppercase tracking-wider">
+                  Gửi gắm tình cảm vào phần quà
+                </span>
+              </div>
+              <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#2C1E1A] leading-tight">
+                Hộp quà kỉ niệm đa dạng màu sắc đang chờ bạn tới khám phá
+              </h2>
+            </div>
+          </div>
+
+          <div className="relative w-full overflow-hidden py-4">
+            <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[#FAF7F2] to-transparent z-20 pointer-events-none"></div>
+            <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[#FAF7F2] to-transparent z-20 pointer-events-none"></div>
+
+            <div className="flex animate-marquee-photos whitespace-nowrap marquee-track items-center">
+              {[...carouselPhotos, ...carouselPhotos].map((item, index) => (
+                <div
+                  key={index}
+                  onClick={() => onSelectImage(item.src)}
+                  className="relative shrink-0 w-52 sm:w-60 h-72 sm:h-80 rounded-2xl overflow-hidden mx-3 shadow-md border-2 border-white/80 transition-all duration-300 hover:scale-110 hover:shadow-2xl hover:ring-4 hover:ring-[#BD6B4D] hover:z-30 hover:brightness-105 cursor-pointer group/photo"
+                >
+                  <img
+                    src={item.src}
+                    alt={item.title}
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover/photo:scale-105"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    };
+
+    // =========================================================================
+    // 10. TESTIMONIALS
+    // =========================================================================
+    const TestimonialsSection = () => {
+      const reviews = [
+        {
+          name: "Hồng Nhung",
+          tag: "Đặt Box To kỷ niệm 1 năm • Hà Nội",
+          text: "“Người yêu mình thích mê 2 móc khóa mèo đáng yêu, bạn ấy gắn ngay 1 em vào chìa khóa xe và đưa mình 1 em để giữ chung. Thiệp trái tim dán ảnh xinh xỉu ạ!”"
+        },
+        {
+          name: "Tuấn Kiệt",
+          tag: "Đặt Box To sinh nhật bạn gái • Cầu Giấy",
+          text: "“Shop hỗ trợ chỉnh demo thiệp nhiệt tình lắm, mình đổi ảnh 2 lần shop vẫn vui vẻ gửi lại bản demo xem trước. Ảnh in polaroid rất rõ nét, không bị tối hay vỡ hạt.”"
+        },
+        {
+          name: "Phương Thảo",
+          tag: "Đặt Box Bé tặng bạn thân • Đống Đa",
+          text: "“Hộp nhỏ xinh xắn mà đầy đủ đồ cưng xỉu: có lược pastel, mèo bông với thiệp gấu. Đóng gói rất cẩn thận, giao hàng nhanh chóng là nhận được ngay.”"
+        }
+      ];
+
+      return (
+        <section id="testimonials" className="bg-white px-6 py-20 border-t border-[#2C1E1A]/10">
+          <div className="max-w-[88rem] mx-auto">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <div className="text-xs uppercase tracking-[0.2em] font-bold text-[#BD6B4D] mb-2">
+                KHOẢNH KHẮC NGƯỜI NHẬN
+              </div>
+              <h2 className="font-serif text-[#2C1E1A] text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">
+                Nụ Cười Của Người Nhận Là Hạnh Phúc Của Chúng Mình
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+              {reviews.map((rev, index) => (
+                <div
+                  key={index}
+                  className="bg-[#FAF7F2] rounded-3xl p-7 border border-[#2C1E1A]/10 shadow-sm flex flex-col justify-between hover:shadow-xl transition-all"
+                >
+                  <div>
+                    <div className="flex items-center gap-1 text-[#D4AF37] mb-4">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 fill-current" />
+                      ))}
+                      <span className="text-xs font-bold text-[#2C1E1A] ml-1.5">5.0</span>
+                    </div>
+                    <p className="font-serif text-base italic text-[#2C1E1A] leading-relaxed">
+                      {rev.text}
+                    </p>
+                  </div>
+                  <div className="mt-6 pt-4 border-t border-[#2C1E1A]/10 flex items-center justify-between">
+                    <div>
+                      <div className="text-sm font-bold text-[#2C1E1A]">{rev.name}</div>
+                      <div className="text-xs text-[#2C1E1A]/60">{rev.tag}</div>
+                    </div>
+                    <span className="text-[11px] text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-full font-semibold border border-emerald-200">
+                      ✓ Đã mua
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    };
+
+    // =========================================================================
+    // 11. FOOTER & KÊNH LIÊN HỆ ĐA NỀN TẢNG
+    // =========================================================================
+    const Footer = ({ onOpenCustomizer }) => {
+      return (
+        <footer id="social" className="bg-[#2C1E1A] text-white pt-20 pb-16 px-6 border-t border-[#2C1E1A]">
+          <div className="max-w-[88rem] mx-auto">
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 pb-16 border-b border-white/10">
+
+              {/* Brand Info */}
+              <div className="lg:col-span-4 space-y-5">
+                <div className="flex items-center gap-3.5">
+                  <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-[#BD6B4D] bg-white flex-shrink-0">
+                    <img src="Images/LOGO.png" alt="Logo The Little Joy" className="w-full h-full object-cover" />
+                  </div>
+                  <div>
+                    <span className="font-serif text-2xl font-bold tracking-tight text-white block">
+                      The Little Joy
+                    </span>
+                    <span className="text-xs text-[#D4AF37] font-semibold">
+                      Hộp Quà & Thiệp Cá Nhân Hóa • Hà Nội
+                    </span>
+                  </div>
+                </div>
+
+                <p className="font-serif text-xl italic text-[#F4DCD1] leading-relaxed">
+                  “Made from little moments, made for someone special.”
+                </p>
+
+                <p className="text-white/75 text-sm leading-relaxed font-light">
+                  Không chỉ đơn giản là một hộp quà có sẵn, bạn có thể cá nhân hóa bằng những bức ảnh và lời nhắn của riêng mình cho những người thân yêu.
+                </p>
+              </div>
+
+              {/* Kênh Mạng Xã Hội Chính Thức (TikTok Shop & Instagram) */}
+              <div className="lg:col-span-4 space-y-4">
+                <h4 className="text-xs uppercase tracking-[0.2em] font-bold text-[#D4AF37]">
+                  Kênh Mua Sắm & Mạng Xã Hội
+                </h4>
+
+                <div className="space-y-3">
+                  <a
+                    href="https://www.tiktok.com/@the.little.joy.26?lang=vi-VN"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between p-3.5 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/15 transition-all text-white group"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="w-9 h-9 rounded-full bg-black flex items-center justify-center font-bold text-xs text-white">
+                        TT
+                      </div>
+                      <div className="text-left">
+                        <div className="text-sm font-bold group-hover:text-[#F4DCD1]">TikTok Shop Chính Thức</div>
+                        <div className="text-xs text-white/60">@the.little.joy.26</div>
+                      </div>
+                    </div>
+                    <ExternalLink className="w-4 h-4 text-white/60 group-hover:text-white" />
+                  </a>
+
+                  <a
+                    href="https://www.instagram.com/thelittlejoy26/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between p-3.5 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/15 transition-all text-white group"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 flex items-center justify-center font-bold text-xs text-white">
+                        IG
+                      </div>
+                      <div className="text-left">
+                        <div className="text-sm font-bold group-hover:text-[#F4DCD1]">Instagram Shop</div>
+                        <div className="text-xs text-white/60">@thelittlejoy26</div>
+                      </div>
+                    </div>
+                    <ExternalLink className="w-4 h-4 text-white/60 group-hover:text-white" />
+                  </a>
+
+                  {/* ZALO CHÍNH THỨC */}
+                  <a
+                    href="https://zalo.me/0961542126"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3.5 rounded-2xl bg-[#0068FF]/20 hover:bg-[#0068FF]/30 border border-[#0068FF]/50 flex items-center justify-between group transition-all"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="w-9 h-9 rounded-full bg-[#0068FF] flex items-center justify-center font-bold text-xs text-white shadow-md">
+                        Zalo
+                      </div>
+                      <div className="text-left">
+                        <div className="text-sm font-bold text-white group-hover:text-[#F4DCD1]">Zalo Duyệt Demo & Tư Vấn</div>
+                        <div className="text-xs text-[#D4AF37]">The Little Joy (Nhắn tin duyệt demo)</div>
+                      </div>
+                    </div>
+                    <ExternalLink className="w-4 h-4 text-white/60 group-hover:text-white" />
+                  </a>
+                </div>
+              </div>
+
+              {/* Thông tin Studio & CTA Nổi bật */}
+              <div className="lg:col-span-4 bg-white/5 rounded-3xl p-6 sm:p-7 border border-white/15 space-y-4">
+                <div className="text-xs uppercase tracking-wider text-[#D4AF37] font-bold">
+                  The Little Joy Studio
+                </div>
+                <div className="text-sm text-white/85">
+                  📍 <strong>Địa chỉ:</strong> Hà Nội, Việt Nam.<br />
+                  ⚡ <strong>Giao hàng:</strong> Giao hàng nhanh chóng trong 24h.
+                </div>
+
+                <div className="pt-2">
+                  <button
+                    type="button"
+                    onClick={onOpenCustomizer}
+                    className="cta-shine w-full py-3.5 px-6 rounded-full bg-[#BD6B4D] hover:bg-[#9e5033] text-white font-extrabold text-sm shadow-cta transition-all flex items-center justify-center gap-2"
+                  >
+                    <Sparkles className="w-4 h-4" />
+                    <span>Tự Phối Hộp Quà / Thiệp Ngay</span>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Bottom */}
+            <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/60">
+              <div>
+                © 2026 The Little Joy. All rights reserved. Hộp quà & Thiệp cá nhân hóa đong đầy yêu thương.
+              </div>
+              <div className="flex items-center gap-6">
+                <a href="#shipping" className="hover:text-white transition-colors">Chính sách vận chuyển</a>
+                <a href="#shipping" className="hover:text-white transition-colors">Đổi trả 48H</a>
+                <a href="#how-to-order" className="hover:text-white transition-colors">Chính sách sỉ lẻ</a>
+              </div>
+            </div>
+
+          </div>
+        </footer>
+      );
+    };
+
+    // =========================================================================
+    // 12. INTERACTIVE CUSTOMIZER MODAL
+    // =========================================================================
+    const CustomizerModal = ({ isOpen, onClose, initialType = 'large', preselectedModel = null }) => {
+      const [productType, setProductType] = useState(initialType); // 'large' | 'small' | 'card-bear' | 'card-heart'
+      const [boxColor, setBoxColor] = useState('green'); // 'green' | 'blue' | 'pink' | 'purple'
+      const [heartColor, setHeartColor] = useState('brown'); // 'brown' | 'blue' | 'pink' | 'burgundy'
+      const [recipientName, setRecipientName] = useState('Em yêu');
+      const [message, setMessage] = useState('Always make time for those who matter ❤️');
+
+      useEffect(() => {
+        if (preselectedModel) {
+          if (preselectedModel.id.startsWith('to-')) setProductType('large');
+          if (preselectedModel.id.startsWith('be-')) setProductType('small');
+          if (preselectedModel.id.includes('green') || preselectedModel.id.includes('black')) setBoxColor('green');
+          if (preselectedModel.id.includes('blue')) setBoxColor('blue');
+          if (preselectedModel.id.includes('pink')) setBoxColor('pink');
+          if (preselectedModel.id.includes('purple') || preselectedModel.id.includes('bicolor')) setBoxColor('purple');
+        } else {
+          setProductType(initialType);
+        }
+      }, [initialType, preselectedModel]);
+
+      if (!isOpen) return null;
+
+      // 4 Phân loại Box đặt tên theo màu lược (Xanh lá, Xanh dương, Hồng, Tím)
+      const boxColors = [
+        {
+          id: 'green',
+          colorName: 'Xanh lá',
+          colorDot: 'bg-emerald-500',
+          imageTo: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(5).png',
+          imageBe: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(9).png'
+        },
+        {
+          id: 'blue',
+          colorName: 'Xanh dương',
+          colorDot: 'bg-sky-500',
+          imageTo: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(3).png',
+          imageBe: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(6).png'
+        },
+        {
+          id: 'pink',
+          colorName: 'Hồng',
+          colorDot: 'bg-pink-400',
+          imageTo: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(4).png',
+          imageBe: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(8).png'
+        },
+        {
+          id: 'purple',
+          colorName: 'Tím',
+          colorDot: 'bg-purple-400',
+          imageTo: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(2).png',
+          imageBe: 'Images/tr%C6%B0%E1%BB%9Bc%202%20(7).png'
+        },
+      ];
+
+      // Tone màu thiệp trái tim
+      const heartColors = [
+        {
+          id: 'brown',
+          name: 'Nâu Kem Vintage',
+          colorDot: 'bg-[#5C3D2E]',
+          image: 'Images/2.png'
+        },
+        {
+          id: 'blue',
+          name: 'Xanh Baby Chấm Bi',
+          colorDot: 'bg-[#88A9C3]',
+          image: 'Images/4.png'
+        },
+        {
+          id: 'pink',
+          name: 'Hồng Phấn Ngọt Ngào',
+          colorDot: 'bg-[#E5A9B4]',
+          image: 'Images/2.png'
+        },
+        {
+          id: 'burgundy',
+          name: 'Đỏ Kem Rực Rỡ',
+          colorDot: 'bg-[#8B2635]',
+          image: 'Images/4.png'
+        },
+      ];
+
+      const activeBoxColor = boxColors.find(b => b.id === boxColor) || boxColors[0];
+      const activeHeartColor = heartColors.find(h => h.id === heartColor) || heartColors[0];
+
+      let previewImg = activeBoxColor.imageTo;
+      if (productType === 'small') {
+        previewImg = activeBoxColor.imageBe;
+      } else if (productType === 'card-bear') {
+        previewImg = 'Images/788452642_1397073875840615_3395007793016246134_n.jpg';
+      } else if (productType === 'card-heart') {
+        previewImg = activeHeartColor.image;
+      }
+
+      const getProductPrice = () => {
+        switch (productType) {
+          case 'large': return '129.000 VNĐ';
+          case 'small': return '79.000 VNĐ';
+          case 'card-bear': return '39.000 VNĐ';
+          case 'card-heart': return '69.000 VNĐ';
+          default: return '129.000 VNĐ';
+        }
+      };
+
+      const getProductLabel = () => {
+        switch (productType) {
+          case 'large': return 'Combo Box To (Thiệp trái tim 8 ảnh)';
+          case 'small': return 'Combo Box Bé (Thiệp gấu 3 ảnh)';
+          case 'card-bear': return 'Thiệp Gấu (Kèm ảnh Polaroid)';
+          case 'card-heart': return 'Thiệp Trái Tim (Kèm ảnh Polaroid)';
+          default: return 'Hộp quà cá nhân hóa The Little Joy';
+        }
+      };
+
+      const handleSendZalo = () => {
+        let details = '';
+        if (productType === 'large' || productType === 'small') {
+          const boxPrefix = productType === 'large' ? 'Box to' : 'Box bé';
+          details = `• Phân loại: ${boxPrefix} - ${activeBoxColor.colorName} (Lược & phụ kiện đồng bộ)`;
+        } else if (productType === 'card-heart') {
+          details = `• Màu thiệp trái tim: ${activeHeartColor.name}`;
+        } else {
+          details = `• Mẫu thiệp: Thiệp Gấu Độc Bản (Kèm ảnh Polaroid)`;
+        }
+
+        const plainText =
+          `Chào The Little Joy! Mình muốn đặt hàng và duyệt demo:\n` +
+          `• Sản phẩm: ${getProductLabel()} — Giá: ${getProductPrice()}\n` +
+          `${details}\n` +
+          `• Tên người nhận: "${recipientName}"\n` +
+          `• Lời nhắn gửi: "${message}"\n` +
+          `Shop hướng dẫn mình gửi ảnh và gửi bản demo duyệt qua Zalo nhé!`;
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(plainText).catch(() => { });
+        }
+
+        window.open('https://zalo.me/0961542126', '_blank');
+      };
+
+      return (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm animate-fadeIn">
+          <div className="bg-[#FAF7F2] rounded-3xl max-w-4xl w-full max-h-[92vh] overflow-y-auto shadow-2xl border-2 border-[#BD6B4D]/30 p-6 sm:p-10 relative">
+
+            {/* Close Button */}
+            <button
+              type="button"
+              onClick={onClose}
+              className="absolute top-6 right-6 p-2 rounded-full bg-white hover:bg-red-50 text-[#2C1E1A] transition-colors shadow-sm"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            {/* Header */}
+            <div className="mb-8">
+              <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#BD6B4D]">
+                STUDIO HÀ NỘI • TỰ PHỐI QUÀ TRỰC TUYẾN
+              </span>
+              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#2C1E1A] mt-1">
+                Tạo Tác Hộp Quà & Thiệp Theo Ý Bạn
+              </h3>
+              <p className="text-xs sm:text-sm text-[#2C1E1A]/70 mt-1">
+                Tùy chỉnh phân loại theo ý bạn. Sau khi gửi cấu hình, shop sẽ gửi bản demo duyệt thiệp qua Zalo trước khi in ấn và đóng gói!
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+
+              {/* Form Controls (7 cols) */}
+              <div className="md:col-span-7 space-y-6">
+
+                {/* 1. Chọn Sản phẩm & Kích thước */}
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-[#2C1E1A] mb-2">
+                    1. Chọn loại sản phẩm & kích thước
+                  </label>
+                  <div className="grid grid-cols-2 gap-2.5">
+                    <button
+                      type="button"
+                      onClick={() => setProductType('large')}
+                      className={`p-3 rounded-2xl border-2 text-left transition-all ${productType === 'large'
+                        ? 'border-[#BD6B4D] bg-[#BD6B4D]/10 ring-2 ring-[#BD6B4D]/30 font-bold'
+                        : 'border-[#2C1E1A]/10 bg-white hover:border-[#BD6B4D]/40'
+                        }`}
+                    >
+                      <div className="flex items-center justify-between gap-1 mb-0.5">
+                        <span className="text-sm font-bold text-[#2C1E1A]">Box To</span>
+                        <span className="text-[11px] font-extrabold text-[#BD6B4D] bg-[#BD6B4D]/15 px-2 py-0.5 rounded-full">129.000đ</span>
+                      </div>
+                      <div className="text-[11px] text-[#2C1E1A]/70">Thiệp trái tim, 8 ảnh, 2 móc khóa mèo đáng yêu, gương & lược.</div>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => setProductType('small')}
+                      className={`p-3 rounded-2xl border-2 text-left transition-all ${productType === 'small'
+                        ? 'border-[#BD6B4D] bg-[#BD6B4D]/10 ring-2 ring-[#BD6B4D]/30 font-bold'
+                        : 'border-[#2C1E1A]/10 bg-white hover:border-[#BD6B4D]/40'
+                        }`}
+                    >
+                      <div className="flex items-center justify-between gap-1 mb-0.5">
+                        <span className="text-sm font-bold text-[#2C1E1A]">Box Bé</span>
+                        <span className="text-[11px] font-extrabold text-[#BD6B4D] bg-[#BD6B4D]/15 px-2 py-0.5 rounded-full">79.000đ</span>
+                      </div>
+                      <div className="text-[11px] text-[#2C1E1A]/70">Thiệp gấu, 3 ảnh, móc khóa mèo đáng yêu, lược pastel.</div>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => setProductType('card-bear')}
+                      className={`p-3 rounded-2xl border-2 text-left transition-all ${productType === 'card-bear'
+                        ? 'border-[#BD6B4D] bg-[#BD6B4D]/10 ring-2 ring-[#BD6B4D]/30 font-bold'
+                        : 'border-[#2C1E1A]/10 bg-white hover:border-[#BD6B4D]/40'
+                        }`}
+                    >
+                      <div className="flex items-center justify-between gap-1 mb-0.5">
+                        <span className="text-sm font-bold text-[#2C1E1A]">Thiệp Gấu</span>
+                        <span className="text-[11px] font-extrabold text-[#BD6B4D] bg-[#BD6B4D]/15 px-2 py-0.5 rounded-full">39.000đ</span>
+                      </div>
+                      <div className="text-[11px] text-[#2C1E1A]/70">Thiệp bán lẻ kèm ảnh Polaroid 5x7cm.</div>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => setProductType('card-heart')}
+                      className={`p-3 rounded-2xl border-2 text-left transition-all ${productType === 'card-heart'
+                        ? 'border-[#BD6B4D] bg-[#BD6B4D]/10 ring-2 ring-[#BD6B4D]/30 font-bold'
+                        : 'border-[#2C1E1A]/10 bg-white hover:border-[#BD6B4D]/40'
+                        }`}
+                    >
+                      <div className="flex items-center justify-between gap-1 mb-0.5">
+                        <span className="text-sm font-bold text-[#2C1E1A]">Thiệp Trái Tim</span>
+                        <span className="text-[11px] font-extrabold text-[#BD6B4D] bg-[#BD6B4D]/15 px-2 py-0.5 rounded-full">69.000đ</span>
+                      </div>
+                      <div className="text-[11px] text-[#2C1E1A]/70">Thiệp bán lẻ lồng ảnh kỷ niệm.</div>
+                    </button>
+                  </div>
+                </div>
+
+                {/* 2. CHỌN MÀU CHO TỪNG LOẠI SẢN PHẨM */}
+
+                {/* NẾU LÀ BOX (BOX TO / BOX BÉ): CHỈ CHỌN 1 MÀU BOX THEO MÀU LƯỢC */}
+                {(productType === 'large' || productType === 'small') && (
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-wider text-[#2C1E1A] mb-2">
+                      2. Chọn Màu Hộp (Theo Màu Lược)
+                    </label>
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                      {boxColors.map(c => {
+                        const displayName = `${productType === 'large' ? 'Box to' : 'Box bé'} - ${c.colorName}`;
+                        return (
+                          <button
+                            key={c.id}
+                            type="button"
+                            onClick={() => setBoxColor(c.id)}
+                            className={`p-3 rounded-2xl border text-center transition-all ${boxColor === c.id
+                              ? 'border-[#BD6B4D] bg-[#BD6B4D]/10 ring-2 ring-[#BD6B4D]/30 font-bold shadow-xs'
+                              : 'bg-white text-[#2C1E1A] border-[#2C1E1A]/10 hover:border-[#BD6B4D]/40'
+                              }`}
+                          >
+                            <div className="flex items-center justify-center gap-1.5">
+                              <span className={`w-3 h-3 rounded-full ${c.colorDot} shadow-xs`}></span>
+                              <span className="text-xs font-bold text-[#2C1E1A]">{displayName}</span>
+                            </div>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+
+                {/* NẾU LÀ THIỆP TRÁI TIM: GIỮ 1 OPTION CHỌN MÀU THIỆP */}
+                {productType === 'card-heart' && (
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-wider text-[#2C1E1A] mb-2">
+                      2. Chọn Tone Màu Thiệp Trái Tim
+                    </label>
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                      {heartColors.map(h => (
+                        <button
+                          key={h.id}
+                          type="button"
+                          onClick={() => setHeartColor(h.id)}
+                          className={`p-3 rounded-2xl border text-center transition-all ${heartColor === h.id
+                            ? 'border-[#BD6B4D] bg-[#BD6B4D]/10 ring-2 ring-[#BD6B4D]/30 font-bold shadow-xs'
+                            : 'bg-white text-[#2C1E1A] border-[#2C1E1A]/10 hover:border-[#BD6B4D]/40'
+                            }`}
+                        >
+                          <div className="flex items-center justify-center gap-1.5">
+                            <span className={`w-3 h-3 rounded-full ${h.colorDot} shadow-xs`}></span>
+                            <span className="text-xs font-bold text-[#2C1E1A]">{h.name}</span>
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* NẾU LÀ THIỆP GẤU: KHÔNG CÓ BƯỚC CHỌN MÀU (VÌ CHỈ CÓ 1 MẪU ĐỘC BẢN) */}
+                {productType === 'card-bear' && (
+                  <div className="p-3.5 rounded-2xl bg-white border border-[#2C1E1A]/10 flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-full bg-[#BD6B4D]/10 flex items-center justify-center shrink-0 text-[#BD6B4D]">
+                      <Sparkles className="w-4 h-4" />
+                    </div>
+                    <div className="text-xs text-[#2C1E1A]/80 leading-relaxed">
+                      <strong>Mẫu Thiệp Gấu Độc Bản:</strong> Dáng gấu ôm ảnh Polaroid mini duy nhất một mẫu chuẩn, in ảnh theo file bạn gửi.
+                    </div>
+                  </div>
+                )}
+
+                {/* 3. Tên Người Nhận & Lời Nhắn */}
+                <div className="space-y-3">
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-wider text-[#2C1E1A] mb-1">
+                      {productType === 'card-bear' ? '2. Tên người nhận trên thiệp' : '3. Tên người nhận in trang trọng'}
+                    </label>
+                    <input
+                      type="text"
+                      value={recipientName}
+                      onChange={(e) => setRecipientName(e.target.value)}
+                      className="w-full px-4 py-2.5 rounded-xl border border-[#2C1E1A]/20 bg-white text-[#2C1E1A] text-sm focus:outline-none focus:ring-2 focus:ring-[#BD6B4D]"
+                      placeholder="VD: Em yêu, Lan Anh, Mẹ yêu..."
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-wider text-[#2C1E1A] mb-1">
+                      {productType === 'card-bear' ? '3. Lời chúc riêng' : '4. Lời chúc riêng'}
+                    </label>
+                    <textarea
+                      rows={3}
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                      className="w-full px-4 py-2.5 rounded-xl border border-[#2C1E1A]/20 bg-white text-[#2C1E1A] text-sm focus:outline-none focus:ring-2 focus:ring-[#BD6B4D]"
+                      placeholder="Nhập lời chúc đong đầy yêu thương của bạn..."
+                    ></textarea>
+                  </div>
+                </div>
+
+              </div>
+
+              {/* Right Preview Card (5 cols) - Bỏ chữ LIVE PREVIEW & Bỏ ô ghi tên bên cạnh */}
+              <div className="md:col-span-5 bg-white rounded-3xl p-5 sm:p-6 border-2 border-[#2C1E1A]/10 shadow-lg sticky top-0">
+                {/* Header thanh lịch, không chữ LIVE PREVIEW */}
+                <div className="flex items-center justify-between pb-3 mb-3.5 border-b border-[#2C1E1A]/10">
+                  <span className="text-xs uppercase tracking-wider font-extrabold text-[#2C1E1A]">
+                    Xem trước mẫu
+                  </span>
+                  <span className="text-[11px] font-extrabold px-3 py-0.5 rounded-full bg-[#F4DCD1] text-[#BD6B4D]">
+                    {productType === 'large'
+                      ? 'BOX TO • 129.000đ'
+                      : productType === 'small'
+                        ? 'BOX BÉ • 79.000đ'
+                        : productType === 'card-bear'
+                          ? 'THIỆP GẤU • 39.000đ'
+                          : 'THIỆP TRÁI TIM • 69.000đ'}
+                  </span>
+                </div>
+
+                {/* Khung ảnh thực tế sắc nét, fit vừa vặn */}
+                <div className="rounded-2xl overflow-hidden aspect-[4/3] bg-[#FAF7F2] mb-4 border border-[#2C1E1A]/10 flex items-center justify-center p-2">
+                  <img
+                    src={previewImg}
+                    alt="Xem trước The Little Joy"
+                    className={`max-w-full max-h-full transition-all duration-300 rounded-xl ${productType.startsWith('card') ? 'object-contain' : 'object-cover w-full h-full'
+                      }`}
+                  />
+                </div>
+
+                {/* Tóm tắt thông tin sản phẩm */}
+                <div className="text-xs space-y-2 text-[#2C1E1A]/85 border-t border-[#2C1E1A]/10 pt-3.5">
+                  <div className="flex justify-between items-start gap-2">
+                    <span className="text-[#2C1E1A]/60 shrink-0">Sản phẩm:</span>
+                    <span className="font-bold text-right">{getProductLabel()}</span>
+                  </div>
+                  <div className="flex justify-between items-center py-1.5 px-2.5 rounded-xl bg-[#FAF7F2] border border-[#2C1E1A]/5">
+                    <span className="text-[#2C1E1A]/70 font-semibold shrink-0">Giá sản phẩm:</span>
+                    <span className="font-black text-sm text-[#BD6B4D]">{getProductPrice()}</span>
+                  </div>
+                  {(productType === 'large' || productType === 'small') && (
+                    <div className="flex justify-between items-center">
+                      <span className="text-[#2C1E1A]/60">Phân loại:</span>
+                      <span className="font-bold text-[#BD6B4D]">
+                        {productType === 'large' ? 'Box to' : 'Box bé'} - {activeBoxColor.colorName}
+                      </span>
+                    </div>
+                  )}
+                  {productType === 'card-heart' && (
+                    <div className="flex justify-between items-center">
+                      <span className="text-[#2C1E1A]/60">Màu thiệp:</span>
+                      <span className="font-bold text-[#BD6B4D]">{activeHeartColor.name}</span>
+                    </div>
+                  )}
+                  {productType === 'card-bear' && (
+                    <div className="flex justify-between items-center">
+                      <span className="text-[#2C1E1A]/60">Mẫu thiệp:</span>
+                      <span className="font-bold text-[#BD6B4D]">Mẫu Thiệp Gấu Độc Bản</span>
+                    </div>
+                  )}
+                  <div className="flex justify-between items-center">
+                    <span className="text-[#2C1E1A]/60">Dành tặng:</span>
+                    <span className="font-semibold text-[#2C1E1A] truncate max-w-[160px]">
+                      {recipientName || 'Người thương'}
+                    </span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-[#2C1E1A]/60">Quyền lợi:</span>
+                    <span className="font-bold text-emerald-700">Duyệt demo trước khi in</span>
+                  </div>
+                </div>
+
+                {/* Nút gửi cấu hình qua Zalo */}
+                <button
+                  type="button"
+                  onClick={handleSendZalo}
+                  className="cta-shine mt-5 w-full py-3.5 px-5 rounded-full bg-[#BD6B4D] hover:bg-[#9e5033] text-white font-extrabold text-sm sm:text-base shadow-cta hover:shadow-cta-hover flex items-center justify-center gap-2 transition-all hover:scale-102 ring-2 ring-[#BD6B4D]/30"
+                >
+                  <MessageCircle className="w-5 h-5 text-white" />
+                  <span>Gửi Cấu Hình Qua Zalo Lên Mẫu</span>
+                </button>
+                <div className="text-center text-[11px] text-[#2C1E1A]/60 mt-2">
+                  ⚡ The Little Joy phản hồi và gửi bản demo duyệt trong 15 phút.
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      );
+    };
+
+    // =========================================================================
+    // 13. FLOATING CONTACT BUTTONS (TikTok & Zalo Ở Bên Phải)
+    // =========================================================================
+    const FloatingContactButtons = () => {
+      return (
+        <div className="fixed bottom-20 md:bottom-6 right-4 sm:right-6 z-40 flex flex-col items-end gap-2.5">
+          {/* Nút TikTok Shop */}
+          <a
+            href="https://www.tiktok.com/@the.little.joy.26?lang=vi-VN"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Ghé thăm TikTok Shop The Little Joy"
+            className="group flex items-center gap-2 p-2.5 md:px-4 md:py-2.5 rounded-full bg-black hover:bg-neutral-800 text-white shadow-xl hover:scale-105 active:scale-95 transition-all duration-300 ring-4 ring-black/20"
+          >
+            <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center shrink-0">
+              <svg className="w-3.5 h-3.5 fill-white" viewBox="0 0 24 24">
+                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.29 0 .58.04.85.12V9.4a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.66a6.34 6.34 0 0 0 10.82 4.48 6.3 6.3 0 0 0 1.86-4.47V8.71a8.21 8.21 0 0 0 4.91 1.63v-3.65a4.85 4.85 0 0 1-1-.15z" />
+              </svg>
+            </div>
+            <span className="hidden md:inline font-bold text-xs tracking-wide">
+              TikTok Shop
+            </span>
+          </a>
+
+          {/* Nút Chat Zalo (Bỏ số điện thoại) */}
+          <a
+            href="https://zalo.me/0961542126"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Chat Zalo The Little Joy"
+            className="group flex items-center gap-2 p-2.5 md:px-4 md:py-2.5 rounded-full bg-[#0068FF] hover:bg-[#0055d4] text-white shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300 ring-4 ring-[#0068FF]/30 relative"
+          >
+            <div className="w-6 h-6 rounded-full bg-white flex items-center justify-center font-extrabold text-[10px] text-[#0068FF] shrink-0 shadow-xs">
+              Zalo
+            </div>
+            <span className="hidden md:inline font-bold text-xs tracking-wide">
+              Chat Zalo
+            </span>
+            <span className="absolute -top-1 -right-1 flex h-3 w-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+            </span>
+          </a>
+        </div>
+      );
+    };
+
+    // =========================================================================
+    // 14. STICKY MOBILE CONVERSION BAR (Nút Chuyển Đổi Siêu Nổi Bật Trên Mobile)
+    // =========================================================================
+    const StickyMobileBar = ({ onOpenCustomizer }) => {
+      return (
+        <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#FAF7F2]/95 backdrop-blur-lg border-t border-[#2C1E1A]/15 p-3 flex items-center justify-between gap-2 shadow-2xl">
+          <a
+            href="https://www.tiktok.com/@the.little.joy.26?lang=vi-VN"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-1 py-2.5 px-3 rounded-full bg-black text-white text-xs font-bold text-center flex items-center justify-center gap-1"
+          >
+            <span>TikTok Shop</span>
+            <ExternalLink className="w-3 h-3 text-rose-400" />
+          </a>
+
+          <button
+            type="button"
+            onClick={onOpenCustomizer}
+            className="cta-shine flex-[1.6] py-3 px-4 rounded-full bg-[#BD6B4D] text-white text-xs font-extrabold shadow-cta flex items-center justify-center gap-1.5 ring-2 ring-[#BD6B4D]/30"
+          >
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>Tự Phối Quà Ngay</span>
+          </button>
+        </div>
+      );
+    };
+
+    // =========================================================================
+    // MAIN APP COMPONENT
+    // =========================================================================
+    const App = () => {
+      const [customizerOpen, setCustomizerOpen] = useState(false);
+      const [selectedType, setSelectedType] = useState('large');
+      const [preselectedModel, setPreselectedModel] = useState(null);
+
+      const handleOpenCustomizer = () => {
+        setPreselectedModel(null);
+        setSelectedType('large');
+        setCustomizerOpen(true);
+      };
+
+      const handleOpenCustomizerWithType = (type) => {
+        setPreselectedModel(null);
+        setSelectedType(type);
+        setCustomizerOpen(true);
+      };
+
+      const handleSelectModel = (model) => {
+        setPreselectedModel(model);
+        setCustomizerOpen(true);
+      };
+
+      const handleCloseCustomizer = () => {
+        setCustomizerOpen(false);
+      };
+
+      return (
+        <div className="flex flex-col bg-[#FAF7F2] text-[#2C1E1A] min-h-screen">
+
+          {/* Header & Navbar */}
+          <Navbar onOpenCustomizer={handleOpenCustomizer} />
+
+          {/* Hero Section */}
+          <HeroSection
+            onOpenCustomizer={handleOpenCustomizer}
+            onOpenSize={handleOpenCustomizerWithType}
+          />
+
+          {/* 1. Hộp Quà: Size To (25x20) & Size Bé (20x15) */}
+          <BoxesSection
+            onSelectModel={handleSelectModel}
+            onOpenCustomizerWithType={handleOpenCustomizerWithType}
+          />
+
+          {/* 2. Sản phẩm mới bán lẻ: Thiệp Cá Nhân Hóa */}
+          <CardsSection
+            onOpenCustomizerWithType={handleOpenCustomizerWithType}
+          />
+
+          {/* 3. Mục đích, Ý nghĩa & Điểm Unique */}
+          <UniqueSection />
+
+          {/* 4. Quy trình 3 bước đặt hàng & Lưu ý gửi ảnh (chuẩn TikTok Shop) */}
+          <HowToOrderSection onOpenCustomizer={handleOpenCustomizer} />
+
+          {/* 5. Chính sách bán sỉ & bán lẻ */}
+          <WholesaleRetailSection onOpenCustomizer={handleOpenCustomizer} />
+
+          {/* 6. Vận chuyển, Giao hàng & Đổi trả 48H */}
+          <ShippingAndReturnSection />
+
+          {/* 7. Dây chuyền ảnh mẫu & Feedback */}
+          <PhotoMarqueeSection onSelectImage={handleOpenCustomizer} />
+
+          {/* 8. Đánh giá khách hàng */}
+          <TestimonialsSection />
+
+          {/* 9. Footer & Kênh Mua Sắm (TikTok, Instagram, Zalo) */}
+          <Footer onOpenCustomizer={handleOpenCustomizer} />
+
+          {/* Floating Contact Buttons (TikTok & Zalo) */}
+          <FloatingContactButtons />
+
+          {/* Sticky Mobile Conversion Bar */}
+          <StickyMobileBar onOpenCustomizer={handleOpenCustomizer} />
+
+          {/* Customizer Modal */}
+          <CustomizerModal
+            isOpen={customizerOpen}
+            onClose={handleCloseCustomizer}
+            initialType={selectedType}
+            preselectedModel={preselectedModel}
+          />
+
+        </div>
+      );
+    };
+
+    // Render App
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+
+</html>

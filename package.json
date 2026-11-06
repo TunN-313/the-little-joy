@@ -1,0 +1,10 @@
+{
+  "name": "the-little-joy",
+  "version": "1.0.0",
+  "private": true,
+  "description": "The Little Joy Gift Box Landing Page",
+  "scripts": {
+    "dev": "npx --yes serve . -p 3000",
+    "start": "npx --yes serve . -p 3000"
+  }
+}
